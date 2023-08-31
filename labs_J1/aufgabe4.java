@@ -1,6 +1,12 @@
 package labs_J1;
 import java.util.Scanner;
 public class aufgabe4 {
+    public static int Filfaches(Integer zahl){
+        int zahl21 = 3 * zahl;
+        int zahl31 = 5 * zahl;
+        int result = zahl21 + zahl31;
+        return result;
+    }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Masse eingeben");
@@ -37,10 +43,9 @@ public class aufgabe4 {
         System.out.println("Monate"+" "+ days / 30);
         System.out.println("jahre"+" "+ days / 365);
         System.out.println("zahl eingeben");
-        String userinput2 = scanner.nextLine();
-        double zahl11 = Double.parseDouble(userinput2);
-        double zahl21 = 3 * zahl11;
-        double zahl31 = 5 * zahl11;
-        System.out.println(zahl21 + zahl31);
+
+        System.out.println(Filfaches(2));
+
+
     }
 }

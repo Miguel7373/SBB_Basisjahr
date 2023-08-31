@@ -23,8 +23,8 @@ public class aufgabe5 {
         }
         String Punkt = poem.replace(" ",".");
         System.out.println(Punkt);
-        int shu = poem.indexOf("\"");
-        System.out.println(shu + " Zeichen lang.");
+        int textlength = poem.indexOf("\"");
+        System.out.println(textlength + " Zeichen lang.");
         StringBuilder builder = new StringBuilder(poem);
         for (int i = 0 ; i <= 10; i++) {
             builder.deleteCharAt(60);

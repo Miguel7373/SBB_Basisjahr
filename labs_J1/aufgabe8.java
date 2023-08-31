@@ -1,22 +1,36 @@
 package labs_J1;
-import java.util.Arrays;
-import java.util.Scanner;
 public class aufgabe8 {
+    public static int findePosition(int[] array, int zahl) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == zahl) {
+                return i;
+            }
+        }
+        return -1;
+    }
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Zahlen Kombination");
-        String[] num = scanner.nextLine().split("");
-        System.out.println("Single Number");
-        int sn = scanner.nextInt();
-        Arrays.sort(num);
-        int key = sn;
-        int res = Arrays.binarySearch(num, String.valueOf(key));
-        if (res >= 0)
-            System.out.println(key + " found at index = " + res);
-        else
-            System.out.println(key + " Not found");
-        int lafadf = Integer.parseInt(num[num.length -1 ]);
-        System.out.println(lafadf);
+        System.out.println();
+        int[] array = {5, 10, 15, 20, 25};
+        int zahl = 15;
+
+        int position = findePosition(array, zahl);
+        System.out.println(zahl + " Pos " + position);
+
+        int groessteZahl = findeGroessteZahl(array);
+        System.out.println("biggest number " + groessteZahl);
+
+    }
+
+    public static int findeGroessteZahl(int[] array) {
+        int groessteZahl = array[0];
+
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > groessteZahl) {
+                groessteZahl = array[i];
+            }
+        }
+
+        return groessteZahl;
     }
 }
 

@@ -1,58 +1,59 @@
 package labs_J1;
-import java.util.Scanner;
+
 public class aufgabe2 {
 
-    public static String Name(String Miguel) {
-        if (Miguel.contains("Miguel")) {
-            System.out.println("Hello Miguel");
-            System.exit(0);
-        }
-        return Miguel ;
-    }
-    public static void main(String[] args) {
-        if (Name().contains("Miguel")) {
-            System.out.println("Hello Miguel");
-            System.exit(0);
-        }
 
-        public static Integer Schaltjahr() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Gib eine nummer ein");
-        String str = sc.nextLine();
-        double zahl = Double.parseDouble(str);
-        if (zahl % 4 == 0) {
-            System.out.println("das ist ein Schaltjahr");
+    public static String Name(String name) {
+
+        if (name.contains("Miguel")) {
+            name = "Hallo Miguel";
+        }
+        return name;
+    }
+
+
+    public static String isLeapYear() {
+        int year = 400;
+        if (year % 4 == 0) {
+            if (year % 100 == 0) {
+                if (year % 400 == 0) {
+                    return "Das ist ein Schalt jahr";
+                } else {
+                    return "Das ist kein Schalt jahr";
+                }
+            } else {
+                return "Das ist ein Schalt jahr";
+            }
         } else {
-            System.out.println("das ist kein schaltjahr");
+            return "Das ist kein Schalt jahr";
         }
-          return (Schaltjahr());
     }
 
-    public static Integer ungerade() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Gib eine nummer ein");
-        String str = sc.nextLine();
-        double zahl = Double.parseDouble(str);
-        if (zahl % 2 == 0) {
+    public static String checkEvenOdd(int number) {
+        if (number % 2 == 0) {
+            return "Die Zahl ist gerade.";
         } else {
-            System.out.println("die zahl ist ungerade");
+            return "Die Zahl ist ungerade.";
         }
-        return ungerade();
     }
 
-    public static Integer equals() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Gib eine nummer ein");
-        String str = sc.nextLine();
-        double zahl = Double.parseDouble(str);
 
-        if (str.equals("0")) {
-            System.out.println("equals 0 ");
-        } else if (zahl > 0) {
-            System.out.println("die zahl ist grösser als null");
-        } else if (zahl < 0) {
-            System.out.println("die zahl ist kleiner als null");
+
+    public static String checkNumber(int number) {
+        if (number > 0) {
+            return "Die Zahl ist größer als 0.";
+        } else if (number < 0) {
+            return "Die Zahl ist kleiner als 0.";
+        } else {
+            return "Die Zahl ist gleich 0.";
         }
-        return equals();
     }
+
+
+  public static void main(String[] args) {
+      System.out.println(Name("Hallo miguel"));
+      System.out.println(checkNumber(3));
+      System.out.println(isLeapYear());
+      System.out.println(checkEvenOdd(3));
+  }
 }
