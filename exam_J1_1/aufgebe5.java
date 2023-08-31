@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class aufgebe5 {
-    public static void main(String[] args) {
+    public static String compare(){
         int[] num = {
                 -8, 0, 13, 0, -8, 23, -22, 18, -6, -1,
                 -21, -1, 2, 20, -24, 21, 25, -16, -10, -2,
@@ -30,6 +30,10 @@ public class aufgebe5 {
                 }
             }
         }
-        System.out.println(positiveNums);
+        return positiveNums.toString();
+    }
+    public static void main(String[] args) {
+
+        System.out.println(compare());
     }
 }

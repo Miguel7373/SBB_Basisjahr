@@ -1,9 +1,7 @@
 package exam_J1_2;
 
 public class aufgebe5 {
-    public static void main(String[] args) {
-
-
+    public static String MostUsedWord(){
         String endOfTheWorld =
                 "That's great, it starts with an earthquake " +
                         "Birds and snakes, and aeroplanes " +
@@ -84,8 +82,17 @@ public class aufgebe5 {
                 }
             }
             if (i + 1 == word.length) {
-                System.out.println(k + " " + result2);
+                String MostUsed = (k + " " + result2);
+                return MostUsed;
             }
         }
+        return "dfd";
+
+    }
+    public static void main(String[] args) {
+        System.out.println(MostUsedWord());
+
+
+
     }
 }

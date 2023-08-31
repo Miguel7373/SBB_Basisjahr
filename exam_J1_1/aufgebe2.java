@@ -2,7 +2,7 @@ package exam_J1_1;
 import java.util.ArrayList;
 import java.util.List;
 public class aufgebe2 {
-    public static void main(String[] args) {
+    public static String positiveNumbers(){
         int[] num = {
                 -8, 0, 13, 0, -8, 23, -22, 18, -6, -1,
                 -21, -1, 2, 20, -24, 21, 25, -16, -10, -2,
@@ -20,6 +20,9 @@ public class aufgebe2 {
                 positiveNums.add(num[i]);
             }
         }
-        System.out.println("Positive Zahlen: " + positiveNums);
+        return positiveNums.toString();
+    }
+    public static void main(String[] args) {
+        System.out.println(positiveNumbers());
     }
 }

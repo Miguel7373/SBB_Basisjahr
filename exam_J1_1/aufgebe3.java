@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class aufgebe3 {
-    public static void main(String[] args) {
+    public static String positiveNumbers(){
         int[] num = {
                 -8, 0, 13, 0, -8, 23, -22, 18, -6, -1,
                 -21, -1, 2, 20, -24, 21, 25, -16, -10, -2,
@@ -18,10 +18,14 @@ public class aufgebe3 {
                 -22, 2, 7, 8, -6, 20, 3, -5, -19, -15};
         List<Integer> positiveNums = new ArrayList<>();
         for (int i = 0; i < num.length; i++) {
-            if (num[i] >=-6 && num[i] <= 10) {
+            if (num[i] >=-16 && num[i] <= 4) {
                 positiveNums.add(num[i]);
             }
         }
-        System.out.println("zahlen zwischen -6 und 10: " + positiveNums);
+        return positiveNums.toString();
+    }
+    public static void main(String[] args) {
+
+        System.out.println(positiveNumbers());
     }
 }

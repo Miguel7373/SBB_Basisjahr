@@ -1,7 +1,7 @@
 package exam_J1_2;
 
 public class aufgabe1 {
-    public static void main(String[] args) {
+    public static int doublewords(){
         String endOfTheWorld =
                 "That's great, it starts with an earthquake " +
                         "Birds and snakes, and aeroplanes " +
@@ -84,6 +84,10 @@ public class aufgabe1 {
                 repeated++;
             count = 0;
         }
-        System.out.println("Total Repeated Words = " + repeated);
+        return repeated;
+    }
+    public static void main(String[] args) {
+
+        System.out.println(doublewords());
     }
 }

@@ -3,7 +3,7 @@ package exam_J1_2;
 import java.util.Arrays;
 
 public class aufgebe6 {
-    public static void main(String[] args) {
+public static void result2Darray(){
         String endOfTheWorld =
                 "That's great, it starts with an earthquake " +
                         "Birds and snakes, and aeroplanes " +
@@ -122,6 +122,14 @@ public class aufgebe6 {
         }
         for (int print = 0; print <=row; print++){
             System.out.println(Arrays.deepToString(array2D[print]));
+
+
+
         }
+
+}
+    public static void main(String[] args) {
+    result2Darray();
+
     }
 }

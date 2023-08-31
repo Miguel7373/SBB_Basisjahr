@@ -1,7 +1,7 @@
 package exam_J1_2;
 
 public class aufgebe3 {
-    public static void main (String[]args){
+    public static double averagelength(){
         String endOfTheWorld =
                 "That's great, it starts with an earthquake " +
                         "Birds and snakes, and aeroplanes " +
@@ -73,6 +73,12 @@ public class aufgebe3 {
 
         }
         double words = items.length;
-        System.out.println(count / words);
+        double sort= count / words;
+
+        return sort;
+    }
+    public static void main (String[]args){
+
+        System.out.println(averagelength());
     }
 }

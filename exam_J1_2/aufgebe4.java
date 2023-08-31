@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class aufgebe4 {
-    public static void main(String[]args){
+    public static String[] sortlenght(){
         String endOfTheWorld =
                 "That's great, it starts with an earthquake " +
                         "Birds and snakes, and aeroplanes " +
@@ -67,6 +67,10 @@ public class aufgebe4 {
         String Textnospace = endOfTheWorld.replaceAll("[^a-zA-Z0-9 ]", "");
         String[] words = Textnospace.split(" ");
         Arrays.sort(words, Comparator.comparingInt(String::length));
-        Arrays.stream(words).forEach(System.out::println);
+        return words;
+    }
+    public static void main(String[]args){
+
+        Arrays.stream(sortlenght()).forEach(System.out::println);
     }
 }
