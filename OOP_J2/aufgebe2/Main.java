@@ -27,6 +27,7 @@ public class Main {
 
             if (auswahl.equals("1")) {
                 System.out.println(kontaktList.size());
+
             } else if (auswahl.equals("2")) {
                 System.out.println("gib einen neuen kontakt ein ()");
                 String input2 = scanner.nextLine();
