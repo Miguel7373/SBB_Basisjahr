@@ -11,8 +11,8 @@ public class aufgabe6 {
         return woerter.length;
     }
     public static void main(String[] args) {
-        System.out.println(zaehleWoerter("Hallo welt"));
-        System.out.println(flip("Hallo"));
+        System.out.println(zaehleWoerter("Hallo"));
+        System.out.println(flip("Hall"));
 
     }
 }

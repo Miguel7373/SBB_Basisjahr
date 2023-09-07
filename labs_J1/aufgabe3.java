@@ -1,5 +1,4 @@
 package labs_J1;
-import java.util.Scanner;
 public class aufgabe3 {
     public static int berechneFakultaet(int zahl) {
         int fakultaet = 1;

@@ -1,7 +1,7 @@
 package exam_J1_2;
 import java.util.Arrays;
 public class aufgebe6 {
-public static void result2Darray(){
+public static void result2DArray(){
         String endOfTheWorld =
                 "That's great, it starts with an earthquake " +
                         "Birds and snakes, and aeroplanes " +
@@ -123,6 +123,6 @@ public static void result2Darray(){
         }
 }
     public static void main(String[] args) {
-    result2Darray();
+    result2DArray();
     }
 }

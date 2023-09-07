@@ -5,4 +5,11 @@ public class Immobilien {
     String address;
     String hausmeister;
     String verwalter;
+
+    public Immobilien(String wohnung, String address, String hausmeister, String verwalter) {
+        this.wohnung = wohnung;
+        this.address = address;
+        this.hausmeister = hausmeister;
+        this.verwalter = verwalter;
+    }
 }

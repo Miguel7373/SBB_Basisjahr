@@ -16,13 +16,13 @@ public class aufgebe3 {
                 6, 2, -14, 12, 17, -13, 3, -4, -16, 8,
                 16, 6, -23, 0, 3, -16, -6, -14, 8, 25,
                 -22, 2, 7, 8, -6, 20, 3, -5, -19, -15};
-        List<Integer> positiveNums = new ArrayList<>();
+        String Num = "";
         for (int i = 0; i < num.length; i++) {
             if (num[i] >=-16 && num[i] <= 4) {
-                positiveNums.add(num[i]);
+                Num += num[i] + " ";
             }
         }
-        return positiveNums.toString();
+        return Num;
     }
     public static void main(String[] args) {
 

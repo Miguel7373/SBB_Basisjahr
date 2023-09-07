@@ -5,8 +5,7 @@ public class aufgebe9 {
         return name;
     }
     public static int summe(int zahl1, int zahl2){
-        int result = zahl1 + zahl2;
-        return result;
+        return zahl1 + zahl2;
     }
     public static void main(String[] args) {
         System.out.println(summe(1,2));

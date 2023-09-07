@@ -10,7 +10,7 @@ public class aufgabe7 {
         int zahl = Integer.parseInt(userinput2);
         zahl = zahl + 1;
         System.out.println("Hello " + userinput + " you are " + userinput2 + " years old. Next year, you will be " + zahl + " years old.");
-
+        System.out.println(String.format("fd%saf",userinput2));
     }
 }
 

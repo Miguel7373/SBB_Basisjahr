@@ -1,6 +1,5 @@
 package exam_J1_1;
-import java.util.ArrayList;
-import java.util.List;
+
 public class aufgebe2 {
     public static String positiveNumbers(){
         int[] num = {
@@ -14,14 +13,14 @@ public class aufgebe2 {
                 6, 2, -14, 12, 17, -13, 3, -4, -16, 8,
                 16, 6, -23, 0, 3, -16, -6, -14, 8, 25,
                 -22, 2, 7, 8, -6, 20, 3, -5, -19, -15 };
-        List<Integer> positiveNums = new ArrayList<>();
-        for (int i = 0; i < num.length; i++) {
-            if (num[i] >= 0) {
-                positiveNums.add(num[i]);
-            }
+        String positiveNums = "";
+        for (int i = 0; i < num.length; i++) { if (num[i] >= 0) {
+            positiveNums += num[i] + " ";
         }
-        return positiveNums.toString();
+        }
+        return positiveNums;
     }
+
     public static void main(String[] args) {
         System.out.println(positiveNumbers());
     }

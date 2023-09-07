@@ -14,20 +14,20 @@ public class aufgabe5 {
                 Seine Waffen, geheim und klug,
                 Begleiten ihn bei jedem Zug.""";
 
-        var items = poem.split(" ");
+        String[] items = poem.split(" ");
 
         System.out.println("This receipt has " + items.length);
-        for (String item : items) {
             String CAPS = poem.toUpperCase();
             System.out.println(CAPS);
-        }
-        String Punkt = poem.replace(" ",".");
-        System.out.println(Punkt);
+
+        String punkt = poem.replace(" ",".");
+        System.out.println(punkt);
+
         int textlength = poem.indexOf("\"");
         System.out.println(textlength + " Zeichen lang.");
         StringBuilder builder = new StringBuilder(poem);
         for (int i = 0 ; i <= 10; i++) {
-            builder.deleteCharAt(60);
+            builder.deleteCharAt(textlength);
         }
         System.out.println(builder);
     }
