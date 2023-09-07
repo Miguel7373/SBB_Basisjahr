@@ -1,7 +1,5 @@
 package exam_J1_2;
-
 import java.util.Arrays;
-
 public class aufgebe6 {
 public static void result2Darray(){
         String endOfTheWorld =
@@ -69,7 +67,7 @@ public static void result2Darray(){
         String characters = " ";
         String letters[] = smalltext.split("(?<=.)");
         int result2 = 0;
-        String k = "jsfskjf";
+        String k = " ";
         for (int i = 1; i < letters.length; i++){
             int count = 0;
             for (int j = 0; j < letters.length; j++){
@@ -122,14 +120,9 @@ public static void result2Darray(){
         }
         for (int print = 0; print <=row; print++){
             System.out.println(Arrays.deepToString(array2D[print]));
-
-
-
         }
-
 }
     public static void main(String[] args) {
     result2Darray();
-
     }
 }

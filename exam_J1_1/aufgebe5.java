@@ -1,8 +1,6 @@
 package exam_J1_1;
-
 import java.util.ArrayList;
 import java.util.List;
-
 public class aufgebe5 {
     public static String compare(){
         int[] num = {
@@ -33,7 +31,6 @@ public class aufgebe5 {
         return positiveNums.toString();
     }
     public static void main(String[] args) {
-
         System.out.println(compare());
     }
 }

@@ -1,5 +1,4 @@
 package labs_J1;
-import java.util.Scanner;
 public class aufgebe9 {
     public static String Name(String name){
         name = "miguel";
@@ -11,9 +10,6 @@ public class aufgebe9 {
     }
     public static void main(String[] args) {
         System.out.println(summe(1,2));
-        System.out.println("Hallo " + Name("Miguel"));
-
+        System.out.println("Hallo " + Name(" "));
     }
-
-
 }
