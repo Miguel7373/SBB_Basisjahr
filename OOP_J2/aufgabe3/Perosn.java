@@ -28,6 +28,10 @@ public class Perosn {
         return name + email + creditcard + aboArt;
     }
 
+    public String getAboArt() {
+        return aboArt;
+    }
+
     public void setCreditcard(String creditcard) {
         this.creditcard = creditcard;
 
@@ -37,4 +41,3 @@ public class Perosn {
         this.aboArt = aboArt;
     }
 }
-
