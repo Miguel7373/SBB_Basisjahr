@@ -1,5 +1,7 @@
 package OOP_J2.aufgabe4;
 
+import java.util.ArrayList;
+
 public class mieter {
     String phoneNumber;
     String gender;
@@ -13,5 +15,11 @@ public class mieter {
         this.birthday = birthday;
         this.name = name;
         this.email = email;
+    }
+    public static ArrayList mieter() {
+        ArrayList<mieter> mieterList = new ArrayList<>();
+        mieter john = new mieter(" "," "," "," "," ");
+        mieterList.add(john);
+        return mieterList;
     }
 }
