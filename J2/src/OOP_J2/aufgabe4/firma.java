@@ -1,6 +1,6 @@
 package OOP_J2.aufgabe4;
 
-public class Firma {
+public class firma {
     String immobileien;
     String address;
     String name;

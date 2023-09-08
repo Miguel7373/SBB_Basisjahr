@@ -1,11 +1,11 @@
 package OOP_J2.aufgebe2;
 
-public class Adressbuch {
+public class adressbuch {
         String name;
         String emailAdresse;
         String telefonnummer;
 
-    public Adressbuch(String name, String emailAdresse, String telefonnummer) {
+    public adressbuch(String name, String emailAdresse, String telefonnummer) {
         this.name = name;
         this.emailAdresse = emailAdresse;
         this.telefonnummer = telefonnummer;

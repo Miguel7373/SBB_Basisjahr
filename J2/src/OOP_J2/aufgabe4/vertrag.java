@@ -1,6 +1,6 @@
 package OOP_J2.aufgabe4;
 
-public class Vertrag {
+public class vertrag {
     String specificApartment;
     String startDate;
     String endDate;

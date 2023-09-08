@@ -1,13 +1,13 @@
 package OOP_J2.aufgabe4;
 
-public class Mieter {
+public class mieter {
     String phoneNumber;
     String gender;
     String birthday;
     String name;
     String email;
 
-    public Mieter(String phoneNumber, String gender, String birthday, String name, String email) {
+    public mieter(String phoneNumber, String gender, String birthday, String name, String email) {
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.birthday = birthday;

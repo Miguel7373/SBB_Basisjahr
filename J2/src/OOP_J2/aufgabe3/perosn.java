@@ -1,12 +1,12 @@
 package OOP_J2.aufgabe3;
 
-public class Perosn {
+public class perosn {
     String name;
     String email;
     String creditcard;
     String aboArt;
 
-    public Perosn(String name, String email, String creditcard, String aboArt) {
+    public perosn(String name, String email, String creditcard, String aboArt) {
         this.aboArt = aboArt;
         this.name = name;
         this.email = email;

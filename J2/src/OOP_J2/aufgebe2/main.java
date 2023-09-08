@@ -1,18 +1,16 @@
 package OOP_J2.aufgebe2;
-import javax.naming.Name;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-public class Main {
+public class main {
     public static void main(String[] args) {
-        ArrayList<Adressbuch> kontaktList = new ArrayList<>();
-        Adressbuch john = new Adressbuch("john", "john@stud.com", "079 555 89 69");
+        ArrayList<adressbuch> kontaktList = new ArrayList<>();
+        adressbuch john = new adressbuch("john", "john@stud.com", "079 555 89 69");
         kontaktList.add(john);
-        Adressbuch nevio = new Adressbuch("nevio", "nevio@stud.com", "079 666 34 69");
+        adressbuch nevio = new adressbuch("nevio", "nevio@stud.com", "079 666 34 69");
         kontaktList.add(nevio);
-        Adressbuch marc = new Adressbuch("marc", "marc@stud.com", "079 777 98 69");
+        adressbuch marc = new adressbuch("marc", "marc@stud.com", "079 777 98 69");
         kontaktList.add(marc);
-        Adressbuch loris = new Adressbuch("loris", "loris@stud.com", "079 222 45 69");
+        adressbuch loris = new adressbuch("loris", "loris@stud.com", "079 222 45 69");
         kontaktList.add(loris);
         while (true) {
 
@@ -32,7 +30,7 @@ public class Main {
                 System.out.println("gib einen neuen kontakt ein ()");
                 String input2 = scanner.nextLine();
                 String[] parts = input2.split(" ");
-                Adressbuch nevio2 = new Adressbuch(parts[0], parts[1], parts[2]);
+                adressbuch nevio2 = new adressbuch(parts[0], parts[1], parts[2]);
                 kontaktList.add(nevio2);
 
 

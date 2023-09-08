@@ -1,7 +1,7 @@
 package exam_J1_2;
 
 public class aufgabe1 {
-    public static int doublewords(){
+    public static int doublewords() {
         String endOfTheWorld =
                 "That's great, it starts with an earthquake " +
                         "Birds and snakes, and aeroplanes " +
@@ -61,28 +61,32 @@ public class aufgabe1 {
                         "It's the end of the world as we know it (time I had some time alone) " +
                         "It's the end of the world as we know it and I feel fine (time I had some time alone)";
         String word;
-        int  repeated=0;
-        int wordCount= 0;
-        int count = 0;
+        int repeated = 0;
         String no = endOfTheWorld.replaceAll("[^a-zA-Z0-9 ]", "");
         String gross = no.toUpperCase();
         String wordArray[] = gross.split(" ");
-        wordCount = wordArray.length;
-        for(int i=0; i<wordCount; i++) {
-            count = 1;
-                if(wordArray[i].equals(wordArray[wordArray.length])) {
-                    count++;
-                    wordCount--;
-                }
+        int length = wordArray.length;
 
-            if(count>1)
+        for (int i = 0; i < length; i++) {
+            int count = 1;
+            for (int j = (i + 1); j < (length - 1); j++) {
+                if (wordArray[i].equals(wordArray[j])) {
+                    count++;
+                    for (int k = j; k < (length - 1);     k++) {
+                        wordArray[k] = wordArray[k + 1];
+                    }
+                    length--;
+                    j--;
+                }
+            }
+            if (count > 1)
                 repeated++;
             count = 0;
         }
         return repeated;
     }
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         System.out.println(doublewords());
     }
 }

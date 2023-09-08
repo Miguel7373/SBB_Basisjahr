@@ -1,6 +1,6 @@
 package OOP_J2.aufgabe4;
 
-public class Wohnung {
+public class wohnung {
     String mieter;
     String vertrag;
     String stockwerk;
@@ -9,7 +9,7 @@ public class Wohnung {
     String name;
 
 
-    public Wohnung(String mieter, String vertrag, String stockwerk, String wohnungsnummer, String beschreibung, String name) {
+    public wohnung(String mieter, String vertrag, String stockwerk, String wohnungsnummer, String beschreibung, String name) {
         this.name = name;
         this.mieter = mieter;
         this.vertrag = vertrag;
