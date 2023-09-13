@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class main {
-    public static void main(String[] args) {
+    public static String streamingDiesnst(){
         ArrayList<String> viewList = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
@@ -129,5 +129,9 @@ public class main {
 
             }
         }
+        return streamingDiesnst();
+    }
+    public static void main(String[] args) {
+        streamingDiesnst();
     }
 }

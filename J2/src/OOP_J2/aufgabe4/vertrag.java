@@ -14,7 +14,7 @@ public class vertrag {
         this.endDate = endDate;
         this.monthlyCosts = monthlyCosts;
     }
-    public static ArrayList vertrag() {
+    public static ArrayList<vertrag> vertrag() {
         ArrayList<vertrag> vertragsList = new ArrayList<>();
         vertrag johnsvertrag = new vertrag(" "," "," "," ");
         vertragsList.add(johnsvertrag);

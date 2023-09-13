@@ -19,7 +19,7 @@ public class wohnung {
         this.wohnungsnummer = wohnungsnummer;
         this.beschreibung = beschreibung;
     }
-    public static ArrayList wohnung() {
+    public static ArrayList<wohnung> wohnung() {
         ArrayList<wohnung> wohnungsList = new ArrayList<>();
         wohnung bigben_1235 = new wohnung(" "," "," "," "," "," ");
         wohnungsList.add(bigben_1235);

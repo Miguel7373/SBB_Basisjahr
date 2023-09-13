@@ -7,11 +7,11 @@ public class main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Checkup");
         System.out.println("Gib deine grösse ein");
-        String  inputGrösse = scanner.nextLine();
-        double dinputGrösse = Double.parseDouble(inputGrösse);
+        double dinputGrösse = scanner.nextDouble();
+
         System.out.println("Gib dein Gewicht ein");
-        String  inputGewicht = scanner.nextLine();
-        double dinputGewicht = Double.parseDouble(inputGewicht);
+
+        int dinputGewicht =  scanner.nextInt();
         System.out.println("Gib deine Temperatur ein");
         String  inputTempertatur = scanner.nextLine();
         double  dinputTemperatur = Double.parseDouble(inputTempertatur);
