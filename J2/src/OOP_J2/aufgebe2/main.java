@@ -2,7 +2,7 @@ package OOP_J2.aufgebe2;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class main {
-    public static void main(String[] args) {
+    public static String patientData() {
         ArrayList<adressbuch> kontaktList = new ArrayList<>();
         adressbuch john = new adressbuch("john", "john@stud.com", "079 555 89 69");
         kontaktList.add(john);
@@ -50,7 +50,7 @@ public class main {
                 String input4 = scanner.nextLine();
                 for (int j = 0; j < kontaktList.size(); j++) {
                     if (input4.equals(kontaktList.get(j).getName()))
-                    kontaktList.remove(j);
+                        kontaktList.remove(j);
                 }
 
 
@@ -58,5 +58,13 @@ public class main {
                 break;
             }
         }
+        return patientData();
+    }
+
+
+
+
+    public static void main(String[] args) {
+    patientData();
     }
 }
