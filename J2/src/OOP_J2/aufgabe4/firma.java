@@ -1,22 +1,23 @@
 package OOP_J2.aufgabe4;
 import java.util.ArrayList;
+import static OOP_J2.aufgabe4.immobilien.*;
 public class firma {
     String address;
     String name;
-    String contract;
-    String employee;
-    public firma(String address, String name, String contract, String employee) {
+    int immobilien;
+
+    public firma(String address, String name, int immobilien) {
         this.address = address;
         this.name = name;
-        this.contract = contract;
-        this.employee = employee;
+        this.immobilien = immobilien;
+
     }
 
 
 
     public static ArrayList<firma> firmData() {
         ArrayList<firma> firmaList = new ArrayList<>();
-        firma londonMill = new firma("sfdasfda", " dfafas", "fafdafds s", "fadas",);
+        firma londonMill = new firma("bakerStreet ", " londonMill", immobilenData().size());
         firmaList.add(londonMill);
         return firmaList;
     }

@@ -2,7 +2,12 @@ package OOP_J2.aufgebe2;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class main {
+    public static void main(String[] args) {
+        patientData();
+
+    }
     public static String patientData() {
+        Scanner scanner = new Scanner(System.in);
         ArrayList<adressbuch> kontaktList = new ArrayList<>();
         adressbuch john = new adressbuch("john", "john@stud.com", "079 555 89 69");
         kontaktList.add(john);
@@ -15,7 +20,7 @@ public class main {
         while (true) {
 
 
-            Scanner scanner = new Scanner(System.in);
+
             System.out.println("1 Anzahl der Kontakte im Adressbuch");
             System.out.println("2 Kontakt hinzufügen");
             System.out.println("3 Kontakt suchen mit namen");
@@ -64,7 +69,5 @@ public class main {
 
 
 
-    public static void main(String[] args) {
-    patientData();
-    }
+
 }
