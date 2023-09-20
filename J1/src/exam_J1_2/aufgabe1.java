@@ -1,6 +1,12 @@
 package exam_J1_2;
 
+import java.util.ArrayList;
+
 public class aufgabe1 {
+    public static void main(String[] args) {
+        System.out.println(doublewords());
+
+    }
     public static int doublewords() {
         String endOfTheWorld =
                 "That's great, it starts with an earthquake " +
@@ -60,33 +66,35 @@ public class aufgabe1 {
                         "It's the end of the world as we know it (time I had some time alone) " +
                         "It's the end of the world as we know it (time I had some time alone) " +
                         "It's the end of the world as we know it and I feel fine (time I had some time alone)";
-        String word;
-        int repeated = 0;
-        String no = endOfTheWorld.replaceAll("[^a-zA-Z0-9 ]", "");
-        String gross = no.toUpperCase();
-        String wordArray[] = gross.split(" ");
-        int length = wordArray.length;
 
-        for (int i = 0; i < length; i++) {
-            int count = 1;
-            for (int j = (i + 1); j < (length - 1); j++) {
-                if (wordArray[i].equals(wordArray[j])) {
-                    count++;
-                    for (int k = j; k < (length - 1);     k++) {
-                        wordArray[k] = wordArray[k + 1];
-                    }
-                    length--;
-                    j--;
+        String cleanText = endOfTheWorld.replaceAll("[^a-zA-Z0-9 ]", "").toLowerCase();
+        String[] words = cleanText.split("\\s+");
+        String[] countedWords = new String[words.length];
+        int countedWordsCount = 0;
+        int duplicateWordCount = 0;
+        for (int i = 0; i < words.length; i++) {
+            String currentWord = words[i];
+            boolean isCounted = false;
+            for (int j = 0; j < countedWordsCount; j++) {
+                if (currentWord.equals(countedWords[j])) {
+                    isCounted = true;
+                    break;
                 }
             }
-            if (count > 1)
-                repeated++;
-            count = 0;
+            if (!isCounted) {
+                int wordCount = 1;
+                for (int k = i + 1; k < words.length; k++) {
+                    if (currentWord.equals(words[k])) {
+                        wordCount++;
+                    }
+                }
+                if (wordCount >= 2) {
+                    duplicateWordCount++;
+                }
+                countedWords[countedWordsCount] = currentWord;
+                countedWordsCount++;
+            }
         }
-        return repeated;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(doublewords());
+        return duplicateWordCount;
     }
 }
