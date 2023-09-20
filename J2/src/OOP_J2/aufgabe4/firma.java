@@ -1,6 +1,5 @@
 package OOP_J2.aufgabe4;
 import java.util.ArrayList;
-import static OOP_J2.aufgabe4.immobilien.*;
 public class firma {
     String address;
     String name;
@@ -17,7 +16,7 @@ public class firma {
 
     public static ArrayList<firma> firmData() {
         ArrayList<firma> firmaList = new ArrayList<>();
-        firma londonMill = new firma("bakerStreet ", " londonMill", immobilenData().size());
+        firma londonMill = new firma("bakerStreet ", " londonMill",2);
         firmaList.add(londonMill);
         return firmaList;
     }
