@@ -64,10 +64,9 @@ public static void result2DArray(){
         String[] PartsFürPos = smalltext.split("(?<=.)");
         String[] parts = smalltext.split("(?<=.)");
         Arrays.sort(parts);
-        String characters = " ";
+        StringBuilder characters = new StringBuilder(" ");
         String letters[] = smalltext.split("(?<=.)");
         int result2 = 0;
-        String k = " ";
         for (int i = 1; i < letters.length; i++){
             int count = 0;
             for (int j = 0; j < letters.length; j++){
@@ -76,23 +75,19 @@ public static void result2DArray(){
                         break;
                     }
                     count++;
-                    if (result2 >= count){
-                    } else if (result2 <= count){
+                    if (result2 <= count){
                         result2 = count;
-                        k = letters[i];
                     }
                 }
-            }
-            if (i == letters.length - 1){
             }
         }
         int row = result2;
         for (int l = 0; l <= parts.length - 1; l++){
-            if (!characters.contains(parts[l])){
-                characters += parts[l];
+            if (!characters.toString().contains(parts[l])){
+                characters.append(parts[l]);
             }
         }
-        String[] Rowparts = characters.split("(?<=.)");
+        String[] Rowparts = characters.toString().split("(?<=.)");
         String[][] array2D = new String[row + 1][Rowparts.length];
         for (int firstrow = 0; firstrow <= Rowparts.length - 1; firstrow++){
             array2D[0][firstrow] = Rowparts[firstrow];
@@ -114,14 +109,18 @@ public static void result2DArray(){
         for (int m = 0; m <= row; m++){
             for (int n = 0; n <= Rowparts.length - 1; n++){
                 if (array2D[m][n] == null){
-                    array2D[m][n] = "\\";
+                    array2D[m][n] = "|";
                 }
             }
         }
         for (int print = 0; print <=row; print++){
-            System.out.println(Arrays.deepToString(array2D[print]));
+            for (int j = 0; j < Rowparts.length; j++){
+                System.out.printf("%6s", array2D[print][j]);
+            }
+            System.out.println();
         }
 }
+
     public static void main(String[] args) {
     result2DArray();
     }
