@@ -16,10 +16,8 @@ public class main {
         main printer = new main();
         System.out.print("Integer Array: ");
         printer.printArray(intArray);
-
         System.out.print("String Array: ");
         printer.printArray(stringArray);
-
         System.out.print("Double Array: ");
         printer.printArray(doubleArray);
     }

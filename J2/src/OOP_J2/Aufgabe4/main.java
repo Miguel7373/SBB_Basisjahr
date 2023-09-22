@@ -15,6 +15,7 @@ public class main {
             case "6" -> verträgeProPerson();
             case "7" -> einkommenProImmo();
             case "8" -> einkommenFirma();
+            default -> System.out.println("sorry nochmal");
         }
     }
 }

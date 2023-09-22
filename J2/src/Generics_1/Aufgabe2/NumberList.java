@@ -1,25 +1,33 @@
 package Generics_1.Aufgabe2;
-import java.util.ArrayList;
 import java.util.List;
-
 public class NumberList<T extends Number> {
-    List<T> myList = new ArrayList<T>();
-
-    public List<T> getMyList() {
-        return myList;
-
-
-        NumberList<Double> integerList = new NumberList<>();
-        integerList.getMyList().add(1.1);
-        integerList.getMyList().add(1.2);
-        integerList.getMyList().add(1.3);
-        System.out.println(myList);
+    private List<T> numbers;
+    public NumberList(List<T> numbers) {
+        this.numbers = numbers;
     }
+    public T largest() {
 
-
-
-     public static void main(String[] args) {
-
-
+        T largest = numbers.get(0);
+        for (T number : numbers) {
+            if (number.doubleValue() > largest.doubleValue()) {
+                largest = number;
+            }
+        }
+        return largest;
+    }
+    public T smallest() {
+        T smallest = numbers.get(0);
+        for (T number : numbers) {
+            if (number.doubleValue() < smallest.doubleValue()) {
+                smallest = number;
+            }
+        }
+        return smallest;
+    }
+    public static void main(String[] args) {
+        List<Number> numberList = List.of(6, 1.1, 3.8, 5);
+        NumberList<Number> numberNumberList = new NumberList<>(numberList);
+        System.out.println("Größte Zahl: " + numberNumberList.largest());
+        System.out.println("Kleinste Zahl: " + numberNumberList.smallest());
     }
 }

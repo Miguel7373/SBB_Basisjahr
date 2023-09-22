@@ -14,10 +14,11 @@ public class Water {
 
     public static ArrayList<Water> WatherMass() {
         ArrayList<Water> WaterMass = new ArrayList<>();
-        Water hinenfliessendeWassermenge = new Water(50,"l/s",true);
-        Water herausfliessendeWassermenge= new Water(50,"l/s",false);
-        Water jkld= new Water(0,"l/s",false);
-        WaterMass.add(jkld);
+        Water hinenfliessendeWassermenge = new Water(10,"ml/s",true);
+        Water herausfliessendeWassermenge= new Water(500,"ml/s",false);
+        Water hfdas = new Water(490,"ml/s",true);
+        WaterMass.add(hfdas);
+
 
         WaterMass.add(hinenfliessendeWassermenge);
         WaterMass.add(herausfliessendeWassermenge);

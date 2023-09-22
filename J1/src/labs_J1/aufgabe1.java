@@ -15,5 +15,6 @@ public class aufgabe1 {
         System.out.println("----------------");
         System.out.println("       |");
         System.out.println("       |");
+
     }
 }
