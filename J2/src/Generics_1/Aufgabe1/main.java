@@ -1,24 +1,20 @@
 package Generics_1.Aufgabe1;
 
 
+import java.util.List;
 
 public class main {
-    public <T> void printArray(T[] arr) {
-        for (T element : arr) {
+    public static void printArray(Object[] array) {
+        for (Object element : array) {
             System.out.print(element + " ");
         }
         System.out.println();
     }
+
     public static void main(String[] args) {
-        Integer[] intArray = { 1, 2, 3, 4, 5 };
-        String[] stringArray = { "Hallo", "Welt", "Generics" };
-        Double[] doubleArray = { 1.1, 2.2, 3.3, 4.4, 5.5 };
-        main printer = new main();
-        System.out.print("Integer Array: ");
-        printer.printArray(intArray);
-        System.out.print("String Array: ");
-        printer.printArray(stringArray);
-        System.out.print("Double Array: ");
-        printer.printArray(doubleArray);
+        Object[] mixedArray = {1, "Hallo", 2.5, "Welt", 3};
+
+        System.out.println("Gemischtes Array:");
+        printArray(mixedArray);
     }
 }
