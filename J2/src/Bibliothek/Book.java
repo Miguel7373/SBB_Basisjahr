@@ -1,16 +1,17 @@
 package Bibliothek;
 
-public class Book {
+public class Book extends Media {
     private String author;
     private String genre;
 
-    public Book(String author, String genre) {
+    public Book(String title, String author, String genre) {
+        super(title);
         this.author = author;
         this.genre = genre;
     }
 
 
-    public String toString() {
-        return "Buch: Autor=" + author + ", Genre=" + genre;
+    public String getItemDetails() {
+        return "Autor: " + author + ", Genre: " + genre;
     }
 }

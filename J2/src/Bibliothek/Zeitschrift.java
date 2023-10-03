@@ -1,14 +1,17 @@
 package Bibliothek;
 
-public class Zeitschrift {
-    private String datum;
-    private String herausgeber;
+public class Zeitschrift extends Media {
+    private String publicationDate;
+    private String editor;
 
-    public Zeitschrift(String datum, String herausgeber) {
-        this.datum = datum;
-        this.herausgeber = herausgeber;
+    public Zeitschrift(String title, String publicationDate, String editor) {
+        super(title);
+        this.publicationDate = publicationDate;
+        this.editor = editor;
     }
-    public String toString(){
-        return "Zeitschrift: Datum=" + datum + ",Herausgeber=" + herausgeber;
+
+
+    public String getItemDetails() {
+        return "Erscheinungsdatum: " + publicationDate + ", Editor: " + editor;
     }
 }

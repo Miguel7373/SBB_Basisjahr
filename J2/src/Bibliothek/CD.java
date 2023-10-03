@@ -1,15 +1,17 @@
 package Bibliothek;
 
-public class CD {
-        private String artist;
-        private int numberOfSongs;
+public class CD extends Media {
+    private String artist;
+    private int numberOfTracks;
 
-        public CD(String artist, int numberOfSongs) {
-            this.artist = artist;
-            this.numberOfSongs = numberOfSongs;
-        }
+    public CD(String title, String artist, int numberOfTracks) {
+        super(title);
+        this.artist = artist;
+        this.numberOfTracks = numberOfTracks;
+    }
 
-        public String toString() {
-            return "CD: Interpret=" + artist + ", Anzahl der Songs=" + numberOfSongs;
-        }
+
+    public String getItemDetails() {
+        return "Interpret: " + artist + ", Anzahl der Tracks: " + numberOfTracks;
+    }
 }

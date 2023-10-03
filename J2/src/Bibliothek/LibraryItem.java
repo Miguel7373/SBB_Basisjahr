@@ -1,34 +1,32 @@
 package Bibliothek;
 
-public class LibraryItem<T> {
-        private String title;
-        private boolean isCheckedOut;
-        private T itemDetails;
+public class LibraryItem<T extends Media> {
+    private String title;
+    private T item;
+    private boolean checkedOut = false;
 
-        public LibraryItem(String title, T itemDetails) {
-            this.title = title;
-            this.isCheckedOut = false;
-            this.itemDetails = itemDetails;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public boolean isCheckedOut() {
-            return isCheckedOut;
-        }
-
-        public void checkOut() {
-            isCheckedOut = true;
-        }
-
-        public void returnItem() {
-            isCheckedOut = false;
-        }
-
-        public T getItemDetails() {
-            return itemDetails;
-        }
+    public LibraryItem(String title, T item) {
+        this.title = title;
+        this.item = item;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public T getItem() {
+        return item;
+    }
+
+    public boolean isCheckedOut() {
+        return checkedOut;
+    }
+
+    public void checkOut() {
+        checkedOut = true;
+    }
+
+    public void returnItem() {
+        checkedOut = false;
+    }
+}
