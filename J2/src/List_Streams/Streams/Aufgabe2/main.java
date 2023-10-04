@@ -1,23 +1,17 @@
 package List_Streams.Streams.Aufgabe2;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-
 public class main {
     public static void main(String[] args) {
         TimesTow();
-
     }
     public static void TimesTow(){
         Scanner scanner = new Scanner(System.in);
         List<Integer> list = new ArrayList<>();
-
         System.out.println("Geben Sie eine Reihe von Zahlen ein (mit Leerzeichen getrennt):");
         String input = scanner.nextLine();
-        scanner.close();
-
         String[] inputArray = input.split(" ");
         for (String str : inputArray) {
             try {
@@ -32,20 +26,9 @@ public class main {
         List<Integer> sortedNumbers = list.stream().sorted().collect(Collectors.toList());
         System.out.println("Sortierte Liste: ");
         sortedNumbers.forEach(System.out::println);
-
-
         System.out.println("Times Tow");
         list.stream().map(number -> number * 2).forEach(System.out::println);
-
-
         System.out.println("Sortierte Liste: ");
         list.stream().map(number -> number * 2).sorted().collect(Collectors.toList()).forEach(System.out::println);
-
-
-
-
-
-
-
     }
 }

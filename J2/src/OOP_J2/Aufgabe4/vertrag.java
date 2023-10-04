@@ -22,7 +22,7 @@ public class vertrag {
 
     }
     public static ArrayList<vertrag> vertrag() {
-        LocalDate enddatejohn = LocalDate.of(2023, Month.OCTOBER, 1);
+        LocalDate enddatejohn = LocalDate.of(2023, Month.OCTOBER, 10);
         LocalDate enddateloris = LocalDate.of(2024, Month.APRIL, 4);
         LocalDate enddateRaphaël = LocalDate.of(2024, Month.SEPTEMBER,30);
         LocalDate enddateBigman = LocalDate.of(2024, Month.SEPTEMBER,30);

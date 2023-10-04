@@ -8,8 +8,6 @@ public class DVD extends Media {
         this.genre = genre;
         this.director = director;
     }
-
-
     public String getItemDetails() {
         return "Genre: " + genre + ", Regisseur: " + director;
     }

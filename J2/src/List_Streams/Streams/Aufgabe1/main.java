@@ -10,11 +10,9 @@ import java.util.stream.Collectors;
         public static void sort(){
             Scanner scanner = new Scanner(System.in);
             List<Integer> numbers = new ArrayList<>();
-
             System.out.println("Geben Sie eine Reihe von Zahlen ein (mit Leerzeichen getrennt):");
             String input = scanner.nextLine();
             scanner.close();
-
             String[] inputArray = input.split(" ");
             for (String str : inputArray) {
                 try {

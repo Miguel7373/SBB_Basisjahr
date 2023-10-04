@@ -4,11 +4,9 @@ public class main {
     public static void main(String[] args) {
         execution();
     }
-
     public static void execution() {
         Scanner scanner = new Scanner(System.in);
         Library<Media> medienBibliothek = new Library<>();
-
         medienBibliothek.addItem("Das Buch 1", new Book("","Autor 1", "Genre 1"));
         medienBibliothek.addItem("Das Buch 2", new Book("","Autor 2","Genre 2"));
         medienBibliothek.addItem("CD 1", new CD("", "hehe",10));
@@ -17,7 +15,6 @@ public class main {
         medienBibliothek.addItem("Zeitschrift 2", new Zeitschrift("","12.2.2023", "Josef"));
         medienBibliothek.addItem("DVD 1", new DVD("","Action", "John"));
         medienBibliothek.addItem("DVD 2", new DVD("","Romance", "Kuga"));
-
         while (true) {
             System.out.println("Wähle aus:\n1: Inventar anzeigen\n2: Ausleihe\n3: Rückgabe");
             String auswahl = scanner.nextLine();

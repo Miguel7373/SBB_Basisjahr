@@ -14,15 +14,14 @@ public class patient {
         public static double checkUpHeight() {
             Scanner scanner = new Scanner(System.in);
             double height = 0;
-            boolean running = true;
-            while (running) {
+            while (true) {
                 System.out.println("Grösse eingeben");
-                String proof = scanner.nextLine();
-                if (proof.matches("\\d")) {
+                String inputHeight = scanner.nextLine();
+                if (inputHeight.matches("\\d")) {
                     System.out.println("ERROR 404 invalid Number");
                 }
-                if (!proof.matches("\\D")) {
-                    height = Double.parseDouble(proof);
+                if (!inputHeight.matches("\\D")) {
+                    height = Double.parseDouble(inputHeight);
                     break;
                 }
             }
@@ -31,30 +30,28 @@ public class patient {
         public static double checkUpTemparatur() {
             Scanner scanner = new Scanner(System.in);
             double temparatur = 0;
-            boolean running = true;
-            while (running == true) {
+            while (true) {
                 System.out.println("Temparatur eingeben");
-                String proof = scanner.nextLine();
-                if (proof.matches("\\D")) {
+                String inputTemp = scanner.nextLine();
+                if (inputTemp.matches("\\D")) {
                     System.out.println("ERROR 404 invalid Number");
                 }
-                if (!proof.matches("\\d")) {
-                    temparatur = Double.parseDouble(proof);
-                    running = false;
+                if (!inputTemp.matches("\\d")) {
+                    temparatur = Double.parseDouble(inputTemp);
+                    break;
                 }
             }
             return temparatur;
         }
         public static String checkUpGeimpft(){
             Scanner sc = new Scanner(System.in);
-            boolean running = true;
             String geimpft = null;
-            while (running) {
+            while (true) {
                 System.out.println("Geimpf yes = y no = n");
-                String proof = sc.nextLine();
-                if (proof.equals("y") || proof.equals("n")) {
-                    geimpft = proof;
-                    running = false;
+                String inputImpfung = sc.nextLine();
+                if (inputImpfung.equals("y") || inputImpfung.equals("n")) {
+                    geimpft = inputImpfung;
+                    break;
                 }else {
                     System.out.println("Invalid");
                 }
@@ -63,17 +60,16 @@ public class patient {
         }
         public static double checkUpWeight() {
             Scanner scanner = new Scanner(System.in);
-            boolean running = true;
             double weight = 0;
-            while (running) {
+            while (true) {
                 System.out.println("Gewicht eingeben");
-                String proof = scanner.nextLine();
-                if (proof.matches("\\D")) {
+                String inputWeight = scanner.nextLine();
+                if (inputWeight.matches("\\D")) {
                     System.out.println("ERROR 404 invalid Number");
                 }
-                if (!proof.matches("\\d")) {
-                    weight = Double.parseDouble(proof);
-                    running = false;
+                if (!inputWeight.matches("\\d")) {
+                    weight = Double.parseDouble(inputWeight);
+                    break;
                 }
             }
             return weight;

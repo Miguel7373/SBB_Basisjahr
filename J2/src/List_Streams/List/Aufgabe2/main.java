@@ -14,18 +14,18 @@ public class main {
         for (String word : words) {
             wordList.add(word);
         }
-        System.out.println(" Anzahl Wörter" + wordList.size());
-        System.out.println("Die Wörter in der ArrayList sind:");
+        System.out.println("\nAnzahl Wörter " + wordList.size());
+        System.out.println("\nDie Wörter in der ArrayList sind:");
         for (String word : wordList) {
             System.out.println(word);
         }
-        System.out.println("Alle Nomen");
+        System.out.println("\nAlle Nomen");
         for (String word : words) {
             if (Character.isUpperCase(word.charAt(0))) {
                 System.out.println(word);
             }
         }
-        System.out.println("Gedreht");
+        System.out.println("\nGedreht");
         for (int i = wordList.size() - 1; i >= 0; i--) {
             System.out.println(wordList.get(i));
         }
