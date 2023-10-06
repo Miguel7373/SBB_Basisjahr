@@ -3,10 +3,10 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
-import static OOP_J2.Aufgabe4.wohnung.*;
-import static OOP_J2.Aufgabe4.immobilien.*;
-import static OOP_J2.Aufgabe4.mieter.*;
-import static OOP_J2.Aufgabe4.vertrag.*;
+import static OOP_J2.Aufgabe4.Wohnung.*;
+import static OOP_J2.Aufgabe4.Immobilien.*;
+import static OOP_J2.Aufgabe4.Mieter.*;
+import static OOP_J2.Aufgabe4.Vertrag.*;
 
 public class ausfürungen {
     public static String anzahlwohnungen() {
