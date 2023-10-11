@@ -40,10 +40,10 @@ public class StreamingService {
         for (int i = 0; i < filmData().size(); i++) {
             Film film = filmData().get(i);
             if (film.getName().equals(name)) {
-                return filmData().get(i).getAllString(); // Return the entire Film object
+                return filmData().get(i).getAllString();
             }
         }
-        return null; // Film not found
+        return null;
     }
     public ArrayList<String> findFilmsByGenre(String genre) {
         ArrayList<String> filmByGenre = new ArrayList<>();
@@ -57,10 +57,10 @@ public class StreamingService {
     public Film findFilmByNameForView(String name) {
         for (Film film : films) {
             if (film.getName().equalsIgnoreCase(name)) {
-                return film; // Return the entire Film object
+                return film;
             }
         }
-        return null; // Film not found
+        return null;
     }
 
     public int getViewsForFilm(String filmName) {
@@ -68,7 +68,7 @@ public class StreamingService {
         if (film != null) {
             return film.getViews();
         }
-        return 0; // Film not found
+        return 0;
     }
 
     public void displayMonthlyCreditCards() {

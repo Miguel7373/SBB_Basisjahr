@@ -6,7 +6,7 @@ public class main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Geben Sie einen Text ein:");
         String inputText = scanner.nextLine();
-        ArrayList<String> wordList = splitText(inputText);
+        splitText(inputText);
     }
     public static ArrayList<String> splitText(String text) {
         String[] words = text.split("\\s+");

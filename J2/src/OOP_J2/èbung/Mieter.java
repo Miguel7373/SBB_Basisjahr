@@ -1,8 +1,4 @@
 package OOP_J2.èbung;
-
-import java.util.ArrayList;
-
-
 public class Mieter {
     String name;
     String birthdate;
