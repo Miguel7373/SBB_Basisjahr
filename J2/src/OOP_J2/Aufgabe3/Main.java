@@ -34,10 +34,12 @@ public class Main {
                     System.out.print("Enter credit card: ");
                     String personCreditCard = scanner.nextLine();
 
-                    System.out.println("Select Subscription Type:");
-                    System.out.println("1. MONTHLY_SUBSCRIBER");
-                    System.out.println("2. YEARLY_SUBSCRIBER");
-                    System.out.print("Enter your choice: ");
+                    System.out.println("""
+                            Select Subscription Type:
+                            1: MONTHLY_SUBSCRIBER
+                            2: YEARLY_SUBSCRIBER
+                            Enter your choice: 
+                            """);
                     int subscriptionChoice = scanner.nextInt();
                     scanner.nextLine();
                     SubscriptionType subscriptionType = null;
@@ -58,7 +60,6 @@ public class Main {
                         personData.add(newPerson);
                         newPerson.setSubscriptionType(subscriptionType);
                         streamingService.registerPerson(newPerson);
-                        System.out.println("Person registered successfully.");
                         System.out.println(personData.size());
                     }
                     break;
@@ -74,7 +75,7 @@ public class Main {
                     try {
                         Film viewedFilm = streamingService.findFilmByNameForView(filmToMarkViewed);
                         if (viewedFilm != null) {
-                            viewedFilm.markAsViewed(); // Mark the film as viewed
+                            viewedFilm.markAsViewed();
                             System.out.println("Film marked as viewed.");
                         } else {
                             System.out.println("Error: Film not found.");

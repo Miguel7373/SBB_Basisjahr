@@ -3,22 +3,27 @@ import java.util.ArrayList;
 import java.util.List;
 public class Dam {
     List<Water> waterMasses = new ArrayList<>();
+    private Water currentWaterMass;
 
-    public void addWaterMass(Water waterMass) {
-        waterMasses.add(waterMass);
+    public List<Water> getWaterMasses() {
+        return waterMasses;
     }
     public void checkDamStatus() {
         int totalOut = 0;
         int totalIn = 0;
+
         for (Water waterMass : waterMasses) {
+            currentWaterMass = waterMass;
+
             if (!waterMass.flussrichtung) {
-                int umrechnenOut = umrechnenMenge(waterMass);
+                int umrechnenOut = umrechnenMenge();
                 totalOut += umrechnenOut;
             } else {
-                int umrechnenIn = umrechnenMenge(waterMass);
+                int umrechnenIn = umrechnenMenge();
                 totalIn += umrechnenIn;
             }
         }
+
         if (totalIn == totalOut) {
             System.out.println("Gleich");
         } else if (totalIn > totalOut) {
@@ -27,14 +32,14 @@ public class Dam {
             System.out.println("Damm geschlossen");
         }
     }
-    private int umrechnenMenge(Water waterMass) {
-        int umrechnen = switch (waterMass.einheit) {
-            case "ml/s"-> waterMass.menge / 1000;
-            case "dl/s" -> waterMass.menge / 10;
-            case "cl/s"-> waterMass.menge / 100;
-            case "hl/s"-> waterMass.menge * 100;
-            default-> waterMass.menge;
+
+    private int umrechnenMenge() {
+        return switch (currentWaterMass.einheit) {
+            case "ml/s" -> currentWaterMass.menge / 1000;
+            case "dl/s" -> currentWaterMass.menge / 10;
+            case "cl/s" -> currentWaterMass.menge / 100;
+            case "hl/s" -> currentWaterMass.menge * 100;
+            default -> currentWaterMass.menge;
         };
-        return umrechnen;
     }
 }
