@@ -29,9 +29,6 @@ public class main {
         sortedNumbers.forEach(System.out::println);
         System.out.println("Times Two");
         list.stream().map(number -> number * 2).forEach(System.out::println);
-        list.stream().map(number -> number * 2).forEach((num) -> {
-
-        });
         System.out.println("Sortierte Liste: ");
         list.stream().map(number -> number * 2).sorted().collect(Collectors.toList()).forEach(System.out::println);
     }
