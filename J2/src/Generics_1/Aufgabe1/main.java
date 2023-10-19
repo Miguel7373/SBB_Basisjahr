@@ -14,10 +14,8 @@ public class main {
 
         System.out.println("Integer Array:");
         printArray(intArray);
-
         System.out.println("String Array:");
         printArray(stringArray);
-
         System.out.println("Double Array:");
         printArray(doubleArray);
     }

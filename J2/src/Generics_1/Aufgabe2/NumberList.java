@@ -6,7 +6,6 @@ public class NumberList<T extends Number> {
         this.numbers = numbers;
     }
     public T largest() {
-
         T largest = numbers.get(0);
         for (T number : numbers) {
             if (number.doubleValue() > largest.doubleValue()) {
