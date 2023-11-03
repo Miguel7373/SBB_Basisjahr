@@ -7,7 +7,7 @@ public class Mate extends Potions{
         super(weight, designation, prise);
     }
     public static void OverHealPlayer(GameCharacters player) {
-        player.setHp(player.getHp() + 70);
+        player.setHp(player.getHp() + 40);
         System.out.println("you heald your hp is now:" + player.getHp());
     }
 }

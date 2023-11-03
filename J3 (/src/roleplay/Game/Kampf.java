@@ -5,10 +5,14 @@ import roleplay.gameCharacters.GameCharacters;
 import roleplay.items.weapons.meleeWeapons.MeleeWeapons;
 
 public class Kampf {
-    public static int runden = 1;
+    static double runden = 1;
 
-    public int getRunden() {
+    public static double getRunden() {
         return runden;
+    }
+
+    public static void setRunden(double runden) {
+        Kampf.runden = runden;
     }
 
     public static boolean kaempfe(GameCharacters gegner, GameCharacters attacker) {
@@ -45,7 +49,7 @@ public class Kampf {
         System.out.println(gegner.getName() + " hat " + gegner.getHp() + " Lebenspunkte übrig.");
         System.out.println();
 
-        runden++;
+        runden += 0.5;
 
         return true;
     }

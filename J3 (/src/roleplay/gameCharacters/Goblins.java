@@ -21,7 +21,7 @@ public class Goblins extends GameCharacters{
             double attackWithMeleeWeapons = weapons.getAttackValue() * Main.getRandom(0.9, 1.1) + ((MeleeWeapons) weapons).getDefenseValue();
             return attackWithMeleeWeapons;
         }else if (weapons instanceof Bow){
-            double attackWithBow = weapons.getAttackValue() * Main.getRandom(0.9, 1.1) * 2;
+            double attackWithBow = weapons.getAttackValue() * Main.getRandom(0.9, 1.1) * 1.5;
             return attackWithBow;
         } else if (weapons != null) {
             double attackwithRangedWeapons = weapons.getAttackValue() * Main.getRandom(0.9, 1.1);

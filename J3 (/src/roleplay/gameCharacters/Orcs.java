@@ -21,8 +21,7 @@ public class Orcs extends GameCharacters{
                 double attackWithMeleeWeapons = weapons.getAttackValue() * Main.getRandom(0.9, 1.1) + ((MeleeWeapons) weapons).getDefenseValue() * 3;
                 return attackWithMeleeWeapons;
             } else if (weapons != null) {
-                double attackwithRangedWeapons = weapons.getAttackValue() * Main.getRandom(0.9, 1.1) * 3;
-                return attackwithRangedWeapons;
+                return weapons.getAttackValue() * Main.getRandom(0.9, 1.1) * 3;
             } else {
                 double attackWithHand = 1.0 * 3;
                 return attackWithHand;

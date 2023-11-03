@@ -32,8 +32,9 @@ public class Main {
         return min + (Math.random() * (max - min));
     }
 
+    public static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         Main main = new Main();
         Shop shop = new Shop();
 
@@ -100,11 +101,38 @@ public class Main {
         main.addCharacter(trolls);
         main.addCharacter(goblins);
         main.addCharacter(elves);
+        boolean unlimetedCoins = false;
+        boolean doubleHP = false;
+        boolean rule = true;
+        while (rule) {
+            System.out.println("Regeln\n 1: Unlimeted Coins \n 2: Doppelte HP \n 3: Start\n");
+            int inputTorule = getValidIntegerInput(scanner, "Enter your choice: ");
+            switch (inputTorule) {
+                case 1:
+                    unlimetedCoins = true;
+                    break;
+                case 2:
+                    doubleHP = true;
+                    break;
+                case 3:
+                    rule = false;
+                    break;
+                default:
+                    break;
+            }
+        }
 
 
         double count = 7;
         System.out.println("Player 1, name your character");
         GameCharacters player1Character = selectCharacter(count, scanner, main);
+        if (unlimetedCoins) {
+            player1Character.setCoins(999999);
+        }
+        if (doubleHP) {
+            player1Character.setHp(player1Character.getHp() * 2);
+            player1Character.setMaxHP(player1Character.getMaxHP() * 2);
+        }
         boolean shop_p1 = true;
         while (shop_p1) {
             if (player1Character instanceof Dwarfs) {
@@ -140,6 +168,13 @@ public class Main {
 
         System.out.println("Player 2, name your character");
         GameCharacters player2Character = selectCharacter(count, scanner, main);
+        if (unlimetedCoins) {
+            player2Character.setCoins(999999);
+        }
+        if (doubleHP) {
+            player2Character.setHp(player2Character.getHp() * 2);
+            player2Character.setMaxHP(player2Character.getMaxHP() * 2);
+        }
         boolean shop_p2 = true;
         while (shop_p2) {
             if (player2Character instanceof Dwarfs) {
@@ -176,30 +211,10 @@ public class Main {
         if (player1Character.getInitiative() < player2Character.getInitiative()) {
             player = 1;
         }
-        boolean rule = true;
-        while (rule) {
-            System.out.println("Regeln\n 1: Unlimeted Coins \n 2: Doppelte HP \n 3: Start\n");
-            int inputTorule = getValidIntegerInput(scanner, "Enter your choice: ");
-            switch (inputTorule) {
-                case 1:
-                    player2Character.setCoins(999999);
-                    player1Character.setCoins(999999);
-                case 2:
-                    player1Character.setHp(player1Character.getHp() * 2);
-                    player1Character.setMaxHP(player1Character.getMaxHP() * 2);
-                    player2Character.setHp(player2Character.getHp() * 2);
-                    player2Character.setMaxHP(player2Character.getMaxHP() * 2);
-                case 3:
-                    rule = false;
-                    break;
-                default:
-                    break;
-            }
-        }
 
         boolean gameOn = true;
         while (gameOn) {
-            if (Kampf.runden > 20 || player1Character.getHp() <= 0 || player2Character.getHp() <= 0) {
+            if (Kampf.getRunden() > 20 || player1Character.getHp() <= 0 || player2Character.getHp() <= 0) {
                 player1Character.setHp(player1Character.getMaxHP());
                 System.out.println("\nPlayer one's HP got reset to full " + player1Character.getMaxHP());
                 player1Character.setCoins(player1Character.getCoins() + 10);
@@ -216,7 +231,7 @@ public class Main {
                 } else {
                     player = 0;
                 }
-                Kampf.runden = 1;
+                Kampf.setRunden(1.0);
 
             }
             if (player == 0) {
@@ -224,192 +239,15 @@ public class Main {
             } else {
                 System.out.println("\nIts Your Turn " + player2Character.getName());
             }
-
-
-
-            System.out.println("\nChoose an Action:");
-            System.out.println("1: Attack");
-            System.out.println("2: Use Item");
-            System.out.println("3: Chill");
-            System.out.println("4: Equip Weapon");
-            System.out.println("5: Drop Item");
-            System.out.println("6: Equip Armor");
-            System.out.println("7: Exit");
-            int whileFight = getValidIntegerInput(scanner, "Enter your choice: ");
-
-            switch (whileFight) {
-                case 1:
-                    if (player == 0) {
-                        Kampf.kaempfe(player2Character, player1Character);
-                        player = 1;
-                    } else {
-                        Kampf.kaempfe(player1Character, player2Character);
-                        player = 0;
-                    }
-                    break;
-                case 2:
-                    if (player1Character.items != null || player2Character.items != null) {
-                        if (player == 0) {
-                            for (int i = 0; i < player1Character.items.size(); i++) {
-                                if (player1Character.items.get(i) instanceof Potions || player1Character.items.get(i) instanceof MagicRings) {
-                                    System.out.println(i + ": " + player1Character.items.get(i).getDesignation());
-                                }
-                            }
-                            System.out.println("\nEnter the index of the item you want to use:");
-                            int itemIndexToUse = scanner.nextInt();
-                            if (player1Character.items.get(itemIndexToUse) instanceof HealingPotion) {
-                                HealingPotion.healPlayer(player1Character);
-                                player1Character.items.remove(itemIndexToUse);
-                            } else if (player1Character.items.get(itemIndexToUse) instanceof StrengthPotion) {
-                                StrengthPotion.useStrengthPotion(player1Character);
-                                player1Character.items.remove(itemIndexToUse);
-                            } else if (player1Character.items.get(itemIndexToUse) instanceof PowerRing) {
-                                PowerRing.applyPowerRing(player1Character);
-                                player1Character.items.remove(itemIndexToUse);
-                            } else if (player1Character.items.get(itemIndexToUse) instanceof ProtectiveRing) {
-                                ProtectiveRing.applyProtectiveRing(player1Character);
-                                player1Character.items.remove(itemIndexToUse);
-                            } else if (player1Character.items.get(itemIndexToUse) instanceof Mate) {
-                                Mate.OverHealPlayer(player1Character);
-                                player1Character.items.remove(itemIndexToUse);
-                            } else {
-                                System.out.println("\nThat isn't an item.");
-                            }
-                        } else {
-                            for (int l = 0; l < player2Character.items.size(); l++) {
-                                if (player2Character.items.get(l) instanceof Potions || player2Character.items.get(l) instanceof MagicRings) {
-                                    System.out.println(l + ": " + player2Character.items.get(l).getDesignation());
-                                }
-                            }
-                            System.out.println("\nEnter the index of the item you want to use:");
-                            int itemIndexToUse = scanner.nextInt();
-                            if (player2Character.items.get(itemIndexToUse) instanceof HealingPotion) {
-                                HealingPotion.healPlayer(player2Character);
-                                player2Character.items.remove(itemIndexToUse);
-                            } else if (player2Character.items.get(itemIndexToUse) instanceof StrengthPotion) {
-                                StrengthPotion.useStrengthPotion(player2Character);
-                                player2Character.items.remove(itemIndexToUse);
-                            } else if (player2Character.items.get(itemIndexToUse) instanceof PowerRing) {
-                                PowerRing.applyPowerRing(player2Character);
-                                player2Character.items.remove(itemIndexToUse);
-                            } else if (player2Character.items.get(itemIndexToUse) instanceof ProtectiveRing) {
-                                ProtectiveRing.applyProtectiveRing(player2Character);
-                                player2Character.items.remove(itemIndexToUse);
-                            } else if (player2Character.items.get(itemIndexToUse) instanceof Mate) {
-                                Mate.OverHealPlayer(player2Character);
-                                player2Character.items.remove(itemIndexToUse);
-                            } else {
-                                System.out.println("\nThat isn't an item.");
-                            }
-                        }
-                        break;
-                    }
-                    else {
-                        System.out.println("You dont have Items");
-                        break;
-                    }
-                case 3:
-                    if (player == 0) {
-                        player = 1;
-                    } else {
-                        player = 0;
-                    }
-                    break;
-                case 4:
-                    if (player1Character.items != null || player2Character.items != null) {
-                        if (player == 0) {
-                            for (int i = 0; i < player1Character.items.size(); i++) {
-                                if (player1Character.items.get(i) instanceof Weapons) {
-                                    System.out.println(i + ": " + player1Character.items.get(i).getDesignation());
-                                }
-                            }
-                            int chosenWeapon = scanner.nextInt();
-                            if (chosenWeapon >= 0 && chosenWeapon < player1Character.items.size()) {
-                                Weapons selectedWeapon = (Weapons) player1Character.items.get(chosenWeapon);
-                                assignWeapon(player1Character, selectedWeapon);
-                            }
-                        } else {
-                            for (int i = 0; i < player2Character.items.size(); i++) {
-                                if (player2Character.items.get(i) instanceof Weapons) {
-                                    System.out.println(i + ": " + player2Character.items.get(i).getDesignation());
-                                }
-                            }
-                            int chosenWeapon = scanner.nextInt();
-                            if (chosenWeapon >= 0 && chosenWeapon < player2Character.items.size()) {
-                                Weapons selectedWeapon = (Weapons) player2Character.items.get(chosenWeapon);
-                                assignWeapon(player2Character, selectedWeapon);
-                            }
-                        }
-                    } else {
-                        System.out.println("\nYou don't even have a weapon.");
-                        break;
-                    }
-                    break;
-                case 5:
-                    if (player == 0) {
-                        for (int i = 0; i < player1Character.items.size(); i++) {
-                            System.out.println(i + ": " + player1Character.items.get(i).getDesignation());
-                        }
-                        System.out.println("Enter the index of the item you want to remove:");
-                        int itemIndexToRemove = scanner.nextInt();
-                        if (itemIndexToRemove >= 0 && itemIndexToRemove < player1Character.items.size()) {
-                            player1Character.items.remove(itemIndexToRemove);
-                        } else {
-                            System.out.println("\nInvalid item index.");
-                        }
-                    } else {
-                        for (int i = 0; i < player2Character.items.size(); i++) {
-                            System.out.println(i + ": " + player2Character.items.get(i).getDesignation());
-                        }
-                        System.out.println("Enter the index of the item you want to remove:");
-                        int itemIndexToRemove = scanner.nextInt();
-
-                        if (itemIndexToRemove >= 0 && itemIndexToRemove < player2Character.items.size()) {
-                            player2Character.items.remove(itemIndexToRemove);
-                        } else {
-                            System.out.println("\nInvalid item index.");
-                        }
-                    }
-                    break;
-                case 6:
-                    if (player1Character.items != null || player2Character.items != null) {
-                        if (player == 0) {
-                            for (int i = 0; i < player1Character.items.size(); i++) {
-                                if (player1Character.items.get(i) instanceof Armor) {
-                                    System.out.println(i + ": " + player1Character.items.get(i).getDesignation());
-                                }
-                            }
-                            int chosenArmor = scanner.nextInt();
-                            if (chosenArmor >= 0 && chosenArmor < player1Character.items.size()) {
-                                Armor selectedArmor = (Armor) player1Character.items.get(chosenArmor);
-                                GameCharacters.assingArmor(player1Character, selectedArmor);
-                            }
-                        } else {
-                            for (int i = 0; i < player2Character.items.size(); i++) {
-                                if (player2Character.items.get(i) instanceof Armor) {
-                                    System.out.println(i + ": " + player2Character.items.get(i).getDesignation());
-                                }
-                            }
-                            int chosenWeapon = scanner.nextInt();
-                            if (chosenWeapon >= 0 && chosenWeapon < player2Character.items.size()) {
-                                Armor selectedArmor = (Armor) player2Character.items.get(chosenWeapon);
-                                GameCharacters.assingArmor(player2Character, selectedArmor);
-                            }
-                        }
-                    } else {
-                        System.out.println("\nYou don't even have armor");
-                        break;
-                    }
-                    break;
-                case 7:
-                    gameOn = false;
-                    break;
-                default:
+            if (player == 0) {
+                Game.game(player1Character, player2Character);
+                player = 1;
+            } else {
+                Game.game(player2Character, player1Character);
+                player = 0;
             }
         }
-        System.out.println("\nGame Over!");
     }
-
     public static GameCharacters selectCharacter(double count, Scanner scanner, Main main) {
         System.out.println("Enter a name: ");
         String name = scanner.nextLine();

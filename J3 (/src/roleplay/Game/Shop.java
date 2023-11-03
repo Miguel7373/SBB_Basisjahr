@@ -1,5 +1,6 @@
 package roleplay.Game;
 
+import roleplay.Main;
 import roleplay.gameCharacters.*;
 import roleplay.items.Items;
 import roleplay.items.armor.armorTyp.HeavyArmor;
@@ -18,13 +19,12 @@ public class Shop {
 
     public static void shop(GameCharacters player) {
         System.out.println(player.getCoins());
-        Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < shopItems.size(); i++) {
             Items item = shopItems.get(i);
             System.out.println(i + " - " + item.getDesignation() + " - Price: " + item.getPrise() + "\n    Gewicht:" + item.getWeight());
         }
         System.out.println("Which item would you like to buy?");
-        int interestedItem = InputUtils.getValidIntegerInput(scanner, "\n\nEnter your choice: ");
+        int interestedItem = Main.getValidIntegerInput(Main.scanner, "\n\nEnter your choice: ");
 
         if (interestedItem >= 0 && interestedItem < shopItems.size()) {
             Items selectedItem = shopItems.get(interestedItem);
@@ -51,7 +51,9 @@ public class Shop {
                         System.out.println("\nYou are not strong enough to wear this.");
                     }
                 } else if (selectedItem instanceof LightArmor) {
-                    if (player instanceof Elves || player instanceof Goblins) {
+                    if (player instanceof Trolls || player instanceof Levin) {
+                        System.out.println("\nYou are not the right size for this.");
+                    } else {
                         if (availableCapacity >= 0) {
                             player.setLoadCapacity(availableCapacity);
                             System.out.println("\nYou are now the proud owner of a " + selectedItem.getDesignation());
@@ -61,8 +63,6 @@ public class Shop {
                         } else {
                             System.out.println("\nYou don't have enough inventory space.");
                         }
-                    } else {
-                        System.out.println("\nYou are not the right size for this.");
                     }
                 } else {
                     if (availableCapacity >= 0) {
@@ -80,25 +80,6 @@ public class Shop {
             }
         } else {
             System.out.println("\nInvalid item choice.");
-        }
-    }
-
-    public class InputUtils {
-        public static int getValidIntegerInput(Scanner scanner, String prompt) {
-            int input = 0;
-            boolean validInput = false;
-
-            while (!validInput) {
-                try {
-                    System.out.print(prompt);
-                    input = Integer.parseInt(scanner.nextLine());
-                    validInput = true;
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter an integer.");
-                }
-            }
-
-            return input;
         }
     }
 }

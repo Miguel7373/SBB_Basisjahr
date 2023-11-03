@@ -14,7 +14,7 @@ public class Levin extends GameCharacters{
     }
     public double levinDamage(Weapons weapons) {
         if (getDamage()>= 10) {
-            setHp(10);
+            setHp(2);
             System.out.println("aktiviere FIFA rage");
             if (weapons instanceof Sword || weapons instanceof Club) {
                 double attackWithMeleeWeapons = weapons.getAttackValue() * Main.getRandom(0.9, 1.1) + ((MeleeWeapons) weapons).getDefenseValue() + 50;

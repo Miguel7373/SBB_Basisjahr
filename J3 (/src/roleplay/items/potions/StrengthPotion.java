@@ -9,11 +9,6 @@ public class StrengthPotion extends Potions {
         super(weight, designation, prise);
         this.damageIncrease = damageIncrease;
     }
-
-    public int getDamageIncrease() {
-        return damageIncrease;
-    }
-
     public static void useStrengthPotion(GameCharacters character) {
         double currentAttackDamage = character.getDamage();
         double newAttackDamage = currentAttackDamage + damageIncrease;

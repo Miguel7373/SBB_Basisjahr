@@ -24,12 +24,12 @@ public class main {
         }
         System.out.println("Unsortierte Liste: ");
         list.forEach(System.out::println);
-        List<Integer> sortedNumbers = list.stream().sorted().collect(Collectors.toList());
+        List<Integer> sortedNumbers = list.stream().sorted().toList();
         System.out.println("Sortierte Liste: ");
         sortedNumbers.forEach(System.out::println);
         System.out.println("Times Two");
-        list.stream().map(number -> number * 2).forEach(System.out::println);
+        list.stream().map(number -> number * number).forEach(System.out::println);
         System.out.println("Sortierte Liste: ");
-        list.stream().map(number -> number * 2).sorted().collect(Collectors.toList()).forEach(System.out::println);
+        list.stream().map(number -> number * number).sorted().toList().forEach(System.out::println);
     }
 }

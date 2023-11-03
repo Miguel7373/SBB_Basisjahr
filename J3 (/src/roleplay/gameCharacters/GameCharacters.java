@@ -21,7 +21,6 @@ public abstract class GameCharacters {
     private double damage;
     private int defens;
 
-
     public GameCharacters(String name, double hp, int loadCapacity, Weapons weapons, int initiative, Armor armor, double maxHP,int coins,double damage,int defens) {
         this.name = name;
         this.hp = hp;
@@ -33,7 +32,6 @@ public abstract class GameCharacters {
         this.coins = coins;
         this.damage = damage;
         this.defens = defens;
-
     }
 
     public void ablegenWaffe() {

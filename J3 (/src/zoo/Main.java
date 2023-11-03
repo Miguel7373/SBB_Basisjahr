@@ -25,12 +25,3 @@ public class Main {
         System.out.println("hallo");
     }
 }
-//if(animal instanceof Terrarium){
-//System.out.println("is ter");
-//}
-//
-//
-//
-//
-//Employees beinhaltet zuteilungsbereich
-//Enclosure beinhatet animal
