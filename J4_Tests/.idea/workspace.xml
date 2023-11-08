@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cd100573-2791-4b43-aabd-5b73334efec8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/J4/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/J4/mockito/Dictionary.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/J4/mockito/DictionaryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/J4/mockito/DictionaryStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/J4/mover/Mover.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/J4/passwordvalidator/PasswordValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/J4/tageszeit/Tageszeit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/J4/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/J4/dictionary_Test/Dictionary_Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/J4/passwordvalidator_test/PasswordValidator_Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/J4/tageszeit/Test_Tageszeit.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2XbvtMy0cMvbgv8BrVnmYIgPRO4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/mlehmann/devs/J4_Tests",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="J4.tageszeit" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.Dictionary_Test.givenWordInDatabase_whenAddOrUpdateWord_thenUpdatedStatus">
+    <configuration name="Dictionary_Test.givenWordInDatabase_whenAddOrUpdateWord_thenUpdatedStatus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="J4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="J4.dictionary_Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="J4.dictionary_Test" />
+      <option name="MAIN_CLASS_NAME" value="J4.dictionary_Test.Dictionary_Test" />
+      <option name="METHOD_NAME" value="givenWordInDatabase_whenAddOrUpdateWord_thenUpdatedStatus" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Dictionary_Test.givenWordNotInDatabase_whenAddOrUpdateWord_thenAddedStatus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="J4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="J4.dictionary_Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="J4.dictionary_Test" />
+      <option name="MAIN_CLASS_NAME" value="J4.dictionary_Test.Dictionary_Test" />
+      <option name="METHOD_NAME" value="givenWordNotInDatabase_whenAddOrUpdateWord_thenAddedStatus" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Dictionary_Test.testEmptyWord" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="J4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="J4.dictionary_Test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="J4.dictionary_Test" />
+      <option name="MAIN_CLASS_NAME" value="J4.dictionary_Test.Dictionary_Test" />
+      <option name="METHOD_NAME" value="testEmptyWord" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PasswordValidator_Test.testPasswordValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="J4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="J4.passwordvalidator_test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="J4.passwordvalidator_test" />
+      <option name="MAIN_CLASS_NAME" value="J4.passwordvalidator_test.PasswordValidator_Test" />
+      <option name="METHOD_NAME" value="testPasswordValid" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test_Mover.testMoveWest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="J4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="J4.test_mover.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="J4.test_mover" />
+      <option name="MAIN_CLASS_NAME" value="J4.test_mover.Test_Mover" />
+      <option name="METHOD_NAME" value="testMoveWest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.Dictionary_Test.testEmptyWord" />
+        <item itemvalue="JUnit.Dictionary_Test.givenWordNotInDatabase_whenAddOrUpdateWord_thenAddedStatus" />
+        <item itemvalue="JUnit.Dictionary_Test.givenWordInDatabase_whenAddOrUpdateWord_thenUpdatedStatus" />
+        <item itemvalue="JUnit.PasswordValidator_Test.testPasswordValid" />
+        <item itemvalue="JUnit.Test_Mover.testMoveWest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cd100573-2791-4b43-aabd-5b73334efec8" name="Changes" comment="" />
+      <created>1698910808611</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698910808611</updated>
+      <workItem from="1698910810325" duration="5736000" />
+      <workItem from="1698993234818" duration="21793000" />
+      <workItem from="1699426525699" duration="87000" />
+      <workItem from="1699427278856" duration="32000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
