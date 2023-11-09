@@ -2,13 +2,10 @@ package J4.test_mover;
 
 import J4.mover.Mover;
 import org.junit.jupiter.api.Test;
-import java.time.Clock;
-import java.time.Instant;
-import java.time.ZoneId;
 
-import static java.time.LocalDateTime.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDateTime;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Test_Mover {
     private Mover mover = new Mover();

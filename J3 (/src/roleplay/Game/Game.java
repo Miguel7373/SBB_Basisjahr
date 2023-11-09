@@ -44,46 +44,46 @@ public class Game {
                     Turn = false;
                     break;
                 case 4:
-                    if (userTurn.items != null){
-                            for (int i = 0; i < userTurn.items.size(); i++) {
-                                if (userTurn.items.get(i) instanceof Weapons) {
-                                    System.out.println(i + ": " + userTurn.items.get(i).getDesignation());
-                                }
+                    if (userTurn.items != null) {
+                        for (int i = 0; i < userTurn.items.size(); i++) {
+                            if (userTurn.items.get(i) instanceof Weapons) {
+                                System.out.println(i + ": " + userTurn.items.get(i).getDesignation());
                             }
-                            int chosenWeapon = Main.scanner.nextInt();
-                            if (chosenWeapon >= 0 && chosenWeapon < userTurn.items.size()) {
-                                Weapons selectedWeapon = (Weapons) userTurn.items.get(chosenWeapon);
-                                assignWeapon(userTurn, selectedWeapon);
-                            }
+                        }
+                        int chosenWeapon = Main.scanner.nextInt();
+                        if (chosenWeapon >= 0 && chosenWeapon < userTurn.items.size()) {
+                            Weapons selectedWeapon = (Weapons) userTurn.items.get(chosenWeapon);
+                            assignWeapon(userTurn, selectedWeapon);
+                        }
                     } else {
                         System.out.println("\nYou don't even have a weapon.");
                         break;
                     }
                     break;
                 case 5:
-                        for (int i = 0; i < userTurn.items.size(); i++) {
-                            System.out.println(i + ": " + userTurn.items.get(i).getDesignation());
-                        }
-                        System.out.println("Enter the index of the item you want to remove:");
-                        int itemIndexToRemove = Main.scanner.nextInt();
-                        if (itemIndexToRemove >= 0 && itemIndexToRemove < userTurn.items.size()) {
-                            userTurn.items.remove(itemIndexToRemove);
-                        } else {
-                            System.out.println("\nInvalid item index.");
-                        }
+                    for (int i = 0; i < userTurn.items.size(); i++) {
+                        System.out.println(i + ": " + userTurn.items.get(i).getDesignation());
+                    }
+                    System.out.println("Enter the index of the item you want to remove:");
+                    int itemIndexToRemove = Main.scanner.nextInt();
+                    if (itemIndexToRemove >= 0 && itemIndexToRemove < userTurn.items.size()) {
+                        userTurn.items.remove(itemIndexToRemove);
+                    } else {
+                        System.out.println("\nInvalid item index.");
+                    }
                     break;
                 case 6:
                     if (userTurn.items != null) {
-                            for (int i = 0; i < userTurn.items.size(); i++) {
-                                if (userTurn.items.get(i) instanceof Armor) {
-                                    System.out.println(i + ": " + userTurn.items.get(i).getDesignation());
-                                }
+                        for (int i = 0; i < userTurn.items.size(); i++) {
+                            if (userTurn.items.get(i) instanceof Armor) {
+                                System.out.println(i + ": " + userTurn.items.get(i).getDesignation());
                             }
-                            int chosenArmor = Main.scanner.nextInt();
-                            if (chosenArmor >= 0 && chosenArmor < userTurn.items.size()) {
-                                Armor selectedArmor = (Armor) userTurn.items.get(chosenArmor);
-                                GameCharacters.assingArmor(userTurn, selectedArmor);
-                            }
+                        }
+                        int chosenArmor = Main.scanner.nextInt();
+                        if (chosenArmor >= 0 && chosenArmor < userTurn.items.size()) {
+                            Armor selectedArmor = (Armor) userTurn.items.get(chosenArmor);
+                            GameCharacters.assingArmor(userTurn, selectedArmor);
+                        }
                     } else {
                         System.out.println("\nYou don't even have armor");
                         break;
@@ -98,32 +98,33 @@ public class Game {
         }
 
     }
-    public static void useItem(GameCharacters userTurn){
-            for (int i = 0; i < userTurn.items.size(); i++) {
-                if (userTurn.items.get(i) instanceof Potions || userTurn.items.get(i) instanceof MagicRings) {
-                    System.out.println(i + ": " + userTurn.items.get(i).getDesignation());
-                }
+
+    public static void useItem(GameCharacters userTurn) {
+        for (int i = 0; i < userTurn.items.size(); i++) {
+            if (userTurn.items.get(i) instanceof Potions || userTurn.items.get(i) instanceof MagicRings) {
+                System.out.println(i + ": " + userTurn.items.get(i).getDesignation());
             }
-            System.out.println("\nEnter the index of the item you want to use:");
-            int itemIndexToUse = Main.scanner.nextInt();
-            if (userTurn.items.get(itemIndexToUse) instanceof HealingPotion) {
-                HealingPotion.healPlayer(userTurn);
-                userTurn.items.remove(itemIndexToUse);
-            } else if (userTurn.items.get(itemIndexToUse) instanceof StrengthPotion) {
-                StrengthPotion.useStrengthPotion(userTurn);
-                userTurn.items.remove(itemIndexToUse);
-            } else if (userTurn.items.get(itemIndexToUse) instanceof PowerRing) {
-                PowerRing.applyPowerRing(userTurn);
-                userTurn.items.remove(itemIndexToUse);
-            } else if (userTurn.items.get(itemIndexToUse) instanceof ProtectiveRing) {
-                ProtectiveRing.applyProtectiveRing(userTurn);
-                userTurn.items.remove(itemIndexToUse);
-            } else if (userTurn.items.get(itemIndexToUse) instanceof Mate) {
-                Mate.OverHealPlayer(userTurn);
-                userTurn.items.remove(itemIndexToUse);
-            } else {
-                System.out.println("\nThat isn't an item.");
-            }
+        }
+        System.out.println("\nEnter the index of the item you want to use:");
+        int itemIndexToUse = Main.scanner.nextInt();
+        if (userTurn.items.get(itemIndexToUse) instanceof HealingPotion) {
+            HealingPotion.healPlayer(userTurn);
+            userTurn.items.remove(itemIndexToUse);
+        } else if (userTurn.items.get(itemIndexToUse) instanceof StrengthPotion) {
+            StrengthPotion.useStrengthPotion(userTurn);
+            userTurn.items.remove(itemIndexToUse);
+        } else if (userTurn.items.get(itemIndexToUse) instanceof PowerRing) {
+            PowerRing.applyPowerRing(userTurn);
+            userTurn.items.remove(itemIndexToUse);
+        } else if (userTurn.items.get(itemIndexToUse) instanceof ProtectiveRing) {
+            ProtectiveRing.applyProtectiveRing(userTurn);
+            userTurn.items.remove(itemIndexToUse);
+        } else if (userTurn.items.get(itemIndexToUse) instanceof Mate) {
+            Mate.OverHealPlayer(userTurn);
+            userTurn.items.remove(itemIndexToUse);
+        } else {
+            System.out.println("\nThat isn't an item.");
+        }
 
     }
 }

@@ -8,24 +8,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd100573-2791-4b43-aabd-5b73334efec8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/J4/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/J4/mockito/Dictionary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/J4/mockito/DictionaryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/J4/mockito/DictionaryStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/J4/mover/Mover.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/J4/passwordvalidator/PasswordValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/J4/tageszeit/Tageszeit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/J4/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/J4/dictionary_Test/Dictionary_Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/J4/passwordvalidator_test/PasswordValidator_Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/J4/tageszeit/Test_Tageszeit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J5/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J5/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J5/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J5/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J5/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J5/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J5/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J5/src/main/java/Aufgabe_3/ParseInt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J5/src/main/java/Aufgebe_1/File_Reader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J5/src/main/java/Aufgebe_1/File_ReaderRules.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../J3 (/src/roleplay/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../J3 (/src/roleplay/Game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../J3 (/src/roleplay/gameCharacters/Dwarfs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../J3 (/src/roleplay/gameCharacters/Dwarfs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/J4/passwordvalidator/PasswordValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/J4/passwordvalidator/PasswordValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/J4/dictionary_Test/Dictionary_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/J4/dictionary_Test/Dictionary_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/J4/passwordvalidator_test/PasswordValidator_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/J4/passwordvalidator_test/PasswordValidator_Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/J4/tageszeit/Test_Tageszeit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/J4/tageszeit/Test_Tageszeit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/J4/test_mover/Test_Mover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/J4/test_mover/Test_Mover.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +42,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -55,31 +56,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/mlehmann/devs/J4_Tests",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mlehmann/devs/J4_Tests&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="J4.tageszeit" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Dictionary_Test.givenWordInDatabase_whenAddOrUpdateWord_thenUpdatedStatus">
+  <component name="RunManager">
     <configuration name="Dictionary_Test.givenWordInDatabase_whenAddOrUpdateWord_thenUpdatedStatus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="J4" />
       <extension name="coverage">
@@ -96,39 +97,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Dictionary_Test.givenWordNotInDatabase_whenAddOrUpdateWord_thenAddedStatus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="J4" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="J4.dictionary_Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="J4.dictionary_Test" />
-      <option name="MAIN_CLASS_NAME" value="J4.dictionary_Test.Dictionary_Test" />
-      <option name="METHOD_NAME" value="givenWordNotInDatabase_whenAddOrUpdateWord_thenAddedStatus" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Dictionary_Test.testEmptyWord" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="J4" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="J4.dictionary_Test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="J4.dictionary_Test" />
-      <option name="MAIN_CLASS_NAME" value="J4.dictionary_Test.Dictionary_Test" />
-      <option name="METHOD_NAME" value="testEmptyWord" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PasswordValidator_Test.testPasswordValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PasswordValidator_Test.testPasswordContainsNoSpecialChar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="J4" />
       <extension name="coverage">
         <pattern>
@@ -138,23 +107,55 @@
       </extension>
       <option name="PACKAGE_NAME" value="J4.passwordvalidator_test" />
       <option name="MAIN_CLASS_NAME" value="J4.passwordvalidator_test.PasswordValidator_Test" />
-      <option name="METHOD_NAME" value="testPasswordValid" />
+      <option name="METHOD_NAME" value="testPasswordContainsNoSpecialChar" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test_Mover.testMoveWest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PasswordValidator_Test.testPasswordContainsNoUppercaseChar" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="J4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="J4.test_mover.*" />
+          <option name="PATTERN" value="J4.passwordvalidator_test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="J4.test_mover" />
-      <option name="MAIN_CLASS_NAME" value="J4.test_mover.Test_Mover" />
-      <option name="METHOD_NAME" value="testMoveWest" />
+      <option name="PACKAGE_NAME" value="J4.passwordvalidator_test" />
+      <option name="MAIN_CLASS_NAME" value="J4.passwordvalidator_test.PasswordValidator_Test" />
+      <option name="METHOD_NAME" value="testPasswordContainsNoUppercaseChar" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PasswordValidator_Test.testPasswordTooLong" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="J4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="J4.passwordvalidator_test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="J4.passwordvalidator_test" />
+      <option name="MAIN_CLASS_NAME" value="J4.passwordvalidator_test.PasswordValidator_Test" />
+      <option name="METHOD_NAME" value="testPasswordTooLong" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PasswordValidator_Test.testPasswordTooShort" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="J4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="J4.passwordvalidator_test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="J4.passwordvalidator_test" />
+      <option name="MAIN_CLASS_NAME" value="J4.passwordvalidator_test.PasswordValidator_Test" />
+      <option name="METHOD_NAME" value="testPasswordTooShort" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -162,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Dictionary_Test.testEmptyWord" />
-        <item itemvalue="JUnit.Dictionary_Test.givenWordNotInDatabase_whenAddOrUpdateWord_thenAddedStatus" />
+        <item itemvalue="JUnit.PasswordValidator_Test.testPasswordTooShort" />
+        <item itemvalue="JUnit.PasswordValidator_Test.testPasswordTooLong" />
+        <item itemvalue="JUnit.PasswordValidator_Test.testPasswordContainsNoSpecialChar" />
+        <item itemvalue="JUnit.PasswordValidator_Test.testPasswordContainsNoUppercaseChar" />
         <item itemvalue="JUnit.Dictionary_Test.givenWordInDatabase_whenAddOrUpdateWord_thenUpdatedStatus" />
-        <item itemvalue="JUnit.PasswordValidator_Test.testPasswordValid" />
-        <item itemvalue="JUnit.Test_Mover.testMoveWest" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +182,10 @@
       <workItem from="1698910810325" duration="5736000" />
       <workItem from="1698993234818" duration="21793000" />
       <workItem from="1699426525699" duration="87000" />
-      <workItem from="1699427278856" duration="32000" />
+      <workItem from="1699427278856" duration="2554000" />
+      <workItem from="1699439516761" duration="2421000" />
+      <workItem from="1699450197798" duration="4202000" />
+      <workItem from="1699511808001" duration="10216000" />
     </task>
     <servers />
   </component>

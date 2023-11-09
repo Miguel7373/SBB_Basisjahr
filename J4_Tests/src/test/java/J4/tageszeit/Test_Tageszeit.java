@@ -1,12 +1,7 @@
 package J4.tageszeit;
 import java.time.LocalDateTime;
-
-import J4.tageszeit.Tageszeit;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Test_Tageszeit {
     private Tageszeit tageszeit = new Tageszeit();
@@ -20,7 +15,6 @@ public class Test_Tageszeit {
     }
     @Test
     public void testAfternoon() {
-
         assertEquals("Afternoon", tageszeit.getTimeOfDay(LocalDateTime.of(2023, 1, 1, 15, 0)));
     }
     @Test
