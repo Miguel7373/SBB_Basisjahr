@@ -41,16 +41,14 @@ public class File_Reader implements File_ReaderRules {
     public int countWordsWithQ(List<String> wordList) {
         return (int) wordList.stream().filter(word -> word.toLowerCase().contains("q")).count();
     }
-
     @Override
     public Set<Character> getUniqueSpecialCharacters(List<String> wordList) {
         return wordList.stream()
                 .flatMapToInt(String::chars)
-                .filter(c -> !Character.isLetterOrDigit(c))
-                .mapToObj(c -> (char) c)
+                .filter(i -> !Character.isLetterOrDigit(i))
+                .mapToObj(l -> (char) l)
                 .collect(Collectors.toSet());
     }
-
     @Override
     public int countWordsWithMi(List<String> wordList) {
         return (int) wordList.stream().filter(word -> word.toLowerCase().contains("mi")).count();

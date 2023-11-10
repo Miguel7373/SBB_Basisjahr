@@ -20,7 +20,6 @@ public class Test_Mover {
     @Test
     public void testMoveSouth() {
         mover.move(Mover.Direction.SOUTH);
-
         assertEquals(LocalDateTime.now().getSecond(), mover.getLastMovingTime().getSecond());
         assertEquals(Mover.Direction.SOUTH, mover.getLastDirection());
     }
@@ -28,7 +27,6 @@ public class Test_Mover {
     @Test
     public void testMoveEast() {
         mover.move(Mover.Direction.EAST);
-
         assertEquals(LocalDateTime.now().getSecond(), mover.getLastMovingTime().getSecond());
         assertEquals(Mover.Direction.EAST, mover.getLastDirection());
     }
@@ -36,7 +34,6 @@ public class Test_Mover {
     @Test
     public void testMoveWest() {
         mover.move(Mover.Direction.WEST);
-
         assertEquals(LocalDateTime.now().getSecond(), mover.getLastMovingTime().getSecond());
         assertEquals(Mover.Direction.WEST, mover.getLastDirection());
     }

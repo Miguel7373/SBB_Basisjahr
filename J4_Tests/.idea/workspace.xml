@@ -8,25 +8,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cd100573-2791-4b43-aabd-5b73334efec8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../J5/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../J5/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../J5/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../J5/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../J5/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../J5/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../J5/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../J5/src/main/java/Aufgabe_3/ParseInt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../J5/src/main/java/Aufgebe_1/File_Reader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../J5/src/main/java/Aufgebe_1/File_ReaderRules.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../J3 (/src/roleplay/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/../J3 (/src/roleplay/Game/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../J3 (/src/roleplay/gameCharacters/Dwarfs.java" beforeDir="false" afterPath="$PROJECT_DIR$/../J3 (/src/roleplay/gameCharacters/Dwarfs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J7./pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J7./src/main/java/List/Aufgabe_1/MyArrayList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J7./src/main/java/List/Aufgabe_1/MyListInterfaceSimple.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J7./src/main/java/List/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J7./src/test/java/List/Aufgabe_1/MyArrayListTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../J7/J7.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../J3 (/out/production/J3/roleplay/Game/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/../J3 (/out/production/J3/roleplay/Game/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../J3 (/out/production/J3/roleplay/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../J3 (/out/production/J3/roleplay/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../J3 (/out/production/J3/roleplay/gameCharacters/Dwarfs.class" beforeDir="false" afterPath="$PROJECT_DIR$/../J3 (/out/production/J3/roleplay/gameCharacters/Dwarfs.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../J3 (/src/roleplay/items/armor/armorTyp/HeavyArmor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../J3 (/src/roleplay/items/armor/armorTyp/HeavyArmor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/J4/passwordvalidator/PasswordValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/J4/passwordvalidator/PasswordValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/J4/dictionary_Test/Dictionary_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/J4/dictionary_Test/Dictionary_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/J4/passwordvalidator_test/PasswordValidator_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/J4/passwordvalidator_test/PasswordValidator_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/J4/tageszeit/Test_Tageszeit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/J4/tageszeit/Test_Tageszeit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/J4/test_mover/Test_Mover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/J4/test_mover/Test_Mover.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../J5/src/main/java/Aufgabe_3/ParseInt.java" beforeDir="false" afterPath="$PROJECT_DIR$/../J5/src/main/java/Aufgabe_3/ParseInt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../J5/src/main/java/Aufgebe_1/File_Reader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../J5/src/main/java/Aufgebe_1/File_Reader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +76,7 @@
       <recent name="J4.tageszeit" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.Dictionary_Test.givenWordInDatabase_whenAddOrUpdateWord_thenUpdatedStatus">
     <configuration name="Dictionary_Test.givenWordInDatabase_whenAddOrUpdateWord_thenUpdatedStatus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="J4" />
       <extension name="coverage">
@@ -185,7 +181,10 @@
       <workItem from="1699427278856" duration="2554000" />
       <workItem from="1699439516761" duration="2421000" />
       <workItem from="1699450197798" duration="4202000" />
-      <workItem from="1699511808001" duration="10216000" />
+      <workItem from="1699511808001" duration="11104000" />
+      <workItem from="1699554723424" duration="788000" />
+      <workItem from="1699598586534" duration="8848000" />
+      <workItem from="1699621538266" duration="1205000" />
     </task>
     <servers />
   </component>
