@@ -3,6 +3,7 @@ package Aufgebe_1;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -13,14 +14,14 @@ public class File_Reader implements File_ReaderRules {
         String filePath = "/home/mlehmann/Downloads/words.txt";
         File_ReaderRules wordProcessor = new File_Reader();
         try {
-            List<String> wordList = readWordsFromFile(filePath);
+            List<String> wordList = readWordsFromFile("filePath");
             System.out.println("Gesamtanzahl der Wörter: " + wordProcessor.countAllWords(wordList));
             System.out.println("Anzahl der Wörter mit 'Q': " + wordProcessor.countWordsWithQ(wordList));
             System.out.println("Eindeutige Sonderzeichen: " + wordProcessor.getUniqueSpecialCharacters(wordList));
             System.out.println("Anzahl Wörter mit 'mi: '" + wordProcessor.countWordsWithMi(wordList));
             System.out.println("Alle Benuzten Buchstaben: " + wordProcessor.getAllCeracters(wordList));
         } catch (IOException e) {
-            System.err.println("Fehler beim Lesen der Datei: " + e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
@@ -43,11 +44,7 @@ public class File_Reader implements File_ReaderRules {
     }
     @Override
     public Set<Character> getUniqueSpecialCharacters(List<String> wordList) {
-        return wordList.stream()
-                .flatMapToInt(String::chars)
-                .filter(i -> !Character.isLetterOrDigit(i))
-                .mapToObj(l -> (char) l)
-                .collect(Collectors.toSet());
+        return wordList.stream().flatMapToInt(String::chars).filter(i -> !Character.isLetterOrDigit(i)).mapToObj(l -> (char) l).collect(Collectors.toSet());
     }
     @Override
     public int countWordsWithMi(List<String> wordList) {

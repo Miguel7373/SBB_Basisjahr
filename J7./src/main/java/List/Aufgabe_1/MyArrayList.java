@@ -1,6 +1,6 @@
 package List.Aufgabe_1;
-import java.util.Arrays;
 
+import java.util.Arrays;
 
 public class MyArrayList<E> implements MyListInterfaceSimple<E> {
 
@@ -9,10 +9,16 @@ public class MyArrayList<E> implements MyListInterfaceSimple<E> {
 
     @Override
     public void add(E element) {
-        ensureCapacity();
+        if (size == data.length) {
+            int newCapacity = data.length * 2;
+            Object[] newData = new Object[newCapacity];
+            for (int i = 0; i < size; i++) {
+                newData[i] = data[i];
+            }
+            data = newData;
+        }
         data[size++] = element;
     }
-
     @Override
     public E get(int index) throws IndexOutOfBoundsException {
         if (index < 0 || index >= size) {
@@ -27,7 +33,10 @@ public class MyArrayList<E> implements MyListInterfaceSimple<E> {
             throw new IndexOutOfBoundsException("Index out of range");
         }
         E removedElement = (E) data[index];
-        System.arraycopy(data, index + 1, data, index, size - index - 1);
+        for (int i = index; i < size - 1; i++) {
+            data[i] = data[i + 1];
+        }
+        data[size - 1] = null;
         size--;
         return removedElement;
     }
@@ -39,7 +48,7 @@ public class MyArrayList<E> implements MyListInterfaceSimple<E> {
 
     @Override
     public boolean isEmpty() {
-        return true;
+        return size == 0;
     }
 
     @Override
@@ -50,21 +59,14 @@ public class MyArrayList<E> implements MyListInterfaceSimple<E> {
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("[");
+        String result = "[";
         for (int i = 0; i < size; i++) {
-            result.append(data[i]);
+            result += data[i];
             if (i < size - 1) {
-                result.append(", ");
+                result += ", ";
             }
         }
-        result.append("]");
-        return result.toString();
-    }
-
-    private void ensureCapacity() {
-        if (size == data.length) {
-            int newCapacity = data.length * 2;
-            data = Arrays.copyOf(data, newCapacity);
-        }
+        result += "]";
+        return result;
     }
 }
