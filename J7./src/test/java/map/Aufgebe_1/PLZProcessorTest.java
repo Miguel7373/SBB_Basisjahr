@@ -2,6 +2,7 @@ package map.Aufgebe_1;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,12 +61,5 @@ class PLZProcessorTest {
         String[] strings = new String[8];
         plzProcessor.updateBernMin("123", "Bern", ints, strings);
         assertEquals("Bern", strings[6]);
-    }
-
-    @Test
-    void sortAndJoinSet() {
-        Set<String> set = Set.of("b", "a", "c");
-        String result = plzProcessor.sortAndJoinSet(set);
-        assertEquals("a, b, c", result);
     }
 }

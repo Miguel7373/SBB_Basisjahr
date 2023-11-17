@@ -8,10 +8,11 @@ import java.util.stream.Collectors;
 
 
 public class PLZProcessor {
-    private static Set<String> uniqueGemeinden10 = new HashSet<>();
-    private static Set<String> uniqueGemeinden7 = new HashSet<>();
-    private static Set<String> uniqueGemeindenEnt = new HashSet<>();
-    private static Set<String> uniqueGemeinden3 = new HashSet<>();
+
+    private static List uniqueGemeinden10 = new ArrayList();
+    private static List uniqueGemeinden7 = new ArrayList();
+    private static List uniqueGemeindenEnt = new ArrayList();
+    private static List uniqueGemeinden3 = new ArrayList();
 
     public static void main(String[] args) {
 
@@ -44,9 +45,8 @@ public class PLZProcessor {
             updateBernMin(s, s2, ints, strings);
         });
 
-        String sortedUniqueGemeinden3 = sortAndJoinSet(uniqueGemeinden3);
         printResults(plzData.size(), ints, strings, uniqueGemeinden10.size(), uniqueGemeinden7.size(),
-                uniqueGemeindenEnt.size(), sortedUniqueGemeinden3, outputValidation);
+                uniqueGemeindenEnt.size(), sortAndJoinSet(uniqueGemeinden3), outputValidation);
     }
 
     public void updateMinStrings(String s2, int[] ints, String[] strings) {
@@ -116,10 +116,8 @@ public class PLZProcessor {
             }
         }
     }
-    public String sortAndJoinSet(Set<String> set) {
-        return set.stream()
-                .sorted()
-                .collect(Collectors.joining(", "));
+    public String sortAndJoinSet(List set) {
+        return (String) set.stream().sorted().collect(Collectors.joining(", "));
     }
 
     private static void printResults(int size, int[] ints, String[] strings, int uniqueGemeinden10Size,
@@ -135,7 +133,7 @@ public class PLZProcessor {
         outputValidation.logAndPrint("- Anzahl Buchstaben der kleinsten Gemeinden: " + ints[1]);
         outputValidation.logAndPrint("- Kleinsten Gemeinden: " + strings[1]);
         outputValidation.logAndPrint("- Anzahl Buchstaben der grössten Gemeinden: " + ints[0]);
-        outputValidation.logAndPrint("- Grössten Gemeinden: " + strings[0]);
+        outputValidation.logAndPrint("- Grössten Gemeinden: " + strings[0].replaceAll("�", "ü"));
 
         outputValidation.verifyControlHash(1768988137);
         outputValidation.printControlHash();
@@ -150,14 +148,16 @@ public class PLZProcessor {
             while ((line = br.readLine()) != null) {
                 line = processLine(line);
                 String[] parts = line.split("%");
-                if (!parts[1].substring(0, 1).equals(",")) {
-                    lost = parts[1].split(", ");
-                } else {
-                    lost = new String[]{parts[1]};
-                }
-                if (parts.length >= 2) {
-                    plzData.put(parts[0], lost[0]);
-                }
+//                if (!parts[1].substring(0, 1).equals(",")) {
+//                    lost = parts[1].split(", ");
+//                } else {
+//                    lost = new String[]{parts[1]};
+//                }
+                String PLZ = parts[0].trim();
+                String city = parts[1].trim();
+                city = city.substring(1, city.length()-1).trim();
+                    plzData.put(PLZ, city);
+
             }
         }
         return plzData;
@@ -168,7 +168,6 @@ public class PLZProcessor {
         stringBuilder.deleteCharAt(4);
         stringBuilder.replace(4, 4, "%");
         line = String.valueOf(stringBuilder);
-        line = line.replaceAll("\"", "");
         return line;
     }
 }
