@@ -1,38 +1,40 @@
 package myStack;
 
 import java.util.EmptyStackException;
-import java.util.Arrays;
 
-public class MyStack<E> {
-    private static final int DEFAULT_CAPACITY = 10;
-    private Object[] array;
-    private int size;
 
-    public MyStack() {
-        array = new Object[DEFAULT_CAPACITY];
-        size = 0;
-    }
+public class MyStack<E> implements MyStackInterface<E>{
+    private Object[] array = new Object[1];
+    private int size = 0;
 
     public E push(E item) {
-        ensureCapacity();
-        array[size++] = item;
+            Object[] newArray = new Object[array.length + 1];
+            for (int i = size - 1; i >= 0; i--) {
+                newArray[i + 1] = array[i];
+            }
+            array = newArray;
+        array[0] = item;
+        size++;
         return item;
     }
-
     public E pop() {
         if (empty()) {
             throw new EmptyStackException();
         }
-        E item = peek();
-        array[--size] = null; // dereference the popped element
-        return item;
+        E poppedItem = (E) array[0];
+        for (int i = 1; i < size; i++) {
+            array[i - 1] = array[i];
+        }
+        size--;
+        return poppedItem;
     }
+
 
     public E peek() {
         if (empty()) {
             throw new EmptyStackException();
         }
-        return (E) array[size - 1];
+        return (E) array[0];
     }
 
     public int size() {
@@ -43,24 +45,30 @@ public class MyStack<E> {
         return size == 0;
     }
 
-    private void ensureCapacity() {
-        if (size == array.length) {
-            array = Arrays.copyOf(array, size * 2);
+    @Override
+    public String toString() {
+        if (size == 0) {
+            return "[]";
         }
+
+        String result = "[" + array[0];
+        for (int i = 1; i < size; i++) {
+            result += ", " + array[i];
+        }
+        result += "]";
+        return result;
     }
 
     @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder("[");
+    public int search(E item) {
         for (int i = 0; i < size; i++) {
-            result.append(array[i]);
-            if (i < size - 1) {
-                result.append(", ");
+            if (array[i].equals(item)) {
+                return  i + 1;
             }
         }
-        result.append("]");
-        return result.toString();
+        return -1;
     }
+
 
     public static void main(String[] args) {
         MyStack<String> stack = new MyStack<>();
@@ -71,9 +79,11 @@ public class MyStack<E> {
 
         System.out.println("Stack: " + stack);
         System.out.println("Pop: " + stack.pop());
+        System.out.println("Stack: " + stack);
         System.out.println("Peek: " + stack.peek());
         System.out.println("Size: " + stack.size());
         System.out.println("Empty: " + stack.empty());
+        System.out.println("Search: " + stack.search("yellow"));
+        System.out.println("Search: " + stack.search("orange"));
     }
 }
-

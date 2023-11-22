@@ -14,18 +14,20 @@ public class OutputWorker implements Runnable {
     @Override
     public void run() {
         int countWaitCycle = 0;
-        System.out.printf("   [%s] stared successfully%n", name);
+        System.out.printf("   [%s] started successfully%n", name);
         Random random = new Random();
+
         while (countWaitCycle < Start.OUTPUTWORKER_STOP_AFTER_EMPTY_CYCLES) {
             try {
                 Job job = processingInterface.getNextJob();
                 if (job != null) {
                     job.setJobState(JobState.IN_PROGRESS);
+                    System.out.printf("[%s] Number of open jobs: %d%n", name, processingInterface.getJobs());
                     job.setMessage("It is a really hard job!");
                     System.out.printf("<- [%s] process job: %s%n", name, job);
                     Thread.sleep(random.nextInt(Start.OUTPUTWORKER_MAX_PROCESS_TIME_MS));
                     job.setJobState(JobState.FINISH);
-                    job.setMessage("It job is finish!");
+                    job.setMessage("Job is finished!");
                     System.out.printf("== [%s] finish job:  %s%n", name, job);
                 } else {
                     countWaitCycle++;

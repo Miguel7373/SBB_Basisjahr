@@ -2,6 +2,7 @@ package Set.Aufgabe_1;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class VereinsAnalyse {
     public static void main(String[] args) {
@@ -15,7 +16,7 @@ public class VereinsAnalyse {
 
         Set<String> tanzVerein = Set.of("Emil", "Hans", "Paul", "Felix", "Max", "Lara", "Anja", "Sabine", "Anna");
 
-        Set<String> atLeastInOneClub = new HashSet<>();
+        Set<String> atLeastInOneClub = new TreeSet<>();
         atLeastInOneClub.addAll(fussballVerein);
         atLeastInOneClub.addAll(schwimmVerein);
         atLeastInOneClub.addAll(musikVerein);

@@ -4,13 +4,13 @@ import java.util.Arrays;
 
 public class MyArrayList<E> implements MyListInterfaceSimple<E> {
 
-    private Object[] data = new Object[10];
+    private Object[] data = new Object[1];
     private int size = 0;
 
     @Override
     public void add(E element) {
         if (size == data.length) {
-            int newCapacity = data.length * 2;
+            int newCapacity = data.length + 1;
             Object[] newData = new Object[newCapacity];
             for (int i = 0; i < size; i++) {
                 newData[i] = data[i];
