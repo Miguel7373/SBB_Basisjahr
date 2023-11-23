@@ -5,7 +5,7 @@ public class MySet<E> implements MySetInterfaceSimple<E> {
     private int size;
 
     public MySet() {
-        elements = new Object[10];
+        elements = new Object[1];
         size = 0;
     }
 
@@ -13,7 +13,7 @@ public class MySet<E> implements MySetInterfaceSimple<E> {
     public boolean add(E element) {
         if (!contains(element)) {
             if (size == elements.length) {
-                int newCapacity = elements.length * 2;
+                int newCapacity = elements.length + 1;
                 Object[] newElements = new Object[newCapacity];
                 for (int i = 0; i < size; i++) {
                     newElements[i] = elements[i];
@@ -70,7 +70,6 @@ public class MySet<E> implements MySetInterfaceSimple<E> {
         if (size == 0) {
             return "";
         }
-
         String result = String.valueOf(elements[0]);
         for (int i = 1; i < size; i++) {
             result += ", " + elements[i];

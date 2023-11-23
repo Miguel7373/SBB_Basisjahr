@@ -16,7 +16,7 @@ public class VereinsAnalyse {
 
         Set<String> tanzVerein = Set.of("Emil", "Hans", "Paul", "Felix", "Max", "Lara", "Anja", "Sabine", "Anna");
 
-        Set<String> atLeastInOneClub = new TreeSet<>();
+        Set<String> atLeastInOneClub = new HashSet<>();                                 // new TreeSet<>();
         atLeastInOneClub.addAll(fussballVerein);
         atLeastInOneClub.addAll(schwimmVerein);
         atLeastInOneClub.addAll(musikVerein);

@@ -1,15 +1,16 @@
 package List.Aufgabe_2;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class MyArrayListExtended<E> implements MyListInterfaceExtended<E> {
-    private Object[] data = new Object[10];
+    private Object[] data = new Object[1];
     private int size = 0;
 
     @Override
     public void add(E element) {
         if (size == data.length) {
-            int newCapacity = data.length * 2;
+            int newCapacity = data.length + 1;
             Object[] newArray = new Object[newCapacity];
             for (int i = 0; i < size; i++) {
                 newArray[i] = data[i];
@@ -53,7 +54,7 @@ public class MyArrayListExtended<E> implements MyListInterfaceExtended<E> {
 
     @Override
     public void clear() {
-        data = new Object[10];
+        data = new Object[1];
         size = 0;
     }
 
@@ -63,7 +64,7 @@ public class MyArrayListExtended<E> implements MyListInterfaceExtended<E> {
             throw new IndexOutOfBoundsException("Index out of range");
         }
         if (size == data.length) {
-            int newCapacity = data.length * 2;
+            int newCapacity = data.length + 1;
             Object[] newArray = new Object[newCapacity];
             for (int i = 0; i < size; i++) {
                 newArray[i] = data[i];
@@ -104,15 +105,15 @@ public class MyArrayListExtended<E> implements MyListInterfaceExtended<E> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MyArrayListExtended)) return false;
-        MyArrayListExtended<?> that = (MyArrayListExtended<?>) o;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyArrayListExtended that = (MyArrayListExtended) o;
         if (size != that.size) return false;
         for (int i = 0; i < size; i++) {
-            if (!Objects.equals(data[i], that.data[i])) {
+            if ((data[i] == null && that.data[i] != null) || (data[i] != null)) {
                 return false;
             }
         }
+
         return true;
     }
 

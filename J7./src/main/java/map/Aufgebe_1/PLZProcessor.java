@@ -144,7 +144,7 @@ public class PLZProcessor {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             br.readLine();
-            String[] lost;
+//            String[] lost;
             while ((line = br.readLine()) != null) {
                 line = processLine(line);
                 String[] parts = line.split("%");

@@ -1,6 +1,5 @@
 package List.Aufgabe_1;
 
-import java.util.Arrays;
 
 public class MyArrayList<E> implements MyListInterfaceSimple<E> {
 
@@ -53,12 +52,15 @@ public class MyArrayList<E> implements MyListInterfaceSimple<E> {
 
     @Override
     public void clear() {
-        data = new Object[10];
+        data = new Object[1];
         size = 0;
     }
 
     @Override
     public String toString() {
+        if (size == 0) {
+            return "[]";
+        }
         String result = "[";
         for (int i = 0; i < size; i++) {
             result += data[i];
