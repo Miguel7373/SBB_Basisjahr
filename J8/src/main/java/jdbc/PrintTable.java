@@ -106,57 +106,37 @@ public class PrintTable {
 
     public static void printAverageGradesForAllSubjects() {
         try {
-            double totalAverage = 0.0;
-            int subjectCount = 0;
+            String query = "SELECT s.ID_SUBJECT, s.SUBJECT, ROUND(AVG(g.GRADE),2) AS AVERAGE_GRADE " +
+                    "FROM SCHOOL_SUBJECTANDGRADE ssG " +
+                    "JOIN SUBJECT s ON s.ID_SUBJECT = ssG.ID_SUBJECT " +
+                    "JOIN GRADE g ON ssG.ID_GRADE = g.ID_GRADE " +
+                    "GROUP BY s.SUBJECT";
 
-            String query = "SELECT ID_SUBJECT, SUBJECT FROM SUBJECT";
             PreparedStatement preparedStatement = Main.connection.prepareStatement(query);
-            ResultSet subjectResultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (subjectResultSet.next()) {
-                int subjectId = subjectResultSet.getInt("ID_SUBJECT");
-                String subjectName = subjectResultSet.getString("SUBJECT");
+            double overallAverage = 0;
+            int count = 0;
 
-                String gradeQuery = "SELECT COUNT(*) FROM SCHOOL_SUBJECTANDGRADE " +
-                        "WHERE id_SUBJECT = ?";
-                PreparedStatement countStatement = Main.connection.prepareStatement(gradeQuery);
-                countStatement.setInt(1, subjectId);
-                ResultSet countResultSet = countStatement.executeQuery();
-                countResultSet.next();
-                int gradeCount = countResultSet.getInt(1);
+            while (resultSet.next()) {
+                int subjectId = resultSet.getInt("ID_SUBJECT");
+                String subjectName = resultSet.getString("SUBJECT");
+                double averageGrade = resultSet.getDouble("AVERAGE_GRADE");
 
-                if (gradeCount > 0) {
+                System.out.println("Subject: " + subjectName + " (ID: " + subjectId + ")");
+                System.out.println("Average Grade: "+ averageGrade);
+                System.out.println();
 
-                    String gradesQuery = "SELECT GRADE.GRADE FROM SCHOOL_SUBJECTANDGRADE " +
-                            "INNER JOIN GRADE ON SCHOOL_SUBJECTANDGRADE.id_GRADE = GRADE.ID_GRADE " +
-                            "WHERE SCHOOL_SUBJECTANDGRADE.id_SUBJECT = ?";
-                    PreparedStatement gradesStatement = Main.connection.prepareStatement(gradesQuery);
-                    gradesStatement.setInt(1, subjectId);
-                    ResultSet gradeResultSet = gradesStatement.executeQuery();
-
-                    System.out.println("Subject: " + subjectName + " (ID: " + subjectId + ")");
-                    System.out.printf("%-15s%n", "Individual Grades:");
-                    System.out.printf("%-15s%n", "------------------");
-                    while (gradeResultSet.next()) {
-                        double gradeValue = gradeResultSet.getDouble("GRADE");
-                        System.out.printf("%-15s%n", "Grade: " + gradeValue);
-                    }
-
-                    double averageGrade = Ausführung.calculateAverageGrade(subjectId);
-                    System.out.println("Average Grade: " + averageGrade);
-
-                    totalAverage += averageGrade;
-                    subjectCount++;
-
-                    System.out.println();
-                }
+                overallAverage += averageGrade;
+                count++;
             }
 
-            if (subjectCount > 0) {
-                double overallAverage = totalAverage / subjectCount;
-                System.out.println("Average of All Averages: " + overallAverage);
+            if (count > 0) {
+                overallAverage /= count;
+                System.out.printf("Overall Average of Averages: %.2f", overallAverage);
+
             } else {
-                System.out.println("No subjects with grades found.");
+                System.out.println("No data available.");
             }
 
         } catch (SQLException e) {

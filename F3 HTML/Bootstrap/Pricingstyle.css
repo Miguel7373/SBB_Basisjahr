@@ -1,0 +1,6 @@
+.table>:not(:first-child) {
+  border-top: 2px solid currentColor;
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-top-color: currentColor;
+}

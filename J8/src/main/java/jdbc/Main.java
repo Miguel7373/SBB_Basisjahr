@@ -1,5 +1,4 @@
 package jdbc;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -80,7 +79,7 @@ public class Main {
                     PrintTable.printTableDataSubject();
 
                     System.out.print("Enter ID of the subject to update: ");
-                    int subjectIdToUpdate = scanner.nextInt();
+                    int IdToUpdate = scanner.nextInt();
                     scanner.nextLine();
 
                     PrintTable.printTableDataSUBJECT();
@@ -98,7 +97,7 @@ public class Main {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
                     try {
                         Date newDate = dateFormat.parse(newDateString);
-                        Ausführung.updateData(subjectIdToUpdate, newDate, newGradeId, newSubjectId);
+                        Ausführung.updateData(IdToUpdate, newDate, newGradeId, newSubjectId);
                         System.out.println("Grade updated successfully!");
                     } catch (ParseException e) {
                         e.printStackTrace();
@@ -127,7 +126,7 @@ public class Main {
                     PrintTable.printAverageGradesForAllSubjects();
                     closeDataBaseConnection();
                 }
-                case "exit" -> {
+                case "exit"  -> {
                     mainLoop = false;
                     break;
                 }
@@ -135,7 +134,6 @@ public class Main {
             }
         }
     }
-
 
     private static void openDataBaseConnection() {
         try {
@@ -150,7 +148,7 @@ public class Main {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
-                System.out.println("Connection closed.");
+                System.out.println("\nConnection closed.");
             }
         } catch (SQLException e) {
             e.printStackTrace();

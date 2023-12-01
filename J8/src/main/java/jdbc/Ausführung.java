@@ -9,8 +9,10 @@ import static jdbc.Main.connection;
 
 class Ausführung {
     static void createData(Date date, int gradeId, int subjectId) throws SQLException {
-        try (PreparedStatement preparedStatement = Main.connection.prepareStatement(
-                "INSERT INTO SCHOOL_SUBJECTANDGRADE(id_grade, id_subject, date) VALUES (?, ?, ?)")) {
+
+        try {
+            String query = "INSERT INTO SCHOOL_SUBJECTANDGRADE(id_grade, id_subject, date) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, gradeId);
             preparedStatement.setInt(2, subjectId);
             preparedStatement.setDate(3, new java.sql.Date(date.getTime()));
@@ -19,6 +21,8 @@ class Ausführung {
             preparedStatement.executeUpdate();
 
             System.out.println("Grade added successfully!");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -40,14 +44,14 @@ class Ausführung {
         }
     }
 
-    static void updateData(int subjectId, Date newDate, int newGradeId, int newSubjectId) {
+    static void updateData(int id, Date newDate, int newGradeId, int newSubjectId) {
         try {
             String query = "UPDATE SCHOOL_SUBJECTANDGRADE SET date = ?, id_grade = ?, id_subject = ? WHERE ID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setDate(1, new java.sql.Date(newDate.getTime()));
             preparedStatement.setInt(2, newGradeId);
             preparedStatement.setInt(3, newSubjectId);
-            preparedStatement.setInt(4, subjectId);
+            preparedStatement.setInt(4, id);
 
             int rowsUpdated = preparedStatement.executeUpdate();
 

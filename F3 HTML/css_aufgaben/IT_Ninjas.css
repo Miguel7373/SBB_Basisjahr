@@ -1,0 +1,40 @@
+#IT_Ninja\ {
+  padding: 15px;
+  float: left;
+  width: 40px;
+  height: 40px;
+}
+#Ninjas_Link{
+  float: left;
+  font-size: 25px;
+  padding: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  font-family: "Consolas", sans-serif;
+}
+nav {
+  background-color: black;
+  text-align: right;
+  padding: 25px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 10px;
+  font-weight: 800;
+  font-family: "Consolas", sans-serif;
+}
+body {
+  margin: 0;
+  background: #BCBCCC;
+}
+.cookes {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 100px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+

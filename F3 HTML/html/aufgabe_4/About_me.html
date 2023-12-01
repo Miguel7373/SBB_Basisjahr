@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Dein Portfolio</title>
+  <style>
+    body {
+      background-color: dimgray;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: red;
+      text-align: right;
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    header {
+      background-color: dimgray;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .profile-section {
+      display: flex;
+    }
+
+    .profile-picture {
+      float: left;
+      margin-left: 10px;
+      margin-top: 10px;
+      height: 300px;
+      width: 200px;
+      background-image: url("../../bilder/Screenshot_20231201_124119_WhatsApp.jpg");
+      background-size: cover;
+      transition: background-image 0.5s;
+      padding: 11px;
+    }
+
+    .profile-picture:hover {
+      background-image: url("https://cdna.artstation.com/p/assets/images/images/065/305/482/original/the-art-of-alan-mcmillian-goomba-walk.gif?1690033958");
+    }
+
+
+    .profile-details {
+    margin-left: 100px;
+      font-size: 20px;
+    }
+    #ff{
+      font-size: 50px;
+    }
+    </style>
+
+</head>
+<body>
+
+<nav>
+  <a href="About_me.html">Über mich</a>
+  <a href="Hobbies.html">Hobbies</a>
+  <a href="Kontakt.html">Kontakt</a>
+</nav>
+
+<div class="profile-section">
+  <div class="profile-picture"></div>
+
+  <div class="profile-details">
+    <a target="_blank" id="ff" href="https://en.wikipedia.org/wiki/Goomba">Mein Lebenslauf</a>
+    <h1>Hallo! Ich bin Levin</h1>
+  </div>
+</div>
+
+
+</body>
+</html>
