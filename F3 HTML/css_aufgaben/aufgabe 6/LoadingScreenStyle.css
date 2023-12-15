@@ -1,0 +1,21 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinning-image img {
+margin-left: 550px;
+  margin-top: 200px;
+  height: 600px;
+  width: 600px;
+
+
+  animation: spin 4s linear infinite;
+}
+body{
+  background-color: black;
+}

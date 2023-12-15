@@ -1,0 +1,25 @@
+a.textToBeHovered {
+  border: 2px solid;
+  border-radius: 5px;
+}
+a:hover{
+  transform: scale(1.1);
+  color: #e74c3c;
+}
+a.textToBeHovered span{
+  visibility: hidden;
+}
+
+a.textToBeHovered:hover span{
+  visibility: visible;
+}
+a.textToBeHovered img{
+  position: absolute;
+  border-radius: 50px;
+  height: 250px;
+  width: 400px;
+}
+h1{
+  margin-left: 700px;
+  text-decoration: black;
+}
