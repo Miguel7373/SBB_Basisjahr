@@ -1,34 +1,149 @@
 html {
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
 }
-header{
+body {
+  margin: 0;
+  padding: 0;
+}
+header {
   height: 57.25px;
+  background-color: rgba(236, 239, 242, 1);
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
-#login_logo{
+#navTopBar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#itemsInTopBar {
+  display: flex;
+  align-items: center;
+}
+#topBarLeft, #topBarMiddle, #topBarRight{
+  display: flex;
+  align-items: center;
+}
+#topBarRight{
+  margin-left: 332px;
+}
+.dateInHeader {
+  font-size: 40px;
+  color: rgba(213, 45, 40, 1);
+  margin-right: 7px;
+  margin-left: 10px;
+}
+.textHeader {
+  margin-top: 10px;
+justify-content: center;
+  align-items: center;
+  padding: 0;
+  font-size: 12px;
+  color: gray;
+  display: block;
+}
+#pfeil_unten{
+  height: 15px;
+  width: 15px;
+}
+#login_logo {
   width: 180px;
   height: 57.25px;
-  float: left;
   background-color: white;
   padding: 0;
   margin: 0;
 }
-nav{
-  background-color: rgba(236,239,242,1);
-  margin-top: 1px;
-  margin: 0;
-  padding: 0;
+.logoInTopBar{
+  width: 22px;
+  height: 22px;
+  height: 57.25px;
+}
+#topBarMiddle{
+  margin-left: 270px;
+}
+#timerTopBar{
+  font-size: 18px;
+ padding-left: 30px;
+}
+#persons{
+  filter: invert();
+}
+.hoverborderInTopBar:hover{
+  background-color: rgba(255,255,255,1);
+}
+.hoverborderInTopBar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left:0.1px black solid;
+  border-right:0.1px black solid;
+  line-height: 57.25px;
+  height: 57.25px;
+  width: 70px;
+}
+.redLineInTopBar{
+border-bottom:3px rgba(255,0,0,1) solid;
+  height: 54.25px;
+  display: flex;
+  justify-content: center;
+  flex-grow: inherit;
 
 }
-body{
-  margin: 0;
-  padding: 0;
+.redLineInTopBar:hover{
+  background-color: rgba(255,255,255,1);
+  border-color:rgba(255,255,255,1) ;
 }
-p{
-  padding: 0;
-  margin: 0;
+#LeftSideNav {
+  display: flex;
+  background-color: rgba(0,158,195,1);
+  width: 180px;
 }
-.dateInHeader{
-  font-size: 47.5px;
-  color: rgba(213,45,40,1);
+#profil {
+  background-color: white;
+  border-radius: 100%;
+  width: 88px;
+  height: 88px;
+  margin-top: 10px;
+  margin-left: 40px;
 }
+#abwesend {
+  color: rgb(211,47,47);
+  margin-left: 40px;
+}
+#sbb {
+  margin-left: 40px;
+  color: white;
+}
+.cockpit {
+  background-color: rgba(230,230,230,1);
+  color: rgba(115,115,115,1);
+}
+.logoLeft {
+  width: 16px;
+  height: 16px;
+}
+.IconsInLeftNav:hover {
+  background-color: rgba(0,100,128,1);
+}
+#pfeilOben {
+  width: 9px;
+  height: 14px;
+}
+.IconsInLeftNav {
+  color: white;
+  margin-top: 20px;
+  width: 180px;
+  border-top: 1px white solid;
+}
+.IconsInLeftNavPorfile{
+  color: white;
+  margin-top: 20px;
+  width: 180px;
+  border-top: 1px white solid;
+}
+
