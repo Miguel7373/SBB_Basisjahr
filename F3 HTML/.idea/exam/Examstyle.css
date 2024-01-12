@@ -2,35 +2,39 @@ html {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  display: flex;
 }
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  scrollbar-color: transparent;
 }
 header {
   height: 57.25px;
   background-color: rgba(236, 239, 242, 1);
   display: flex;
   align-items: center;
-  margin: 0;
-  padding: 0;
 }
-#navTopBar{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+#navTopBar {
+  width: 100vw !important;
 }
 #itemsInTopBar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100vw !important;
 }
-#topBarLeft, #topBarMiddle, #topBarRight{
+#topBarLeft {
   display: flex;
   align-items: center;
 }
-#topBarRight{
-  margin-left: 332px;
+#topBarMiddle {
+  display: flex;
+  align-items: center;
+}
+#topBarRight {
+  display: flex;
+  align-items: center;
 }
 .dateInHeader {
   font-size: 40px;
@@ -38,16 +42,19 @@ header {
   margin-right: 7px;
   margin-left: 10px;
 }
+#specialtexttop{
+  min-width: 150px;
+}
 .textHeader {
   margin-top: 10px;
-justify-content: center;
+  justify-content: center;
   align-items: center;
   padding: 0;
   font-size: 12px;
   color: gray;
   display: block;
 }
-#pfeil_unten{
+#pfeil_unten {
   height: 15px;
   width: 15px;
 }
@@ -58,50 +65,49 @@ justify-content: center;
   padding: 0;
   margin: 0;
 }
-.logoInTopBar{
+.logoInTopBar {
   width: 22px;
   height: 22px;
   height: 57.25px;
 }
-#topBarMiddle{
-  margin-left: 270px;
-}
-#timerTopBar{
+#timerTopBar {
   font-size: 18px;
- padding-left: 30px;
+  padding-left: 30px;
 }
-#persons{
+#persons {
   filter: invert();
 }
-.hoverborderInTopBar:hover{
-  background-color: rgba(255,255,255,1);
+.hoverborderInTopBar:hover {
+  background-color: rgba(255, 255, 255, 1);
+  cursor: pointer;
 }
-.hoverborderInTopBar{
+.hoverborderInTopBar {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-left:0.1px black solid;
-  border-right:0.1px black solid;
+  border-left: 0.1px #999999 solid;
+  border-right: 0.1px #999999 solid;
   line-height: 57.25px;
   height: 57.25px;
   width: 70px;
 }
-.redLineInTopBar{
-border-bottom:3px rgba(255,0,0,1) solid;
+.redLineInTopBar {
+  border-bottom: 3px rgba(255, 0, 0, 1) solid;
   height: 54.25px;
   display: flex;
   justify-content: center;
   flex-grow: inherit;
-
 }
-.redLineInTopBar:hover{
-  background-color: rgba(255,255,255,1);
-  border-color:rgba(255,255,255,1) ;
+.redLineInTopBar:hover {
+  background-color: rgba(255, 255, 255, 1);
+  border-color: rgba(255, 255, 255, 1);
+  cursor: pointer;
 }
 #LeftSideNav {
   display: flex;
-  background-color: rgba(0,158,195,1);
+  background-color: rgba(0, 158, 195, 1);
   width: 180px;
+  height: 100vh !important;
 }
 #profil {
   background-color: white;
@@ -112,7 +118,7 @@ border-bottom:3px rgba(255,0,0,1) solid;
   margin-left: 40px;
 }
 #abwesend {
-  color: rgb(211,47,47);
+  color: rgb(211, 47, 47);
   margin-left: 40px;
 }
 #sbb {
@@ -120,30 +126,301 @@ border-bottom:3px rgba(255,0,0,1) solid;
   color: white;
 }
 .cockpit {
-  background-color: rgba(230,230,230,1);
-  color: rgba(115,115,115,1);
+  display: flex;
+  align-items: center;
+  background-color: rgba(230, 230, 230, 1);
+  color: rgba(115, 115, 115, 1);
+  margin-top: 10px;
 }
 .logoLeft {
   width: 16px;
   height: 16px;
+  margin-right: 10px;
 }
 .IconsInLeftNav:hover {
-  background-color: rgba(0,100,128,1);
+  background-color: rgba(0, 100, 128, 1);
+  cursor: pointer;
+}
+.IconsInLeftNav2:hover {
+  background-color: rgba(0, 100, 128, 1);
+  cursor: pointer;
+  width: 170px;
 }
 #pfeilOben {
   width: 9px;
   height: 14px;
 }
 .IconsInLeftNav {
+  display: flex;
+  align-items: center;
   color: white;
-  margin-top: 20px;
   width: 180px;
   border-top: 1px white solid;
 }
-.IconsInLeftNavPorfile{
+.IconsInLeftNav2 {
+  display: flex;
+  align-items: center;
   color: white;
-  margin-top: 20px;
+  width: 180px;
+  border-top: 1px white solid;
+  margin-left: 10px;
+  margin-right: -10px;
+}
+.IconsInLeftNavPorfile {
+  display: flex;
+  align-items: center;
+  color: white;
   width: 180px;
   border-top: 1px white solid;
 }
+.logoLefts {
+  width: 16px;
+  height: 16px;
 
+  padding-right: 10px;
+}
+#text {
+  color: white;
+}
+#full-hight{
+  display: flex;
+  flex: auto;
+  width: 180px;
+  flex-direction: column-reverse;
+  margin-bottom: 3rem;
+  font-size: 14px;
+}
+#hallo{
+  display: flex;
+  width: 180px;
+  justify-content: center;
+}
+#specialLogoLeft {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+#itemsInLeftSideNav {
+  display: flex;
+  flex-direction: column;
+}
+#specialIconInLeftNav {
+  display: flex;
+  align-items: center;
+  color: white;
+  width: 180px;
+  margin-left:10px ;
+}
+#specialIconInLeftNav:hover {
+  background-color: rgba(0, 100, 128, 1);
+  width: 170px;
+  cursor: pointer;
+}
+#pfeilOben {
+  filter: invert();
+  margin-left: 50px;
+}
+#anwesendText{
+  color: rgba(66,159,70,1);
+  padding-left: 10px;
+  padding-top: 30px;
+  align-self: flex-start;
+}
+#abwesendText {
+  color: rgba(255, 0, 0, 1);
+  padding-left: 10px;
+  padding-top: 30px;
+  align-self: flex-start;
+}
+#rightsidenav {
+  display: flex;
+  background-color: rgba(255, 255, 255, 1);
+  flex-direction: column;
+  float: right;
+  width: 250px;
+  padding-left: 20px;
+}
+.rightsidenavprofile:hover{
+  background-color: rgba(245, 245, 245, 1);
+  cursor: pointer;
+}
+.rightsidenavprofile {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 7px;
+}
+.arbeitszeitInfo {
+  display: flex;
+
+}
+.namesInrightsidenav{
+  display: flex;
+  color: rgba(33, 33, 33, 1);
+  justify-content: left;
+}
+.arbeitszeitInrightsidenav {
+  color: rgba(33, 33, 33, 1);
+  font-size: 14px;
+  justify-content: left;
+  display: flex;
+  opacity: 70%;
+}
+.clocklogo {
+  width: 24px;
+  height: 28px;
+  margin-left: auto;
+  padding-right: 20px;
+  padding-bottom: 7px;
+}
+.profileLogo{
+  background-color: white;
+  border-radius: 100%;
+  width: 35px; height: 35px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+#surchbar{
+  display: flex;
+  border: 1px #999999 solid;
+  margin-top: 40px;
+  margin-right: 15px;
+}
+#wordinsurchbar{
+  padding-right: 140px;
+  padding-left: 15px;
+  font-size: 12px;
+  color: #999999;
+}
+#surchbarimg{
+  padding-right: 20px;
+  padding-top: 5px;
+  width: 24px;
+  height: 28px;
+}
+#maindiv{
+  display: flex;
+  flex-direction: row;
+}
+#Cockpit{
+  width: 100%;
+  background: rgb(243, 243, 243,1); color: rgba(33,33,33,1);
+}
+#editLogoinCockpit:hover{
+  background-color: rgba(250, 250, 250, 1);
+  cursor: pointer;
+}
+#editLogoinCockpit{
+  width: 14px; height: 14px;
+  border: white 1px solid;
+  background-color: white;
+  border-radius: 10px;
+  padding-top: 10px;padding-bottom: 10px;padding-left: 17px;padding-right: 17px;
+  margin-top: 15px;
+  margin-left: 10px;
+  box-shadow: darkgrey 1px 1px;
+}
+.LogoinCockpit{
+  display: flex;
+  width: 14px; height: 14px;
+  border: white 1px solid;
+  background-color: white;
+  border-radius: 10px;
+  padding-top: 10px;padding-bottom: 10px;padding-left: 17px;padding-right: 17px;
+  box-shadow: darkgrey 1px 1px;
+  margin-top: 15px;
+  margin-left: 10px;
+  opacity: 50%;
+}
+.LogoinCockpit:hover{
+background-color: rgba(250, 250, 250, 1);
+  cursor: pointer;
+}
+#Überschrift{
+  background-color: white;
+  font-size: 25px;
+  box-shadow: darkgrey 0px 2px;
+}
+#ToplogosinCockpit{
+  display: flex;
+  flex-direction: row;
+}
+#plusCockpit{
+  color: lightgrey;
+  width: 11px;
+  height: 14px;
+  margin-left: -4;
+}
+#arrowCockpit{
+  color: lightgrey;
+  width: 9px;
+  height: 14px;
+  margin-left: 5px;
+}
+#saveCockpit{
+  color: lightgrey; width: 12px; height: 14px;
+}
+#undoCockpit{
+  color: lightgrey; width: 12px; height: 14px;
+}
+#mainboxSBBcrackhead{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 716.5px; height: 180px;
+  max-width: 48.7%;
+  min-width: 48.7%;
+  border-radius: 10px;
+  background-color: rgba(217,230,242,1);
+  margin-left: 10px;
+  flex-grow: 100px;
+}
+#avatarinmainbox{
+  display: flex;
+  width: 140px; height: 140px;
+  background-color: white;
+  border-radius: 50%;
+  justify-content: center;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+#SBBCrackhead{
+  font-size: 25px;
+}
+#TextinmainBox{
+  margin: 10px;
+}
+#tobLine{
+  display: flex;
+  flex-direction: row;
+}
+.whitebox{
+  display: flex;
+  width: 352.75px; height: 180px;
+  background-color: white;
+  max-width: 24%;
+  min-width: 24%;
+  border-radius: 10px;
+  margin-top: 9px;
+  margin-left: 20px;
+}
+.textInTopWhiteBox{
+  font-size: 21px;
+  margin-left: 20px;
+}
+.refresch{
+  width: 20px;
+  height: 20px;
+  padding-top:10px ;
+  padding-right: 10px;
+}
+.toplineofwhitebox{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.contentInWhiteBox{
+}
