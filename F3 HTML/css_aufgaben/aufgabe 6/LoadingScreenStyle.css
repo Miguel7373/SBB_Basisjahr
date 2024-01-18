@@ -8,8 +8,7 @@
 }
 
 .spinning-image img {
-margin-left: 550px;
-  margin-top: 200px;
+  justify-content: center;
   height: 600px;
   width: 600px;
 
@@ -18,4 +17,7 @@ margin-left: 550px;
 }
 body{
   background-color: black;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }

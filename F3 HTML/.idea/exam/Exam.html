@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <link rel="stylesheet" href="Examstyle.css">
+  <link href="Examstyle.css" rel="stylesheet">
 </head>
 
 <body>
@@ -12,11 +12,13 @@
   <nav id="navTopBar">
     <div id="itemsInTopBar">
       <div id="topBarLeft">
-        <img id="login_logo" src="\F3 HTML\bilder\login_logo.svg">
+        <div id="loginlogoBackground">
+          <img id="login_logo" src="\F3 HTML\bilder\login_logo.svg">
+        </div>
         <p class="dateInHeader">24</p>
         <p class="textHeader">Donnerstag<br>März <br>KW 12</p>
         <div class="hoverborderInTopBar">
-          <p class="textHeader">11:39</p>
+          <p id="timeInTopBar">11:39</p>
         </div>
       </div>
       <div id="topBarMiddle">
@@ -24,12 +26,12 @@
           <img class="logoInTopBar" id="kommen" src="\F3 HTML\bilder\kommen.svg">
         </div>
         <div class=" redLineInTopBar">
-          <div id="specialtexttop" class="textHeader">
+          <div class="textHeader" id="specialtexttop">
             <strong>Grund Unbekannt (999)</strong>
             <thin><br>JBT informatik Bern/1/1</thin>
           </div>
           <div>
-            <strong><p id="timerTopBar" class="dateInHeader">8:50 </p></strong>
+            <strong><p class="dateInHeader" id="timerTopBar">8:50 </p></strong>
           </div>
         </div>
         <div class="hoverborderInTopBar">
@@ -37,8 +39,10 @@
         </div>
       </div>
       <div id="topBarRight">
-        <p id="" class="textHeader">Deutsch (Schweiz)</p>
-        <img class="logoInTopBar" id="pfeil_unten" src="\F3 HTML\bilder\pfeil_unten.svg">
+        <div id="languageChooser">
+          <p class="textHeader" id="language">Deutsch (Schweiz)</p>
+          <img class="logoInTopBar" id="pfeil_unten" src="\F3 HTML\bilder\pfeil_unten.svg">
+        </div>
         <div class="hoverborderInTopBar">
           <img class="logoInTopBar" id="refresh" src="\F3 HTML\bilder\refresh.svg">
         </div>
@@ -149,20 +153,72 @@
           <img id="avatarinmainbox" src="\F3 HTML\bilder\avatar.svg">
         </div>
       </div>
-        <div class="whitebox" >
-          <div class="toplineofwhitebox" id="toplinebox" >
+      <div class="whitebox">
+        <div class="toplineofwhitebox" id="toplinebox">
           <p class="textInTopWhiteBox">Saldoübersicht</p>
           <img class="refresch" src="\F3 HTML\bilder\refresh.svg">
-          </div>
-          <div class="contentInWhiteBox">
-            <img src="">
-            <p>21</p>
-          </div>
         </div>
-
-
+        <div class="contentInWhiteBox">
+          <img class="pictureinbox" src="\F3 HTML\bilder\request.svg">
+          <span class="numberinwhitebox">21</span>
+        </div>
+      </div>
     </div>
-
+    <div class="whiteboxpears">
+      <div class="whitebox">
+        <div class="toplineofwhitebox" id="toplinebox">
+          <p class="textInTopWhiteBox">Personen</p>
+          <img class="refresch" src="\F3 HTML\bilder\refresh.svg">
+        </div>
+        <div class="contentInWhiteBox">
+          <img class="pictureinbox" src="\F3 HTML\bilder\request.svg">
+          <span class="numberinwhitebox">21</span>
+        </div>
+      </div>
+      <div class="whitebox">
+        <div class="toplineofwhitebox">
+          <p class="textInTopWhiteBox" id="colorInWhiteBoxAbsenzen">Absenzen</p>
+          <img class="refresch" src="\F3 HTML\bilder\refresh.svg">
+        </div>
+        <div class="contentInWhiteBox">
+          <img class="pictureinbox" id="colorInWhiteBoxAbsenzenLogo" src="\F3 HTML\bilder\request.svg">
+          <span class="numberinwhitebox" id="colorInWhiteBoxAbsenzenNumber">0</span>
+        </div>
+        <span id="smallTextInAbsenzen">Anträge</span>
+      </div>
+    </div>
+    <div class="whiteboxpears">
+      <div class="whitebox">
+        <div class="toplineofwhitebox" id="toplinebox">
+          <p class="textInTopWhiteBox" id="colorInWhiteBoxVisum">Visum</p>
+          <img class="refresch" src="\F3 HTML\bilder\refresh.svg">
+        </div>
+        <div class="contentInWhiteBox">
+          <img class="pictureinbox" id="colorInWhiteBoxVisumLogo" src="\F3 HTML\bilder\request.svg">
+          <span class="numberinwhitebox" id="colorInWhiteBoxVisumNumber">0</span>
+        </div>
+      </div>
+      <div class="whitebox">
+        <div class="toplineofwhitebox" id="toplinebox">
+          <p class="textInTopWhiteBox" id="colorInWhiteBoxWarnungen">Warnungen</p>
+          <img class="refresch" src="\F3 HTML\bilder\refresh.svg">
+        </div>
+        <div class="contentInWhiteBox">
+          <img class="pictureinbox" src="\F3 HTML\bilder\warning.svg">
+          <span class="numberinwhitebox" id="colorInWhiteBoxWarnungenNumber">0</span>
+        </div>
+      </div>
+    </div>
+    <div class="whitebox">
+      <div class="toplineofwhitebox" id="toplinebox">
+        <p class="textInTopWhiteBox" id="colorInWhiteBoxAlarme">Alarme</p>
+        <img class="refresch" src="\F3 HTML\bilder\refresh.svg">
+      </div>
+      <div class="contentInWhiteBox">
+        <img class="pictureinbox" src="\F3 HTML\bilder\alert.svg">
+        <span class="numberinwhitebox" id="colorInWhiteBoxAlarmeNumber">4</span>
+      </div>
+    </div>
   </main>
   <nav id="rightsidenav">
     <div id="surchbar">
