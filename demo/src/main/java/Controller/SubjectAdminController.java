@@ -1,33 +1,37 @@
 package Controller;
 
 import Dtos.SubjectDto;
-import org.springframework.core.annotation.Order;
+import Services.AdminService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Profile("Admin")
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/admin/subject")
 public class SubjectAdminController {
-    @PostMapping("/subject")
-    public SubjectDto createNewSubject(@RequestBody SubjectDto newSubject) {
-        // TODO: Das sind Mockdaten und sollten zu einem späteren Zeitpunkt mit "echtem" Code ersetzt werden
-        return new SubjectDto("Physik");
+    private final AdminService adminService;
+
+    public SubjectAdminController(AdminService orderService) {
+        this.adminService = orderService;
     }
-    // hier können weitere Methoden der Schnittstelle umgesetzt werden
+
+    @PostMapping
+    public void createNewSubject(@RequestBody SubjectDto newSubject) {
+        adminService.createNewSubject(newSubject);
+    }
     @PutMapping("/{id}")
-    public Order editSubject(@PathVariable Long id , String name){
-        // TODO: Das sind Mockdaten und sollten zu einem späteren Zeitpunkt mit "echtem" Code ersetzt werden
-        return editSubject(2,"Physiks");
+    public void editSubject(@PathVariable int id ){
+        adminService.editSubject(2);
     }
     @DeleteMapping("/{id}")
-    public SubjectDto deleteSubject(@PathVariable Long id){
-        return (null);
+    public void deleteSubject(@PathVariable int id){
+        adminService.deleteSubject(1);
     }
 
-    @GetMapping()
-    public List<Order> findAll() {
-        return orderService.findAll();
+    @GetMapping("/all")
+    public List<SubjectDto> findAll() {
+        return adminService.findAll();
     }
 
 }

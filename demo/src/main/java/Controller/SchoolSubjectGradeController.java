@@ -1,30 +1,43 @@
 package Controller;
+import Services.UserService;
 
-import Dtos.SubjectDto;
-import org.springframework.core.annotation.Order;
+import Dtos.SchoolSubjectGradeDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@RestController
+@RequestMapping("/api/student/school_subject_grade")
 
 public class SchoolSubjectGradeController {
-    @PostMapping("/subject")
-    public SubjectDto createNewSubject(@RequestBody SubjectDto newSubject) {
-        // TODO: Das sind Mockdaten und sollten zu einem späteren Zeitpunkt mit "echtem" Code ersetzt werden
-        return new SubjectDto("Physik");
-    }
-    // hier können weitere Methoden der Schnittstelle umgesetzt werden
-    @PutMapping("/{id}")
-    public Order editSubject(@PathVariable Long id , String name){
-        // TODO: Das sind Mockdaten und sollten zu einem späteren Zeitpunkt mit "echtem" Code ersetzt werden
-        return editSubject(2,"Physiks");
-    }
-    @DeleteMapping("/{id}")
-    public SubjectDto deleteSubject(@PathVariable Long id){
-        return (null);
+    private final UserService userService;
+
+    public SchoolSubjectGradeController(UserService userService) {
+        this.userService = userService;
     }
 
-    @GetMapping()
-    public List<Order> findAll() {
-        return orderService.findAll();
+    @PostMapping("/grade")
+    public void createNewGrade(@RequestBody SchoolSubjectGradeDto newSubject) {
+         userService.createNewGrade(newSubject);
+    }
+    @PutMapping("/{id}")
+    public void editGrade(@PathVariable int id , String name){
+         userService.editGrade(2,"Physiks");
+    }
+    @DeleteMapping("/{id}")
+    public void deleteGrade(@PathVariable int id){
+         userService.deleteGrade(1);
+    }
+
+    @GetMapping
+    public List<SchoolSubjectGradeDto> findAll() {
+        return userService.findAll();
+    }
+    @GetMapping
+    public List<SchoolSubjectGradeDto> findAllAvg() {
+        return userService.findAllAvg();
+    }
+    @GetMapping("/{id}")
+    public List<SchoolSubjectGradeDto> findById(@PathVariable int id) {
+        return userService.findById(id);
     }
 }
