@@ -1,11 +1,12 @@
-package Services;
+package com.example.demo.services;
 
-import Dtos.SchoolSubjectGradeDto;
-import Repository.UserRepository;
-import interfaces.UserServiceInterface;
+import com.example.demo.Dtos.SchoolSubjectGradeDto;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.interfaces.UserServiceInterface;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class UserService implements UserServiceInterface {
     private final UserRepository userRepository;
 
@@ -14,8 +15,8 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public void createNewGrade(SchoolSubjectGradeDto newSubject) {
-        userRepository.createNewGrade(newSubject);
+    public void createNewGrade(SchoolSubjectGradeDto newGrade) {
+        userRepository.createNewGrade(newGrade);
     }
     @Override
     public void editGrade(int id, String physiks) {

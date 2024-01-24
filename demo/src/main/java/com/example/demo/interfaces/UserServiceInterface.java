@@ -1,6 +1,6 @@
-package interfaces;
+package com.example.demo.interfaces;
 
-import Dtos.SchoolSubjectGradeDto;
+import com.example.demo.Dtos.SchoolSubjectGradeDto;
 
 import java.util.List;
 

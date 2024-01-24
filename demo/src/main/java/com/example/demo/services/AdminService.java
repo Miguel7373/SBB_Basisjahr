@@ -1,8 +1,8 @@
-package Services;
+package com.example.demo.services;
 
-import Dtos.SubjectDto;
-import Repository.AdminRepository;
-import interfaces.AdminServiceInterface;
+import com.example.demo.Dtos.SubjectDto;
+import com.example.demo.repository.AdminRepository;
+import com.example.demo.interfaces.AdminServiceInterface;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
