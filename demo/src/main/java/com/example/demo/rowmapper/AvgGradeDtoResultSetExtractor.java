@@ -15,8 +15,8 @@ public class AvgGradeDtoResultSetExtractor implements ResultSetExtractor<List<Av
         List<AvgGradeDto> schoolSubjectDtos = new ArrayList<>();
 
         while (resultSet.next()) {
-            double avgGrade = resultSet.getDouble("avg");
-            String subjectName = resultSet.getString("name");
+            double avgGrade = resultSet.getDouble("AVG(g.GRADE)");
+            String subjectName = resultSet.getString("s.SUBJECT");
 
             AvgGradeDto schoolSubjectDto = new AvgGradeDto(subjectName,avgGrade);
             schoolSubjectDtos.add(schoolSubjectDto);

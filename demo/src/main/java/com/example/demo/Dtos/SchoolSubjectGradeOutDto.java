@@ -7,14 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class SchoolSubjectGradeOutDto {
+public class SchoolSubjectGradeOutDto extends Dto{
     private String name;
     private double grade;
-    private String date;
 
-    public SchoolSubjectGradeOutDto(String name, double grade, String date) {
+    public SchoolSubjectGradeOutDto(String name, double grade) {
         this.name = name;
         this.grade = grade;
-        this.date = date;
     }
 }

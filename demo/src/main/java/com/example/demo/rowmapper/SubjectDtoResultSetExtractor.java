@@ -14,7 +14,7 @@ public class SubjectDtoResultSetExtractor implements ResultSetExtractor<List<Sub
         List<SubjectDto> schoolSubjectDtos = new ArrayList<>();
 
         while (resultSet.next()) {
-            String subjectName = resultSet.getString("subject_name");
+            String subjectName = resultSet.getString("subject");
 
             SubjectDto schoolSubjectDto = new SubjectDto(subjectName);
             schoolSubjectDtos.add(schoolSubjectDto);

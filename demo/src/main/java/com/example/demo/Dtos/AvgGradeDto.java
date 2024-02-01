@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AvgGradeDto {
+public class AvgGradeDto extends Dto{
     private String name;
     private double avg;
 

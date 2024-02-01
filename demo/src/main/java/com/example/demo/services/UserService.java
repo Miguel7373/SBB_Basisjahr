@@ -1,10 +1,14 @@
 package com.example.demo.services;
 
+import com.example.demo.Dtos.AvgGradeDto;
+import com.example.demo.Dtos.Dto;
 import com.example.demo.Dtos.SchoolSubjectGradeDto;
+import com.example.demo.Dtos.SchoolSubjectGradeOutDto;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.interfaces.UserServiceInterface;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class UserService implements UserServiceInterface {
@@ -19,25 +23,35 @@ public class UserService implements UserServiceInterface {
         userRepository.createNewGrade(newGrade);
     }
     @Override
-    public void editGrade(int id, String physiks) {
-        userRepository.editGrade(2,"Physiks");
+    public void editGrade(int id, SchoolSubjectGradeDto newGrade) {
+        userRepository.editGrade(id, newGrade);
 
     }
     @Override
-    public void deleteGrade(int i) {
-        userRepository.deleteGrade(1);
+    public void deleteGrade(int id) {
+        userRepository.deleteGrade(id);
 
     }
     @Override
-    public List<SchoolSubjectGradeDto> findAll() {
+    public List<SchoolSubjectGradeOutDto> findAll() {
         return userRepository.findAll();
     }
     @Override
-    public List<SchoolSubjectGradeDto> findAllAvg() {
+    public List<AvgGradeDto> findAllAvg() {
         return  userRepository.findAllAvg();
     }
     @Override
-    public List<SchoolSubjectGradeDto> findById(int id) {
-        return userRepository.findById(1);
+    public List<Dto> findById(int id) {
+        List<AvgGradeDto> avgGrades = userRepository.findAllAvgId(id);
+        List<SchoolSubjectGradeOutDto> schoolSubjectGrades = userRepository.findAllID(id);
+
+        List<Dto> combinedList = new ArrayList<>();
+        combinedList.addAll(avgGrades);
+        combinedList.addAll(schoolSubjectGrades);
+
+        return combinedList;
+    }
+    public String getActiveProfiles(){
+        return userRepository.getActiveProfiles();
     }
 }

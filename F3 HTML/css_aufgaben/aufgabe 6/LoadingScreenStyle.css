@@ -5,12 +5,9 @@
 }
 
 .spinning-image img {
-  justify-content: center;
   height: 600px;
   width: 600px;
-
-
-  animation: spin 4s linear infinite;
+  animation: spin 1000000s linear infinite;
 }
 body{
   background-color: black;

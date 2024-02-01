@@ -18,18 +18,19 @@ public class AdminService implements AdminServiceInterface {
         adminRepository.createNewSubject(newSubject);
     }
 
-    public void editSubject(int i) {
-        adminRepository.editSubject(2);
-
+    @Override
+    public void editSubject(int id, SubjectDto newSubject) {
+        adminRepository.editSubject(id, newSubject);
     }
+
 
     public List<SubjectDto> findAll() {
         return adminRepository.findAll();
 
     }
 
-    public void deleteSubject(int i) {
-        adminRepository.deleteSubject(1);
+    public void deleteSubject(int id) {
+        adminRepository.deleteSubject(id);
 
     }
 }

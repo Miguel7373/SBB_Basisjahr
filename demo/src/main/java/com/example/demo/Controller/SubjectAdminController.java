@@ -17,22 +17,21 @@ public class SubjectAdminController {
         this.adminService = adminService;
     }
 
-    @PostMapping("/newSubject")
+    @PostMapping("/subject")
     public void createNewSubject(@RequestBody SubjectDto newSubject) {
         adminService.createNewSubject(newSubject);
     }
-    @PutMapping("/editSubject/{id}")
-    public void editSubject(@PathVariable int id ){
-        adminService.editSubject(2);
+    @PutMapping("/subject/{id}")
+    public void editSubject(@PathVariable int id, SubjectDto newSubject){
+        adminService.editSubject(id, newSubject);
     }
-    @DeleteMapping("/deleteSubject/{id}")
+    @DeleteMapping("/subject/{id}")
     public void deleteSubject(@PathVariable int id){
-        adminService.deleteSubject(1);
+        adminService.deleteSubject(id);
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/subject/all")
     public List<SubjectDto> findAll() {
         return adminService.findAll();
     }
-
 }

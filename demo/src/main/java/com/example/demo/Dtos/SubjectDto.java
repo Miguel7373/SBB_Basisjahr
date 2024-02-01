@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class SubjectDto {
+public class SubjectDto extends Dto{
 
     private String name;
 

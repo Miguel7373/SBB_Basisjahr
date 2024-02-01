@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AdminRepositoryInterface {
     void createNewSubject(SubjectDto newSubject);
-    void editSubject(int i);
+    void editSubject(int subjectId, SubjectDto updatedSubject);
     List<SubjectDto> findAll();
     void deleteSubject(int i);
 }

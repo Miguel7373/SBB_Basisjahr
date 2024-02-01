@@ -1,8 +1,9 @@
 package com.example.demo.Controller;
+import com.example.demo.Dtos.AvgGradeDto;
+import com.example.demo.Dtos.Dto;
+import com.example.demo.Dtos.SchoolSubjectGradeOutDto;
 import com.example.demo.services.UserService;
-
 import com.example.demo.Dtos.SchoolSubjectGradeDto;
-import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,29 +17,33 @@ public class SchoolSubjectGradeController {
         this.userService = userService;
     }
 
-    @PostMapping("/createNewGrade")
+    @PostMapping("/school_subject_grade/grade")
     public void createNewGrade(@RequestBody SchoolSubjectGradeDto newSubject) {
          userService.createNewGrade(newSubject);
     }
-    @PutMapping("/editGrade/{id}")
-    public void editGrade(@PathVariable int id , String name){
-         userService.editGrade(2,"Physiks");
+    @PutMapping("/school_subject_grade/grade/{id}")
+    public void editGrade(@PathVariable int id ,SchoolSubjectGradeDto newGrade){
+         userService.editGrade(id,newGrade);
     }
-    @DeleteMapping("/deleteGrade/{id}")
+    @DeleteMapping("/school_subject_grade/grade/{id}")
     public void deleteGrade(@PathVariable int id){
-         userService.deleteGrade(1);
+         userService.deleteGrade(id);
     }
 
-    @GetMapping("/findAll")
-    public List<SchoolSubjectGradeDto> findAll() {
+    @GetMapping("/school_subject_grade")
+    public List<SchoolSubjectGradeOutDto> findAll() {
         return userService.findAll();
     }
-    @GetMapping("/findAllAvg")
-    public List<SchoolSubjectGradeDto> findAllAvg() {
+    @GetMapping("/school_subject_grade/average")
+    public List<AvgGradeDto> findAllAvg() {
         return userService.findAllAvg();
     }
-    @GetMapping("/findById/{id}")
-    public List<SchoolSubjectGradeDto> findById(@PathVariable int id) {
+    @GetMapping("/school_subject_grade/average/{id}")
+    public List<Dto> findById(@PathVariable int id) {
         return userService.findById(id);
+    }
+    @GetMapping("/getActiveProfiles")
+    public String getActiveProfiles(){
+        return userService.getActiveProfiles();
     }
 }
