@@ -1,7 +1,7 @@
 package com.example.demo.Controller;
 import com.example.demo.Dtos.AvgGradeDto;
-import com.example.demo.Dtos.Dto;
 import com.example.demo.Dtos.SchoolSubjectGradeOutDto;
+import com.example.demo.Dtos.SubjectDto;
 import com.example.demo.services.UserService;
 import com.example.demo.Dtos.SchoolSubjectGradeDto;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +31,7 @@ public class SchoolSubjectGradeController {
     }
 
     @GetMapping("/school_subject_grade")
-    public List<SchoolSubjectGradeOutDto> findAll() {
+    public List<SubjectDto> findAll() {
         return userService.findAll();
     }
     @GetMapping("/school_subject_grade/average")
@@ -39,10 +39,10 @@ public class SchoolSubjectGradeController {
         return userService.findAllAvg();
     }
     @GetMapping("/school_subject_grade/average/{id}")
-    public List<Dto> findById(@PathVariable int id) {
+    public List<SubjectDto> findById(@PathVariable int id) {
         return userService.findById(id);
     }
-    @GetMapping("/getActiveProfiles")
+    @GetMapping("/Profiles")
     public String getActiveProfiles(){
         return userService.getActiveProfiles();
     }

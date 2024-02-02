@@ -7,12 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AvgGradeDto extends Dto{
-    private String name;
+public class AvgGradeDto extends SubjectDto{
+
     private double avg;
 
     public AvgGradeDto(String name, double avg) {
-        this.name = name;
+        super(name);
         this.avg = avg;
     }
 }

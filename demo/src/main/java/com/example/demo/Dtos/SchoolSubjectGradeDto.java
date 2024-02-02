@@ -8,7 +8,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-public class SchoolSubjectGradeDto extends Dto{
+public class SchoolSubjectGradeDto{
     private int subject_id;
     private int grade_id;
     private String date;

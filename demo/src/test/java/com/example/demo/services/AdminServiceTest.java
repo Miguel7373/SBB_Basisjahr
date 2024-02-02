@@ -68,7 +68,7 @@ class AdminServiceTest{
     public void deleteSubject() throws Exception {
         SubjectDto subjectToDelete = new SubjectDto("Chemistry");
 
-        mockMvc.perform(delete("/api/admin/deleteSubject/{id}", 1)
+        mockMvc.perform(delete("/api/admin/subject/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(subjectToDelete)))
                 .andExpect(status().isOk());
@@ -93,7 +93,7 @@ class AdminServiceTest{
 
         when(adminRepository.findAll()).thenReturn(subjects);
 
-        mockMvc.perform(get("/api/admin/findAll")
+        mockMvc.perform(get("/api/admin/subject/all")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))

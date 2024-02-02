@@ -1,12 +1,9 @@
 package com.example.demo.repository;
 
-import com.example.demo.Dtos.AvgGradeDto;
-import com.example.demo.Dtos.Dto;
-import com.example.demo.Dtos.SchoolSubjectGradeDto;
-import com.example.demo.Dtos.SchoolSubjectGradeOutDto;
+import com.example.demo.Dtos.*;
+
 import com.example.demo.interfaces.UserRepositoryInterface;
-import com.example.demo.rowmapper.AvgGradeDtoResultSetExtractor;
-import com.example.demo.rowmapper.SchoolSubjectGradeDtoResultSetExtractor;
+import com.example.demo.rowmapper.*;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
@@ -54,13 +51,15 @@ public class UserRepository implements UserRepositoryInterface {
         jdbcTemplate.update(sql, id);
     }
     @Override
-    public List<SchoolSubjectGradeOutDto> findAll() {
-        String sql = "SELECT g.GRADE, s.SUBJECT " +
+    public List<Double> findAll( int id) {
+        String sql = "SELECT g.GRADE " +
                 "FROM SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE " +
                 "JOIN SCHOOL_SUBJECT.GRADE g on SCHOOL_SUBJECT_GRADE.grade_id = g.ID_GRADE " +
-                "JOIN SCHOOL_SUBJECT.SUBJECT s on SCHOOL_SUBJECT_GRADE.subject_id = s.ID_SUBJECT " +
-                "GROUP BY subject_id";
-        return jdbcTemplate.query(sql, new SchoolSubjectGradeDtoResultSetExtractor());
+                "where subject_id = ?";
+        PreparedStatementSetter preparedStatementSetter = preparedStatement -> {
+            preparedStatement.setInt(1, id);
+        };
+        return jdbcTemplate.query(sql, preparedStatementSetter,new GradeDtoResultSetExtractor());
     }
     @Override
     public List<AvgGradeDto> findAllAvg() {
@@ -101,5 +100,11 @@ public class UserRepository implements UserRepositoryInterface {
     public String getActiveProfiles() {
         return Arrays.toString(environment.getActiveProfiles());
     }
+    public List<SubjectCountDto> getAllSubjects(){
+        String sql = "SELECT DISTINCT s.SUBJECT, subject_id " +
+                "FROM SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE " +
+                "JOIN SCHOOL_SUBJECT.SUBJECT s on SCHOOL_SUBJECT_GRADE.subject_id = s.ID_SUBJECT ";
 
+        return jdbcTemplate.query(sql, new SubjectCountDtoResultSetExtractor());
+    }
 }

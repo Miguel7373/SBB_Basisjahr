@@ -17,5 +17,19 @@ function updateClock() {
   secondHand.setAttribute('transform', `rotate(${secondDeg} 400 400)`);
 }
 
-  setInterval(updateClock, 1000);
-  updateClock();
+
+document.addEventListener("DOMContentLoaded",function () {
+  for (let i = 0; i < 12; i++) {
+    const angle = i * 30;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('stroke', 'rgb(52, 115, 96)');
+    line.setAttribute('stroke-width', '8');
+    line.setAttribute('x1', 400 + 250 * Math.sin(angle * (Math.PI / 180)));
+    line.setAttribute('y1', 400 - 250 * Math.cos(angle *(Math.PI / 180)));
+    line.setAttribute('x2', 400 + 290 * Math.sin(angle * (Math.PI / 180)));
+    line.setAttribute('y2',  400 - 290 * Math.cos(angle* (Math.PI / 180)));
+    document.getElementById("levin").appendChild(line)
+  }
+})
+
+setInterval(updateClock, 1000);

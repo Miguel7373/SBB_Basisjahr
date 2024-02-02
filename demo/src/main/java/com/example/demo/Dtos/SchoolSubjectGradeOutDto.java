@@ -4,15 +4,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class SchoolSubjectGradeOutDto extends Dto{
-    private String name;
-    private double grade;
+public class SchoolSubjectGradeOutDto extends SubjectDto{
 
-    public SchoolSubjectGradeOutDto(String name, double grade) {
-        this.name = name;
+    private List<Double> grade;
+
+    public SchoolSubjectGradeOutDto(String name, List<Double> grade) {
+        super(name);
+        this.grade = grade;
+    }
+
+    public SchoolSubjectGradeOutDto(List<Double> grade) {
         this.grade = grade;
     }
 }

@@ -16,9 +16,12 @@ public class SchoolSubjectGradeDtoResultSetExtractor implements ResultSetExtract
 
         while (resultSet.next()) {
             String subjectId = resultSet.getString("s.SUBJECT");
-            double gradeId = resultSet.getDouble("g.GRADE");
+            List<Double> grades = new ArrayList<>();
+            do {
+                grades.add(resultSet.getDouble("g.GRADE"));
+            }while (resultSet.next());
 
-            SchoolSubjectGradeOutDto schoolSubjectGradeOutDto = new SchoolSubjectGradeOutDto(subjectId,gradeId);
+            SchoolSubjectGradeOutDto schoolSubjectGradeOutDto = new SchoolSubjectGradeOutDto(subjectId,grades);
             schoolSubjectDtos.add(schoolSubjectGradeOutDto);
         }
 

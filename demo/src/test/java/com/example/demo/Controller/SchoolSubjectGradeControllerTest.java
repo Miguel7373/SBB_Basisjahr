@@ -1,8 +1,9 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Dtos.AvgGradeDto;
-import com.example.demo.Dtos.Dto;
+
 import com.example.demo.Dtos.SchoolSubjectGradeOutDto;
+import com.example.demo.Dtos.SubjectDto;
 import com.example.demo.services.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -116,7 +117,7 @@ class SchoolSubjectGradeControllerTest {
     @Transactional
     @Test
     void findById() throws Exception {
-        List<Dto> subjects = new ArrayList<>();
+        List<SubjectDto> subjects = new ArrayList<>();
         subjects.add(new SchoolSubjectGradeOutDto("Math", 1));
         subjects.add(new AvgGradeDto("Math", 6));
         when(userService.findById(1)).thenReturn(subjects);
@@ -139,7 +140,7 @@ class SchoolSubjectGradeControllerTest {
     void getActiveProfiles() throws Exception {
 
 
-        mockMvc.perform(get("/api/student/getActiveProfiles")
+        mockMvc.perform(get("/api/student/Profiles")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
         verify(userService,times(1)).getActiveProfiles();

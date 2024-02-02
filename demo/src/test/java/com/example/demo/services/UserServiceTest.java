@@ -1,7 +1,6 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Dtos.AvgGradeDto;
-import com.example.demo.Dtos.Dto;
 import com.example.demo.Dtos.SchoolSubjectGradeOutDto;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.services.UserService;
@@ -37,11 +36,12 @@ class UserServiceTest {
     @MockBean
     private UserRepository userRepository;
 
+
     @DirtiesContext
     @Transactional
     @Test
     void createNewGrade() throws Exception {
-        mockMvc.perform(post("/api/student/createNewGrade")
+        mockMvc.perform(post("/api/student/school_subject_grade/grade")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"grade\": 90.5, \"subject\": \"Math\"}"))
                 .andExpect(status().isOk());
@@ -53,7 +53,7 @@ class UserServiceTest {
     @Transactional
     @Test
     void editGrade() throws Exception {
-        mockMvc.perform(put("/api/student/editGrade/{id}", 1)
+        mockMvc.perform(put("/api/student/school_subject_grade/grade/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"grade\": 95.0, \"subject\": \"History\"}"))
                 .andExpect(status().isOk());
@@ -65,7 +65,7 @@ class UserServiceTest {
     @Transactional
     @Test
     void deleteGrade() throws Exception {
-        mockMvc.perform(delete("/api/student/deleteGrade/{id}", 1)
+        mockMvc.perform(delete("/api/student/school_subject_grade/grade/{id}", 1)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
@@ -82,7 +82,7 @@ class UserServiceTest {
 
         when(userRepository.findAll()).thenReturn(grades);
 
-        mockMvc.perform(get("/api/student/findAll")
+        mockMvc.perform(get("/api/student/school_subject_grade")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -104,7 +104,7 @@ class UserServiceTest {
 
         when(userRepository.findAllAvg()).thenReturn(avgGrades);
 
-        mockMvc.perform(get("/api/student/findAllAvg")
+        mockMvc.perform(get("/api/student/school_subject_grade/average")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -141,7 +141,7 @@ class UserServiceTest {
     void getActiveProfiles() throws Exception {
 
 
-        mockMvc.perform(get("/api/student/getActiveProfiles")
+        mockMvc.perform(get("/api/student/Profiles")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
         verify(userRepository,times(1)).getActiveProfiles();
