@@ -1,6 +1,5 @@
 
 import Island from "./island.js";
-
 export const islands = [
   new Island({ name: "Atlantis" }),
   new Island({
@@ -35,3 +34,5 @@ for (const island of islands) {
     }: ${island.imageUrl ?? "no image available :/"}`
   );
 }
+console.log(islands)
+

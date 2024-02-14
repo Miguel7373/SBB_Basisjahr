@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport">
+
+  <title>Student Management</title>
+  <script src="student.js"></script>
+</head>
+<body>
+<h1>Student Management</h1>
+<form id="studentForm">
+  <label for="name">Name:</label>
+  <input type="text" id="name" required>
+  <label for="grades">Grades (comma separated):</label>
+  <input type="text" id="grades" required>
+  <button type="button" onclick="addStudent()">Add Student</button>
+</form>
+<button onclick="showAverageAndDescription()">Show Average and Description</button>
+<button onclick="showBestStudent()">Show Best Student</button>
+<button onclick="showWorstStudent()">Show Worst Student</button>
+<button onclick="showSortedStudents()">Show Sorted Students</button>
+
+
+<div id="results"></div>
+</body>
+</html>
