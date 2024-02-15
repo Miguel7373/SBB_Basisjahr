@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigation</title>
+  <script src="test.js"></script>
+  <link rel="stylesheet" href="test.css">
+</head>
 <body>
-
-<h2>JavaScript Dates</h2>
-
-<p id="time"></p>
-<p id="demo"></p>
-
-<script>
-  let date = new Date()
-  let hours  = date.getHours()
-  let minutes = date.getMinutes()
-  document.getElementById("time").innerHTML = hours;
-  const d = new Date();
-  document.getElementById("demo").innerHTML = d;
-</script>
-
-
+<div class="navigation">
+  <div class="element">
+    <div class="title" id="abfragen">
+      Abfragen
+      <span class="arrow" id="arrow">^</span>
+    </div>
+    <div class="child-elements">
+      <div class="child">Element 1</div>
+      <div class="child">Element 2</div>
+      <div class="child">Element 3</div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
