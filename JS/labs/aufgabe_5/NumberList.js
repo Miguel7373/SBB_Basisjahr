@@ -5,10 +5,10 @@ function addNumbers() {
   console.log(numbersArray);
 }
 function biggestNumber(){
-  console.log(Math.max.apply(Math, numbersArray))
+  console.log(Math.max(...numbersArray))
 }
 function smallestNumber(){
-  console.log(Math.min.apply(Math, numbersArray))
+  console.log(Math.min(...numbersArray))
 }
 
 function calculateSumEven() {

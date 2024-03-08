@@ -5,7 +5,7 @@ function myFunction(a = 20) {
   console.log(a);
 
   if (true) {
-    let a = 21;
+    const a = 21;
     console.log(a);
 
     for (let a = 30; a < 33; a++) {
@@ -21,6 +21,6 @@ function myFunction(a = 20) {
 
 myFunction();
 
-console.log(a);
+console.log(a)  ;
 const  a = 11;
 console.log(a);

@@ -15,29 +15,40 @@ function addStudent() {
   }
 
 
-  students.push({ name, grades });
+  students.push({name, grades});
   document.getElementById('results').textContent = 'Student added successfully.';
 }
 
 function showAverageAndDescription() {
-  const totalAverage = students.reduce((sum, student) => sum + student.grades.reduce((total, grade) => total + grade, 0) / student.grades.length, 0) / students.length;
-  let description = '';
+  const totalAveragePromise = new Promise((resolve, reject) => {
+    const totalAverage = students.reduce((sum, student) => sum + calculateAverage(student.grades), 0) / students.length;
 
-  if (isNaN(totalAverage)) {
-    description = 'No students added yet.';
-  } else if (totalAverage === 6) {
-    description = 'Sehr gut';
-  } else if (totalAverage >= 5) {
-    description = 'Gut';
-  } else if (totalAverage >= 4) {
-    description = 'Befriedigend';
-  } else if (totalAverage >= 3) {
-    description = 'Ausreichend';
-  } else {
-    description = 'Mangelhaft';
-  }
+    if (!isNaN(totalAverage)) {
+      resolve(totalAverage);
+    } else {
+      reject('Error: Could not calculate total average.');
+    }
+  });
 
-  document.getElementById('results').textContent = `Average: ${totalAverage.toFixed(2)}, Description: ${description}`;
+  totalAveragePromise.then(totalAverage => {
+    let description = '';
+
+    if (totalAverage === 6) {
+      description = 'Sehr gut';
+    } else if (totalAverage >= 5) {
+      description = 'Gut';
+    } else if (totalAverage >= 4) {
+      description = 'Befriedigend';
+    } else if (totalAverage >= 3) {
+      description = 'Ausreichend';
+    } else {
+      description = 'Mangelhaft';
+    }
+
+    document.getElementById('results').textContent = `Average: ${totalAverage.toFixed(2)}, Description: ${description}`;
+  }).catch(error => {
+    console.error('Error:', error);
+  });
 }
 
 function calculateAverage(grades) {
@@ -60,7 +71,7 @@ function findStudentWithExtremum(students, isMax) {
     }
   }
 
-  return { name: extremumStudent.name, average: extremumAverage };
+  return {name: extremumStudent.name, average: extremumAverage};
 }
 
 function showBestStudent() {
@@ -82,16 +93,18 @@ function showWorstStudent() {
 }
 
 function compareStudentsByAverage(studentA, studentB) {
-  const averageA = calculateAverage(studentA.grades);
-  const averageB = calculateAverage(studentB.grades);
+  return new Promise((resolve, reject) => {
+    const averageA = calculateAverage(studentA.grades);
+    const averageB = calculateAverage(studentB.grades);
 
-  if (averageA === averageB) {
-    return 0;
-  } else if (averageA < averageB) {
-    return -1;
-  } else {
-    return 1;
-  }
+    if (averageA === averageB) {
+      resolve(0);
+    } else if (averageA < averageB) {
+      resolve(-1);
+    } else {
+      resolve(1);
+    }
+  });
 }
 
 function showSortedStudents() {

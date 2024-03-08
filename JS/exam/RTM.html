@@ -48,7 +48,7 @@
           <img class="logoInTopBar" id="pfeil_unten" src="\F3 HTML\bilder\pfeil_unten.svg">
         </div>
         <div class="hoverborderInTopBar">
-          <img class="logoInTopBar" id="refresh" src="\F3 HTML\bilder\refresh.svg">
+          <img class="logoInTopBar" onclick="reload()" id="refresh" src="\F3 HTML\bilder\refresh.svg">
         </div>
         <div class="hoverborderInTopBar">
           <img class="logoInTopBar" id="persons" src="\F3 HTML\bilder\persons.svg">
@@ -233,218 +233,18 @@
   </main>
   <nav id="rightsidenav">
     <div id="surchbar">
-      <p id="wordinsurchbar">Suchen...</p>
-      <img id="surchbarimg" src="\F3 HTML\bilder\suchen.svg">
+      <input type="text" id="wordinsurchbar" onkeyup="surchbar()" placeholder="Suchen...">
     </div>
     <div id="scroll">
       <div id="anwesendText">
         <p>Anwesend</p>
       </div>
+      <div id="availableList"></div>
 
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Di Gennaro Nevio</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Hodler Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Balsiger Timo</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Schreiber Raphaël</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Studer Loris</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Wüthrich Joel</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
       <div id="abwesendText">
         <p>Abwesend</p>
       </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Sutthaloung Marc</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Tschanz Timo</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
-      <div class="rightsidenavprofile">
-        <img class="profileLogo" src="\F3 HTML\bilder\avatar.svg">
-        <div class="profileInfo">
-          <span class="namesInrightsidenav">Lauper Levin</span>
-          <div class="arbeitszeitInfo">
-            <span class="arbeitszeitInrightsidenav">Arbeitszeit(0)</span>
-          </div>
-        </div>
-        <img class="clocklogo" src="\F3 HTML\bilder\clock.svg">
-      </div>
+      <div id="unavailableList"></div>
     </div>
   </nav>
 </div>

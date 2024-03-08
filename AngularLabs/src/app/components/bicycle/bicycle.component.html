@@ -1,0 +1,12 @@
+
+
+<link rel="stylesheet" href="./bicycle.component.scss">
+<button class="buttons" (click)="displayBicycleName()">Wie heisst mein Fahrrad?</button>
+<button class="buttons" (click)="getFavoriteBicycleImage()">Mein Lieblingsfahrrad suchen</button><br>
+<input type="text" id="searchInput" [formControl]="searchBarInput">
+<div style="display: flex; flex-direction: row">
+  <div  *ngFor="let bicycleImage of favoriteBicycle">
+    <img [src]="bicycleImage.link" [height]="bicycleImage.image.height" [width]="bicycleImage.image.width" alt="Favorite Bicycle" >
+  </div>
+</div>
+<p>Mein Lieblingsfahrad: {{ this.searchBarInput.value }}</p>
