@@ -1,1 +1,17 @@
-<p>bicycle-info works!</p>
+
+
+
+<button routerLink="/brand">Brand Component</button>
+<button routerLink="/searchComponent">Search Component</button>
+<button (click)="toggleButtonState()">Toggle Button State</button>
+<button (click)="loadBicycles()">Load Bicycles</button>
+
+@if (showBicycles){
+  <h2>List of Bicycles</h2>
+  @for (bicycle of bicycles; track $index){
+    <strong>Name:</strong> {{ bicycle.name }} <br>
+    <strong>Value:</strong> {{ bicycle.value ?? 0 | currency}} <br>
+    <strong>Type:</strong> {{ bicycle.typeIds }} <br>
+    <strong [routerLink]="['/brand', bicycle.brandId]" >Brand:</strong> {{ bicycle.brandId }} <br>
+  }
+}

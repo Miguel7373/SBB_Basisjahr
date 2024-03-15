@@ -1,51 +1,85 @@
 import {Injectable} from '@angular/core';
-import {BicycleModel} from "../../models/bicycleModel";
+import {FullBicycleModel, IdBicycleModel} from "../../models/bicycleModel";
 import {TypeModel} from "../../models/typeModel"
 import {TypeServiceService} from "../typeService/type-service.service";
 import {BrandServiceService} from "../brandService/brand-service.service";
 import {BrandModel} from "../../models/brandModel";
+import {BehaviorSubject, Observable} from "rxjs";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class BicycleServiceService {
-  private bicycles: BicycleModel[] = [
-    {bicycleId: 1, name: 'Mountain Bike', value: 500, typeId: 1, brandId: 1},
-    {bicycleId: 2, name: 'Road Bike', value: 400, typeId: 2, brandId: 2},
+  private bicycles: IdBicycleModel[] = [
+    {bicycleId: 1, name: 'Mountain Bike', value: 500, typeIds: [1], brandId: 1},
+    {bicycleId: 2, name: 'Road Bike', value: 4000000000000, typeIds: [2,1], brandId: 2},
   ]
 
   constructor(private typeService: TypeServiceService, private brandService: BrandServiceService) {
   }
 
-  getBicycle(id: number): BicycleModel {
-    return this.bicycles.find(b => b.bicycleId === id);
+  private buttonStateSubject = new BehaviorSubject<boolean>(true);
+
+  getState(): boolean{
+    return this.buttonStateSubject.value
+}
+
+  toggleButtonState(): void {
+    this.buttonStateSubject.next(!this.buttonStateSubject.value);
   }
 
-  getAllBicycle(): BicycleModel[] {
-    return this.bicycles.map(b => ({
-      bicycleId: b.bicycleId,
-      name: b.name,
-      value: b.value,
-      typeId: b.typeId,
-      brandId: b.brandId
-    }));
+
+  getBicycle(id: number): IdBicycleModel {
+    console.log(typeof id)
+    //@ts-ignore
+    const bicycle = this.bicycles.find(b=> b.bicycleId === +id)
+    if (!bicycle){
+      throw new Error(`Bicycle With the ID ${id} was not found.`)
+    }
+    return bicycle;
   }
-  getFullBicycle(id: number): any {
-    const bicycle = this.bicycles.find(b => b.bicycleId === id);
+
+  getAllBicycle(): IdBicycleModel[] {
+    return this.bicycles;
+  }
+  getFullBicycle(id: number): FullBicycleModel {
+    const bicycle = this.getBicycle(id);
     if (bicycle) {
-      const type: TypeModel = this.typeService.getType(bicycle.typeId);
-      const brand: BrandModel = this.brandService.getBrand(bicycle.brandId);
-      return this.bicycles.map(b =>({
+      return {
+        bicycleId: bicycle.bicycleId ,
+        name: bicycle.name ,
+        value: bicycle.value ,
+        type: this.typeService.getTypeName(bicycle.typeIds),
+        brand: this.brandService.getBrandName(bicycle.brandId)
+      }
+    }else {
+      return new FullBicycleModel(["", ""],"")
+    }
+  }
+  getBicycleByBrandId(id: number): IdBicycleModel[] {
+    const bicycle = this.bicycles.filter(bicycle => bicycle.brandId === id);
+    if (!bicycle) throw new Error(`Brand with ID ${id} was not found.`);
+    console.log(bicycle)
+    return bicycle
+  }
+  getBicycleOfBrand(id:number): FullBicycleModel[] {
+    const brand = this.brandService.getBrand(id)
+    const bicycle: IdBicycleModel[] = this.getBicycleByBrandId(brand.brandId)
+    console.log(bicycle)
+    if (bicycle) {
+      //@ts-ignore
+      return bicycle.map(b => ({
         bicycleId: b.bicycleId,
         name: b.name,
         value: b.value,
-        typeId: type ?  type.typeId : '',
-        brandId: brand ? brand.brandId : '',
+        type: this.typeService.getTypeName(b.typeIds),
+        brand: this.brandService.getBrandName(b.brandId)
       }))
-
     }else {
-      return null;
+      return [new FullBicycleModel(["", ""],""),new FullBicycleModel(["", ""],"")]
     }
   }
+
 }
+

@@ -22,7 +22,7 @@ export class BicycleComponent implements OnInit {
 
   constructor(private httpClient: HttpClient) {}
 
-  searchBarInput: FormControl=new FormControl('')
+  searchBarInput: FormControl = new FormControl('')
 
   ngOnInit(): void {
     this.bicycle.name = 'Specialized Diverge Pro Carbon';

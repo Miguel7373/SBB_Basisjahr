@@ -1,0 +1,12 @@
+<button routerLink="">Info Component</button>
+
+<input type="text" [formControl]="searchBarInput">
+<button (click)="displayBicycle()">Search</button><br>
+@if (bicycles){
+   {{ bicycles.name }} <br>
+   {{ bicycles.value ?? 0 | currency }} <br>
+   {{ bicycles.type }} <br>
+   {{ bicycles.brand | upperCaseWithCopyright}} <br>
+}
+
+
