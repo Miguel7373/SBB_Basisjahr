@@ -4,5 +4,5 @@ import {inject} from "@angular/core";
 
 
 export const bicycleGuard: CanActivateFn = (route, state) => {
-  return !!inject(BicycleServiceService).getState();
+  return inject(BicycleServiceService).getState();
 };

@@ -15,7 +15,6 @@ export class TypeServiceService {
 
   getTypeName(ids: number[]): string[] {
     return ids.map(id => {
-      //@ts-ignore
       const type = this.types.find(b => b.typeId === id)
       if (!type) throw new Error(`Brand with ID ${id} was not found.`);
       return type.typename
@@ -25,7 +24,6 @@ export class TypeServiceService {
   getType(ids: number[]): TypeModel[] {
 
     return ids.map(id => {
-      //@ts-ignore
       const type = this.types.find(b => b.typeId == id)
       if (!type) throw new Error(`Brand with ID ${id} was not found.`);
       return type

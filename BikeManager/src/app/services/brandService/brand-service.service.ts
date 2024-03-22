@@ -16,7 +16,6 @@ export class BrandServiceService {
   }
 
   getBrandName(id: number): string {
-    //@ts-ignore
     const brand = this.brands.find(b => b.brandId === id)
     if (!brand) throw new Error(`Brand with ID ${id} was not found.`);
     return brand.brand

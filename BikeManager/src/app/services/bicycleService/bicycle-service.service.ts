@@ -32,7 +32,6 @@ export class BicycleServiceService {
 
   getBicycle(id: number): IdBicycleModel {
     console.log(typeof id)
-    //@ts-ignore
     const bicycle = this.bicycles.find(b=> b.bicycleId === +id)
     if (!bicycle){
       throw new Error(`Bicycle With the ID ${id} was not found.`)
@@ -54,21 +53,24 @@ export class BicycleServiceService {
         brand: this.brandService.getBrandName(bicycle.brandId)
       }
     }else {
-      return new FullBicycleModel(["", ""],"")
+      return {
+        bicycleId: 0 ,
+        name: "" ,
+        value: 0 ,
+        type: [],
+        brand: ""
+      };
     }
   }
   getBicycleByBrandId(id: number): IdBicycleModel[] {
     const bicycle = this.bicycles.filter(bicycle => bicycle.brandId === id);
     if (!bicycle) throw new Error(`Brand with ID ${id} was not found.`);
-    console.log(bicycle)
     return bicycle
   }
   getBicycleOfBrand(id:number): FullBicycleModel[] {
     const brand = this.brandService.getBrand(id)
     const bicycle: IdBicycleModel[] = this.getBicycleByBrandId(brand.brandId)
-    console.log(bicycle)
     if (bicycle) {
-      //@ts-ignore
       return bicycle.map(b => ({
         bicycleId: b.bicycleId,
         name: b.name,
@@ -77,7 +79,7 @@ export class BicycleServiceService {
         brand: this.brandService.getBrandName(b.brandId)
       }))
     }else {
-      return [new FullBicycleModel(["", ""],""),new FullBicycleModel(["", ""],"")]
+      return [];
     }
   }
 

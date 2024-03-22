@@ -1,12 +1,22 @@
-<button routerLink="">Info Component</button>
+<main>
+  <button id="homeButton" routerLink="" mat-raised-button>Info Component</button>
+  <br>
 
-<input type="text" [formControl]="searchBarInput">
-<button (click)="displayBicycle()">Search</button><br>
-@if (bicycles){
-   {{ bicycles.name }} <br>
-   {{ bicycles.value ?? 0 | currency }} <br>
-   {{ bicycles.type }} <br>
-   {{ bicycles.brand | upperCaseWithCopyright}} <br>
-}
-
+<div id="search">
+  <mat-form-field class="example-full-width">
+    <mat-label>Bicycle Id</mat-label>
+    <input id="input" matInput type="text" [formControl]="searchBarInput">
+  </mat-form-field>
+  <button id="searchButton" mat-raised-button (click)="displayBicycle()">Search</button>
+  <br>
+</div>
+<div id="BicycleForId">
+  @if (bicycles) {
+    {{ bicycles.name }} <br>
+    {{ bicycles.value ?? 0 | currency }} <br>
+    {{ bicycles.type }} <br>
+    {{ bicycles.brand | upperCaseWithCopyright }} <br>
+  }
+</div>
+</main>
 

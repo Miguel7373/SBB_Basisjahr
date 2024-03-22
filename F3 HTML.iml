@@ -4,5 +4,6 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/F3 HTML" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="rxjs" level="application" />
   </component>
 </module>

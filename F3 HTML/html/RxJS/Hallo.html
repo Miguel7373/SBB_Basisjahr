@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subject Lab</title>
+  <script src="https://unpkg.com/rxjs@6.2.0/bundles/rxjs.umd.min.js"></script>
+  <script>
+    const {AsyncSubject, BehaviorSubject, ReplaySubject, Subject} = rxjs;
+
+    const behaviorSubject = new BehaviorSubject("");
+    const replaySubject = new ReplaySubject();
+    const asyncSubject = new AsyncSubject();
+    const subject = new Subject();
+    function submit() {
+      const message = document.getElementById('chat').value
+      const timestamp = new Date().toLocaleDateString();
+      const timestampedMessage = `${message} - ${timestamp}`;
+      behaviorSubject.next(timestampedMessage);
+      replaySubject.next(timestampedMessage);
+      asyncSubject.next(timestampedMessage);
+      subject.next(timestampedMessage);
+      //Nachricht zu Subject senden
+    }
+
+    function addSubscriptions() {
+      behaviorSubject.subscribe(
+        (value) => {
+          displayOutput('BehaviorSubject: ' + value);
+        },
+        (error) => {
+          displayOutput('BehaviorSubject Error: ' + error);
+        },
+        () => {
+          displayOutput('BehaviorSubject Complete');
+        }
+      );
+      replaySubject.subscribe(
+        (value) => {
+          displayOutput('ReplaySubject: ' + value);
+        },
+        (error) => {
+          displayOutput('ReplaySubject Error: ' + error);
+        },
+        () => {
+          displayOutput('ReplaySubject Complete');
+        }
+      );
+      asyncSubject.subscribe(
+        (value) => {
+          displayOutput('AsyncSubject: ' + value);
+        },
+        (error) => {
+          displayOutput('AsyncSubject Error: ' + error);
+        },
+        () => {
+          displayOutput('AsyncSubject Complete');
+        }
+      );
+      subject.subscribe(
+        (value) => {
+          displayOutput('Subject: ' + value);
+        },
+        (error) => {
+          displayOutput('Subject Error: ' + error);
+        },
+        () => {
+          displayOutput('Subject Complete');
+        }
+      );
+    }
+
+    function complete() {
+      behaviorSubject.complete();
+      replaySubject.complete();
+      asyncSubject.complete();
+      subject.complete();
+      //Subject complete
+    }
+    function displayOutput(message) {
+      const splitter = message.split(":");
+      const outputDiv = document.getElementById(splitter[0]);
+      const p = document.createElement('p');
+      p.textContent = message;
+      outputDiv.appendChild(p);
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      document.getElementById('submit').addEventListener('click', submit);
+      document.getElementById('add-subscriptions').addEventListener('click', addSubscriptions);
+      document.getElementById('complete').addEventListener('click', complete);
+    } )
+
+
+  </script>
+</head>
+<body>
+<div class="wrapper">
+  <div class="actions">
+    <input id="chat" type="text" placeholder="Please enter your message">
+    <button id="submit">Send</button>
+    <button id="add-subscriptions">Subscriptions</button>
+    <button id="complete">Complete</button>
+  </div>
+
+  <div class="output">
+    <div id="Subject"></div>
+    <div id="AsyncSubject"></div>
+    <div id="ReplaySubject"></div>
+    <div id="BehaviorSubject"></div>
+  </div>
+</div>
+</body>
+</html>

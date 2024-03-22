@@ -1,11 +1,10 @@
-
-
-
-<button routerLink="/brand">Brand Component</button>
-<button routerLink="/searchComponent">Search Component</button>
-<button (click)="toggleButtonState()">Toggle Button State</button>
-<button (click)="loadBicycles()">Load Bicycles</button>
-
+<main>
+<div id="searchComponent">
+<button mat-raised-button class="normalButton" routerLink="/searchComponent">Search Component</button>
+<button id="fabButton" mat-fab color="primary" (click)="toggleButtonState()">Toggle</button>
+</div>
+<button mat-raised-button class="normalButton" (click)="loadBicycles()">Load Bicycles</button>
+<div id="Bicycles">
 @if (showBicycles){
   <h2>List of Bicycles</h2>
   @for (bicycle of bicycles; track $index){
@@ -15,3 +14,5 @@
     <strong [routerLink]="['/brand', bicycle.brandId]" >Brand:</strong> {{ bicycle.brandId }} <br>
   }
 }
+</div>
+</main>

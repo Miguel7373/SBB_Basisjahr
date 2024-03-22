@@ -5,8 +5,8 @@
 <button class="buttons" (click)="getFavoriteBicycleImage()">Mein Lieblingsfahrrad suchen</button><br>
 <input type="text" id="searchInput" [formControl]="searchBarInput">
 <div style="display: flex; flex-direction: row">
-  <div  *ngFor="let bicycleImage of favoriteBicycle">
+  @for (bicycleImage of favoriteBicycle; track $index){
     <img [src]="bicycleImage.link" [height]="bicycleImage.image.height" [width]="bicycleImage.image.width" alt="Favorite Bicycle" >
-  </div>
+  }
 </div>
 <p>Mein Lieblingsfahrad: {{ this.searchBarInput.value }}</p>

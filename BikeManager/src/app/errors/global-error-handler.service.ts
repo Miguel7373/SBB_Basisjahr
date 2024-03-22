@@ -1,12 +1,9 @@
-import {ErrorHandler, NgModule} from "@angular/core";
+import {ErrorHandler, Injectable} from "@angular/core";
 
-class MyErrorHandler implements ErrorHandler {
-  handleError(error) {
-    // do something with the exception
+
+@Injectable()
+export class GlobalErrorHandler extends ErrorHandler {
+  override handleError(error: any): void {
+    console.log(error)
   }
 }
-
-@NgModule({
-  providers: [{provide: ErrorHandler, useClass: MyErrorHandler}]
-})
-class MyModule {}

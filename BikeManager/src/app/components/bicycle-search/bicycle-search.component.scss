@@ -1,0 +1,44 @@
+.example-full-width {
+  width: 60%;
+  height: 100px;
+  font-size: 30px;
+}
+mat-label{
+  font-size: 30px;
+}
+#input{
+  font-size: 40px;
+}
+main{
+  background-color: aliceblue;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+#homeButton{
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  width: 20%;
+  min-width: 500px;
+  height: 200px;
+  font-size: 40px;
+}
+#searchButton{
+  width: 200px;
+  height: 79px;
+  font-size: 40px;
+  margin-bottom: 21px;
+}
+#search{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+#BicycleForId{
+  font-size: 40px;
+}

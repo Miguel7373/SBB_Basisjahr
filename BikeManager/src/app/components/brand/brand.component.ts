@@ -6,20 +6,28 @@ import {BrandServiceService} from "../../services/brandService/brand-service.ser
 import {FullBicycleModel} from "../../models/bicycleModel";
 import {CurrencyPipe} from "../../pipes/currency/currency.pipe";
 import {UpperCaseWithCopyrightPipe} from "../../pipes/upperCaseWithCopyright/upper-case-with-copyright.pipe";
+import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
+import {FormsModule} from "@angular/forms";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSlider, MatSliderThumb} from "@angular/material/slider";
+import {MatButton} from "@angular/material/button";
+
 
 @Component({
   selector: 'app-brand',
   standalone: true,
   imports: [
     RouterLink,
-    NgForOf,
-    CurrencyPipe,
-    NgIf,
-    CurrencyPipe,
-    CurrencyPipe,
-    CurrencyPipe,
-    CurrencyPipe,
-    UpperCaseWithCopyrightPipe
+    UpperCaseWithCopyrightPipe,
+    MatRadioGroup,
+    MatRadioButton,
+    FormsModule,
+    MatProgressSpinnerModule,
+    MatSlider,
+    MatSliderThumb,
+    MatButton,
+    CurrencyPipe
+
   ],
   templateUrl: './brand.component.html',
   styleUrl: './brand.component.scss'
@@ -34,7 +42,6 @@ export class BrandComponent implements OnInit{
 
   ngOnInit(): void{
     this.brandId = parseInt( this.route.snapshot.params['id'])
-    console.log(this.brandId)
   }
 
   loadBicycles(): void {
