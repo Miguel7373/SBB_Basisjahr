@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {BicycleServiceService} from "../../services/bicycleService/bicycle-service.service";
-import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
+import {AsyncPipe} from "@angular/common";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {IdBicycleModel} from "../../models/bicycleModel";
 import {CurrencyPipe} from "../../pipes/currency/currency.pipe";
@@ -36,6 +36,6 @@ export class BicycleInfoComponent{
   loadBicycles(): void {
     this.bicycles = this.bicycleService.getAllBicycle();
     this.showBicycles = !this.showBicycles;
-    throw new Error("dini mam")
+    throw new Error("")
   }
 }

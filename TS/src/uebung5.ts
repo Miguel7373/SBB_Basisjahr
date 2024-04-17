@@ -21,4 +21,4 @@ class User {
 }
 
 const details = new User('Example', 'example@example.com')
-console.log(details.greeting())
+console.log(details.greeting());

@@ -1,0 +1,107 @@
+
+.weekly-calendar {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+  }
+}
+
+$myBlue: #92A8D1;
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  margin: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  height: 10vh;
+  background-color: $myBlue;
+}
+
+#mainTitle {
+  display: flex;
+  font-size: 5vh;
+  text-align: center;
+  align-self: center;
+}
+
+#logoutButton {
+  align-self: flex-end;
+  justify-self: end;
+}
+
+.profilePicture {
+  width: 5vh;
+  height: 5vh;
+  border-radius: 50%;
+}
+
+.weekly-calendar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+td{
+  width: 12.5%;
+}
+
+tr:hover td:not(:first-child) {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+td:not(:first-child):hover {
+  background-color: rgba(0, 0, 0, 2);
+}
+
+td:not(:first-child):hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -5000px;
+  height: 10000px;
+  width: 100%;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.03);
+
+}
+
+table {
+  overflow: hidden;
+}
+
+td {
+  position: relative;
+}
+.headerDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100px;
+}

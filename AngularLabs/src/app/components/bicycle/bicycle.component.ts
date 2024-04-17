@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Bicycle, BicycleImage, GoogleCustomSearchResponse } from '../interfaces';
-import {NgForOf, NgIf} from "@angular/common";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
@@ -9,8 +8,6 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
   templateUrl: './bicycle.component.html',
   styleUrls: ['./bicycle.component.scss'],
   imports: [
-    NgIf,
-    NgForOf,
     ReactiveFormsModule
   ],
   standalone: true
@@ -22,7 +19,7 @@ export class BicycleComponent implements OnInit {
 
   constructor(private httpClient: HttpClient) {}
 
-  searchBarInput: FormControl = new FormControl('')
+  searchBarInput: FormControl = new FormControl('Specialized Diverge Pro Carbon')
 
   ngOnInit(): void {
     this.bicycle.name = 'Specialized Diverge Pro Carbon';
@@ -39,13 +36,14 @@ export class BicycleComponent implements OnInit {
       'https://www.googleapis.com/customsearch/v1?key=AIzaSyDNGfS6NUdgwXOwKu9xlZPJFm84ylG6J4g&cx=005124428384360536924:rstfldysumw&q=' +
       this.searchBarInput.value +
       '&searchType=image&safe=high';
-
+    this.favoriteBicycle = [];
     this.httpClient.get<GoogleCustomSearchResponse>(url).subscribe((response: GoogleCustomSearchResponse) => {
       for (let i = 0; i < 4; i++) {
         let item: BicycleImage = response.items[i];
         item.image.height = (200 / item.image.width) * item.image.height;
         item.image.width = 200;
         this.favoriteBicycle.push(item);
+
       }
     });
   }

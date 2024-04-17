@@ -2,8 +2,8 @@ var Person = /** @class */ (function () {
     function Person(name) {
         this.name = name;
     }
-    Person.prototype.introduceSelfB = function () {
-        console.log("Hallo, mein name ist " + this.name);
+    Person.prototype.introduceSelf = function () {
+        console.log('Hallo, mein name ist ' + this.name);
     };
     return Person;
 }());
@@ -16,7 +16,7 @@ var Friend = /** @class */ (function () {
     };
     return Friend;
 }());
-var personB = new Person("Peter");
-var friendA = new Friend(5);
-personB.introduceSelfB();
-friendA.timeKnown();
+var person1 = new Person("Peter");
+var friend = new Friend(5);
+person1.introduceSelf();
+friend.timeKnown();

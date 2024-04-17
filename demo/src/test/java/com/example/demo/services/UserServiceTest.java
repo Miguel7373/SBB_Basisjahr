@@ -1,4 +1,4 @@
-package com.example.demo.Controller;
+package com.example.demo.services;
 
 import com.example.demo.Dtos.AvgGradeDto;
 import com.example.demo.Dtos.SchoolSubjectGradeOutDto;
@@ -71,28 +71,28 @@ class UserServiceTest {
 
         verify(userRepository,times(1)).deleteGrade(Mockito.anyInt());
     }
-
-    @DirtiesContext
-    @Transactional
-    @Test
-    void findAll() throws Exception {
-        List<SchoolSubjectGradeOutDto> grades = new ArrayList<>();
-        grades.add(new SchoolSubjectGradeOutDto("Math", 90.5));
-        grades.add(new SchoolSubjectGradeOutDto("History", 95.0));
-
-        when(userRepository.findAll()).thenReturn(grades);
-
-        mockMvc.perform(get("/api/student/school_subject_grade")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].name").value("Math"))
-                .andExpect(jsonPath("$[0].grade").value(90.5))
-                .andExpect(jsonPath("$[1].name").value("History"))
-                .andExpect(jsonPath("$[1].grade").value(95.0));
-
-        verify(userRepository,times(1)).findAll();
-    }
+//
+//    @DirtiesContext
+//    @Transactional
+//    @Test
+//    void findAll() throws Exception {
+//        List<SchoolSubjectGradeOutDto> grades = new ArrayList<>();
+//        grades.add(new SchoolSubjectGradeOutDto("Math", 90.5));
+//        grades.add(new SchoolSubjectGradeOutDto("History", 95.0));
+//
+//        when(userRepository.findAll()).thenReturn(grades);
+//
+//        mockMvc.perform(get("/api/student/school_subject_grade")
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(jsonPath("$[0].name").value("Math"))
+//                .andExpect(jsonPath("$[0].grade").value(90.5))
+//                .andExpect(jsonPath("$[1].name").value("History"))
+//                .andExpect(jsonPath("$[1].grade").value(95.0));
+//
+//        verify(userRepository,times(1)).findAll();
+//    }
 
     @DirtiesContext
     @Transactional

@@ -1,0 +1,91 @@
+<header>
+  <p id="settingsTitle">Settings</p>
+  <button mat-icon-button matTooltip="Home" aria-label="Example icon-button with a heart icon" routerLink="/home">
+    <mat-icon>home</mat-icon>
+  </button>
+</header>
+<main>
+  @if (this.popUpEdit) {
+    <div id="popUpEdit" class="popUp">
+      <p class="popUpTitle">Edit Your Profile</p>
+      <div id="EditInputs">
+        <mat-slide-toggle (click)="changeEdit()"></mat-slide-toggle>
+        @if (passwordOrPicture) {
+          <mat-form-field class="popUpInputs">
+            <mat-label>New Password</mat-label>
+            <input matInput type="password" [formControl]="newPassword">
+          </mat-form-field>
+        } @else {
+          <mat-form-field class="popUpInputs">
+            <mat-label>New Picture</mat-label>
+            <input matInput type="text" [formControl]="newPicture">
+          </mat-form-field>
+        }
+      </div>
+      <div class="popUpButtons">
+        <button mat-raised-button (click)="loadEdit()">Close</button>
+        <button mat-raised-button (click)="createEdit()">Create</button>
+      </div>
+    </div>
+  }
+  @if (this.popUpAssignment) {
+    <div id="popUpAssignment" class="popUp">
+      <p class="popUpTitle">Assignment</p>
+      <mat-form-field class="popUpInputs">
+        <mat-label>Name of New Assignment</mat-label>
+        <input matInput type="text" [formControl]="newAssignmentName" required>
+      </mat-form-field>
+      <div class="popUpButtons">
+        <button mat-raised-button (click)="loadAssignment()">Close</button>
+        <button mat-raised-button (click)="createAssignment()">Create</button>
+      </div>
+    </div>
+  }
+  @if (this.popUpTimeCode) {
+    <div id="popUpTimeCode" class="popUp">
+      <p class="popUpTitle">TimeCode</p>
+      <mat-form-field class="popUpInputs">
+        <mat-label>Name of New TimeCode</mat-label>
+        <input matInput type="text" [formControl]="newTimeCodeName" required>
+      </mat-form-field>
+      <div class="popUpButtons">
+        <button mat-raised-button (click)="loadTimeCode()">Close</button>
+        <button mat-raised-button (click)="createTimeCode()">Create</button>
+      </div>
+    </div>
+  }
+  <div id="settingsBox">
+    @if (currentUser) {
+      @if (!showMembers) {
+        <button class="SettingButtons" mat-raised-button (click)="loadEdit()">Edit your Profile</button>
+      }
+      @if (memberService.getAllAdminIds().includes(currentUser.memberId)) {
+        @if (!showMembers) {
+          <button class="SettingButtons" mat-raised-button (click)="loadAssignment()">Create Assignment</button>
+          <button class="SettingButtons" mat-raised-button (click)="loadTimeCode()">Create TimeCode</button>
+          <button class="SettingButtons" mat-raised-button [routerLink]="['/memberAdd', 'Member']">Add Member</button>
+          <button class="SettingButtons" mat-raised-button [routerLink]="['/memberAdd', 'Admin']">Add Admin</button>
+          <button class="SettingButtons" mat-raised-button [routerLink]="['/memberAdd', 'Superior']">Add Superior
+          </button>
+        }
+        <button class="SettingButtons" mat-raised-button (click)="loadAllMembers()">show all current members
+        </button>
+        @if (showMembers) {
+          <h2>All Members:</h2>
+          @for (member of allMembers; track $index) {
+            <div>
+              {{ member }}
+              <button mat-icon-button [routerLink]="['/edit', member]">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="deleteMember(member)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          }
+        }
+      }
+    }
+
+  </div>
+</main>

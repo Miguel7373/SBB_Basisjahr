@@ -15,5 +15,5 @@ var User = /** @class */ (function () {
     };
     return User;
 }());
-var details1 = new User('Miguel', 'example@example.com');
-console.log(details1.greeting());
+var details = new User('Example', 'example@example.com');
+console.log(details.greeting());

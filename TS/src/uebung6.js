@@ -30,9 +30,9 @@ var ShoppingCart = /** @class */ (function () {
     return ShoppingCart;
 }());
 var shoppingCart = new ShoppingCart();
-var productA = new Product("Apfel", 5);
-var productB = new Product("Birne", 3);
-shoppingCart.addProducts(productA);
-shoppingCart.addProducts(productB);
+var firstProduct = new Product("Apple", 2);
+var secondProduct = new Product("Pear", 3);
+shoppingCart.addProducts(firstProduct);
+shoppingCart.addProducts(secondProduct);
 shoppingCart.displayCart();
 console.log("This is the Total Price ".concat(shoppingCart.wholePrice()));

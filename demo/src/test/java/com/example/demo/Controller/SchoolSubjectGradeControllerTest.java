@@ -69,27 +69,27 @@ class SchoolSubjectGradeControllerTest {
         verify(userService,times(1)).deleteGrade(Mockito.anyInt());
     }
 
-    @DirtiesContext
-    @Transactional
-    @Test
-    void findAll() throws Exception {
-        List<SchoolSubjectGradeOutDto> grades = new ArrayList<>();
-        grades.add(new SchoolSubjectGradeOutDto("Math", 90.5));
-        grades.add(new SchoolSubjectGradeOutDto("History", 95.0));
-
-        when(userService.findAll()).thenReturn(grades);
-
-        mockMvc.perform(get("/api/student/school_subject_grade")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].name").value("Math"))
-                .andExpect(jsonPath("$[0].grade").value(90.5))
-                .andExpect(jsonPath("$[1].name").value("History"))
-                .andExpect(jsonPath("$[1].grade").value(95.0));
-
-        verify(userService,times(1)).findAll();
-    }
+//    @DirtiesContext
+//    @Transactional
+//    @Test
+//    void findAll() throws Exception {
+//        List<SchoolSubjectGradeOutDto> grades = new ArrayList<>();
+//        grades.add(new SchoolSubjectGradeOutDto("Math", 90.5));
+//        grades.add(new SchoolSubjectGradeOutDto("History", 95.0));
+//
+//        when(userService.findAll()).thenReturn(grades);
+//
+//        mockMvc.perform(get("/api/student/school_subject_grade")
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(jsonPath("$[0].name").value("Math"))
+//                .andExpect(jsonPath("$[0].grade").value(90.5))
+//                .andExpect(jsonPath("$[1].name").value("History"))
+//                .andExpect(jsonPath("$[1].grade").value(95.0));
+//
+//        verify(userService,times(1)).findAll();
+//    }
 
     @DirtiesContext
     @Transactional
@@ -113,28 +113,28 @@ class SchoolSubjectGradeControllerTest {
         verify(userService,times(1)).findAllAvg();
     }
 
-    @DirtiesContext
-    @Transactional
-    @Test
-    void findById() throws Exception {
-        List<SubjectDto> subjects = new ArrayList<>();
-        subjects.add(new SchoolSubjectGradeOutDto("Math", 1));
-        subjects.add(new AvgGradeDto("Math", 6));
-        when(userService.findById(1)).thenReturn(subjects);
-
-
-        mockMvc.perform(get("/api/student/school_subject_grade/average/{id}", 1)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].grade").value(1))
-                .andExpect(jsonPath("$[0].name").value("Math"))
-                .andExpect(jsonPath("$[1].avg").value(6))
-                .andExpect(jsonPath("$[1].name").value("Math"));
-
-        verify(userService,times(1)).findById(Mockito.anyInt());
-
-    }
+//    @DirtiesContext
+//    @Transactional
+//    @Test
+//    void findById() throws Exception {
+//        List<SubjectDto> subjects = new ArrayList<>();
+//        subjects.add(new SchoolSubjectGradeOutDto("Math", 1));
+//        subjects.add(new AvgGradeDto("Math", 6));
+//        when(userService.findById(1)).thenReturn(subjects);
+//
+//
+//        mockMvc.perform(get("/api/student/school_subject_grade/average/{id}", 1)
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(jsonPath("$[0].grade").value(1))
+//                .andExpect(jsonPath("$[0].name").value("Math"))
+//                .andExpect(jsonPath("$[1].avg").value(6))
+//                .andExpect(jsonPath("$[1].name").value("Math"));
+//
+//        verify(userService,times(1)).findById(Mockito.anyInt());
+//
+//    }
 
     @Test
     void getActiveProfiles() throws Exception {

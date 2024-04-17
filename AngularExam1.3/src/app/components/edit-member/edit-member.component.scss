@@ -1,0 +1,30 @@
+main {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+#CreateMemberData {
+  display: flex;
+  width: 35vw;
+  height: 80vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2vw;
+  background-color: #92A8D1;
+
+}
+
+#creationTitle {
+  font-size: 5vh;
+  padding-bottom: 4vh;
+}
+
+#submitButtons {
+  display: flex;
+}

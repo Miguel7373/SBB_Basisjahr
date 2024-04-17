@@ -9,15 +9,15 @@ class Person {
     introduceSelf() {
         console.log('Hallo, mein name ist ' + this.name)
     }
-
-
 }
 
-class Friend {
+class Friend extends Person{
     private years: any;
 
-    constructor(years: number) {
-        this.years = years
+
+    constructor(name: string, years: any) {
+        super(name);
+        this.years = years;
     }
 
     timeKnown() {
@@ -26,7 +26,7 @@ class Friend {
 }
 
 const person1 = new Person("Peter")
-const friend = new Friend(5)
-person1.introduceSelf()
+const friend = new Friend("Fridoline", 5)
+friend.introduceSelf()
 friend.timeKnown()
 

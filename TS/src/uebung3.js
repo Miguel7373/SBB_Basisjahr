@@ -7,27 +7,25 @@ var Person = /** @class */ (function () {
     }
     Person.prototype.greetPerson = function () {
         var _this = this;
-        var rl = readline.createInterface({
+        var readLine = readline.createInterface({
             input: process.stdin,
             output: process.stdout
         });
-        rl.question(('Wie ist dein name?'), function (name) {
+        readLine.question(('Wie ist dein name?'), function (name) {
             _this.name = name;
             console.log("Hallo ".concat(_this.name));
-            rl.question('War diese Aufgabe lehrreich für dich= [j / n]', function (response) {
+            readLine.question('War diese Aufgabe lehrreich für dich= [j / n]', function (response) {
                 if (response === 'j') {
                     console.log('super');
                 }
                 else {
                     console.log('Schade! :(');
                 }
-                rl.close();
+                readLine.close();
             });
         });
     };
     return Person;
 }());
-var personA = new Person();
-personA.greetPerson();
-// readline interface
-// handle inputs
+var person = new Person();
+person.greetPerson();

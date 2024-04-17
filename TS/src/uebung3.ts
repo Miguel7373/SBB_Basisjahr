@@ -8,24 +8,24 @@ class Person {
     }
 
     greetPerson() {
-        const rl = readline.createInterface({
+        const readLine = readline.createInterface({
             input: process.stdin,
             output: process.stdout
         });
-        rl.question(('Wie ist dein name?'), name => {
+        readLine.question(('Wie ist dein name?'), name => {
             this.name = name;
             console.log(`Hallo ${this.name}`)
-            rl.question('War diese Aufgabe lehrreich für dich= [j / n]', (response: string) => {
+            readLine.question('War diese Aufgabe lehrreich für dich= [j / n]', (response: string) => {
                 if (response === 'j') {
                     console.log('super')
                 } else {
                     console.log('Schade! :(')
                 }
-                rl.close()
+                readLine.close();
             })
         })
     }
 }
 
-const person = new Person()
+const person = new Person();
 person.greetPerson();

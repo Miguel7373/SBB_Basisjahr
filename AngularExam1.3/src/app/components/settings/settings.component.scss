@@ -1,0 +1,64 @@
+$myBlue: #92A8D1;
+header{
+  display: flex;
+  background-color:$myBlue;
+  height: 10vh;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+main{
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+#settingsTitle{
+  margin-left: 43%;
+  font-size: 6vh;
+}
+#settingsBox{
+background-color: $myBlue;
+  align-items: center;
+  border-radius: 3vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 50vh;
+  min-width: 25vw;
+  max-width: 50vw;
+  max-height: 100vh;
+}
+.SettingButtons{
+  margin-top: 2vh;
+}
+.popUp{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $myBlue;
+  padding: 20px;
+  width: 40vw;
+  height: 55vh;
+  border-radius: 2vh;
+  position: fixed;
+  z-index: 1000;
+}
+.popUpTitle{
+  font-size: 5vh;
+}
+.popUpInputs{
+  width: 30vh;
+}
+.popUpButtons{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+#EditInputs{
+  display: flex;
+  flex-direction: column;
+}

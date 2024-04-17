@@ -5,6 +5,6 @@ import {SubjectsComponent} from "./components/subjects/subjects.component";
 
 export const routes: Routes = [
   {
-    path: '', component: SubjectsComponent
+    path: '', component: IntervalComponent
   }
 ];

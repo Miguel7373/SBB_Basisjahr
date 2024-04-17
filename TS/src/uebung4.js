@@ -1,20 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 function calculateAverage(array) {
     if (!Array.isArray(array)) {
-        throw new Error('Du hund ja');
+        throw new Error('Not an array');
     }
     if (array.length === 0) {
         return NaN;
     }
-    var summe = 0;
+    var sum = 0;
     for (var i = 0; i < array.length; i++) {
         if (typeof array[i] !== 'number') {
-            throw new Error('Nur zahlen du hund');
+            throw new Error('Not a number');
         }
-        summe += array[i];
+        sum += array[i];
     }
-    return summe / array.length;
+    return sum / array.length;
 }
 var numberArray = [1, 2, 3, 4];
 console.log(calculateAverage(numberArray));

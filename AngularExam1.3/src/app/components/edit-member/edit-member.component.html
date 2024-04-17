@@ -1,0 +1,45 @@
+<main>
+  <header>
+    <p id="creationTitle">Edit {{ this.userName }}</p>
+  </header>
+  <div id="CreateMemberData">
+    <mat-form-field>
+      <mat-label>Select an option</mat-label>
+      <mat-select [(value)]="selected" (click)="loadAllMembers()">
+        <mat-option>None</mat-option>
+        @for (attributes of allAttributes; track $index) {
+          <div>
+            <mat-option value="{{this.attributes}}">{{ attributes }}</mat-option>
+          </div>
+        }
+      </mat-select>
+    </mat-form-field>
+    @if (this.selected != undefined) {
+      @if (this.selected === "members") {
+        <mat-form-field>
+          <mat-label>Members</mat-label>
+          <mat-select (click)="allMembersToAssign()" [formControl]="member" multiple>
+            @for (members of this.members; track members) {
+              <mat-option [value]="members">{{ this.members }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+      } @else if (this.selected === 'password') {
+        <mat-form-field>
+          <mat-label>{{this.selected}}</mat-label>
+          <input matInput type="password" [formControl]="newData" required>
+        </mat-form-field>
+      } @else {
+        <mat-form-field>
+          <mat-label>{{this.selected}}</mat-label>
+          <input matInput type="text" [formControl]="newData" required>
+        </mat-form-field>
+      }
+    }
+    <div id="submitButtons">
+      <button mat-raised-button (click)="onSubmit()" routerLink="/settings">Submit</button>
+      <button mat-raised-button routerLink="/settings">Cancel</button>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,41 @@
+<header>
+  <p id="titleInHeader">Add Event</p>
+
+</header>
+<main>
+  <div id="EventInputBox">
+    <mat-form-field>
+      <mat-label>StartTime</mat-label>
+      <input matInput type="time" [formControl]="newStart" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>EndTime</mat-label>
+      <input matInput type="time" [formControl]="newEnd" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Assignments</mat-label>
+      <mat-select (click)="getAllAssignments()" [formControl]="selectedAssignments" required>
+        @for (assignment of this.assignments; track assignment) {
+          <mat-option [value]="assignment">{{ this.assignment }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>TimeCode</mat-label>
+      <mat-select (click)="getAllTimeCodes()" [formControl]="selectedTimeCode" required>
+        @for (timeCode of this.timeCodes; track timeCode) {
+          <mat-option [value]="timeCode">{{ this.timeCode }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <!--    TODO: Liste von TimeCode zum auswählen-->
+  </div>
+
+
+</main>
+<footer>
+  <button mat-raised-button routerLink="/home">Cancel</button>
+  <button mat-raised-button (click)="CreateNewBookingForUser()" >Submit</button>
+  <button (click)="print()">Hallo</button>
+</footer>
+
