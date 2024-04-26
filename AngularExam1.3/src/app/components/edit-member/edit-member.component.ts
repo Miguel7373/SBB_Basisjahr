@@ -38,9 +38,7 @@ export class EditMemberComponent implements OnInit {
   constructor(private route: ActivatedRoute, protected memberService: MemberService) {
   }
   onSubmit() {
-    console.log(this.selected)
     if (this.selected) {
-      console.log(this.newData.value);
       this.memberService.editUserParts(this.selected, this.userName, this.member.value, this.newData.value);
     }
   }

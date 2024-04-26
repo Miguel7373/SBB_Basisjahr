@@ -18,14 +18,18 @@ export class TimeCodesService {
         description: "Sick"
       }, {
         timecodesId: 2,
-        description: "compensation"
+        description: "Compensation"
       }, {
         timecodesId: 3,
-        description: "professional school"
+        description: "Professional school"
       }, {
         timecodesId: 4,
         description: "Holidays"
+      },{
+        timecodesId:5,
+        description: "Work"
       })
+
     }else {
       this.timecodes = [
         ...JSON.parse(localStorage.getItem('timecodes')?? "")

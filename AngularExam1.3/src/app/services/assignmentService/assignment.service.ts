@@ -15,13 +15,13 @@ export class AssignmentService {
     if (!(localStorage.getItem('assignments'))) {
       this.assignments.push({
         assignmentId: 1,
-        text: "Hallo HEHEHEHE"
+        text: "It Team"
       }, {
         assignmentId: 2,
-        text: "Hallo HEHEHEHE2"
+        text: "OutDorWork"
       }, {
         assignmentId: 3,
-        text: "Hallo HEHEHEHE3"
+        text: "Dogs"
       })
     }else {
       this.assignments = [

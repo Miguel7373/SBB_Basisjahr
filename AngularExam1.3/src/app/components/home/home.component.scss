@@ -1,9 +1,7 @@
-
 .weekly-calendar {
   .header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
 
     button {
       background-color: transparent;
@@ -19,7 +17,7 @@
     th,
     td {
       border: 1px solid #ccc;
-      padding: 10px;
+      height: 3vh;
       text-align: center;
     }
 
@@ -33,6 +31,7 @@ $myBlue: #92A8D1;
 main {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 header {
@@ -68,9 +67,7 @@ header {
   flex-direction: column;
   justify-content: center;
 }
-td{
-  width: 12.5%;
-}
+
 
 tr:hover td:not(:first-child) {
   background-color: rgba(0, 0, 0, 0.03);
@@ -96,12 +93,42 @@ table {
   overflow: hidden;
 }
 
-td {
-  position: relative;
+#booking {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: $myBlue;
+  font-size: 1vh;
 }
-.headerDiv{
+
+.headerDiv {
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100px;
+}
+
+td {
+  padding: 0;
+  margin: 0;
+  width: 12.5%;
+  height: 30px;
+  position: relative;
+}
+
+
+#tdDiv {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  line-height: 1vh;
+  left: 0;
+  right: 0;
+  height: 30px;
+  min-height: 100%;
+  position: relative;
 }

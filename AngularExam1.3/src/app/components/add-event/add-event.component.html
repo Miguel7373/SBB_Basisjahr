@@ -1,41 +1,96 @@
-<header>
-  <p id="titleInHeader">Add Event</p>
+@if (this.usage === 'create') {
+  <header>
+    <p></p>
+    <p class="eventTitle">Add Event</p>
+    <button class="homeButton" mat-icon-button matTooltip="Home" aria-label="Example icon-button with a heart icon"
+            routerLink="/home">
+      <mat-icon>home</mat-icon>
+    </button>
+  </header>
+  <main>
+    <div class="EventInputBox">
+      <mat-form-field class="input">
+        <mat-label>StartTime</mat-label>
+        <input matInput type="time" [formControl]="newStart" required>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>EndTime</mat-label>
+        <input matInput type="time" [formControl]="newEnd" required>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>Assignments</mat-label>
+        <mat-select [formControl]="selectedAssignments" required>
+          @for (assignment of this.assignments; track assignment) {
+            <mat-option [value]="assignment">{{ this.assignment }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>TimeCode</mat-label>
+        <mat-select [formControl]="selectedTimeCode" required>
+          @for (timeCode of this.timeCodes; track timeCode) {
+            <mat-option [value]="timeCode">{{ this.timeCode }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <footer>
+        <button mat-raised-button routerLink="/home">Cancel</button>
+        <button mat-raised-button (click)="CreateNewBookingForUser()" routerLink="/home">
+          Submit
+        </button>
+      </footer>
+    </div>
+  </main>
+} @else if (this.usage === 'edit') {
+  <header>
+    <p></p>
+    <p class="eventTitle">Edit Event</p>
+    <button class="homeButton" mat-icon-button matTooltip="Home" aria-label="Example icon-button with a heart icon"
+            routerLink="/home">
+      <mat-icon>home</mat-icon>
+    </button>
+  </header>
+  <main>
+    <div class="EventInputBox">
+      <mat-form-field class="input">
+        <mat-label>StartTime</mat-label>
+        <input matInput type="time" [formControl]="startTimeEdit" required>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>EndTime</mat-label>
+        <input matInput type="time" [formControl]="endTimeEdit" required>
+      </mat-form-field>
 
-</header>
-<main>
-  <div id="EventInputBox">
-    <mat-form-field>
-      <mat-label>StartTime</mat-label>
-      <input matInput type="time" [formControl]="newStart" required>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>EndTime</mat-label>
-      <input matInput type="time" [formControl]="newEnd" required>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Assignments</mat-label>
-      <mat-select (click)="getAllAssignments()" [formControl]="selectedAssignments" required>
-        @for (assignment of this.assignments; track assignment) {
-          <mat-option [value]="assignment">{{ this.assignment }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>TimeCode</mat-label>
-      <mat-select (click)="getAllTimeCodes()" [formControl]="selectedTimeCode" required>
-        @for (timeCode of this.timeCodes; track timeCode) {
-          <mat-option [value]="timeCode">{{ this.timeCode }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    <!--    TODO: Liste von TimeCode zum auswählen-->
-  </div>
+      <mat-form-field class="input">
+        <mat-label>Assignments</mat-label>
+        <mat-select [(value)]="assignmentsEdit" required>
+          @for (assignment of assignments; track assignment) {
+            <mat-option [value]="assignment">{{ assignment }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="input">
+        <mat-label>TimeCode</mat-label>
+        <mat-select [(value)]="timeCodeEdit" required>
+          @for (timeCode of this.timeCodes; track timeCode) {
+            <mat-option [value]="timeCode">{{ this.timeCode }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
 
-
-</main>
-<footer>
+      <footer>
+        <button mat-icon-button matTooltip="Settings"
+                routerLink="/home">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button (click)="editBooking()" mat-icon-button matTooltip="Edit"
+                routerLink="/home">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </footer>
+    </div>
+  </main>
+} @else {
+  <h1>Can Not Load</h1>
   <button mat-raised-button routerLink="/home">Cancel</button>
-  <button mat-raised-button (click)="CreateNewBookingForUser()" >Submit</button>
-  <button (click)="print()">Hallo</button>
-</footer>
-
+}

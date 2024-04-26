@@ -87,10 +87,4 @@ export class SettingsComponent implements OnInit {
   changeEdit() {
     this.passwordOrPicture = !this.passwordOrPicture;
   }
-
-  show() {
-    console.log(localStorage.getItem('admins'))
-    console.log(localStorage.getItem('members'))
-    console.log(localStorage.getItem('superiors'))
-  }
 }
