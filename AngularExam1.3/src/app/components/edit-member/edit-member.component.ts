@@ -35,24 +35,30 @@ export class EditMemberComponent implements OnInit {
   members: string[] = []
   newData: FormControl = new FormControl('')
 
-  constructor(private route: ActivatedRoute, protected memberService: MemberService) {
+  constructor(private route: ActivatedRoute, private memberService: MemberService) {
   }
-  onSubmit() {
-    if (this.selected) {
-      this.memberService.editUserParts(this.selected, this.userName, this.member.value, this.newData.value);
+
+  protected onSubmit() {
+    if (this.newData.value || this.member.value) {
+      if (this.selected) {
+        this.memberService.editUserParts(this.selected, this.userName, this.member.value, this.newData.value);
+      }
     }
   }
+
   ngOnInit(): void {
     this.userName = this.route.snapshot.params['user'];
   }
-  loadAllMembers() {
+
+  protected loadAllMembers() {
     if (this.memberService.getAllSuperiorName().includes(this.userName)) {
       this.allAttributes = this.memberService.getAllSuperiorAttributes();
     } else {
       this.allAttributes = this.memberService.getAllMemberAttributes()
     }
   }
-  allMembersToAssign() {
+
+  protected allMembersToAssign() {
     this.members = this.memberService.getAllMembersName()
   }
 }

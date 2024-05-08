@@ -9,29 +9,24 @@ import {MatButton, MatIconButton} from "@angular/material/button";
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatFormField,
-    MatInput,
-    MatLabel,
-    MatIcon,
-    MatIconButton,
-    MatSuffix,
-    MatButton,
-  ],
+  imports: [ReactiveFormsModule, MatFormField, MatInput, MatLabel, MatIcon, MatIconButton, MatSuffix, MatButton,],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit{
-  constructor(private memberService:MemberService) {
-  }
   username: FormControl = new FormControl('');
   userPassword: FormControl = new FormControl('');
-  login(): void {
+
+  constructor(private memberService: MemberService) {
+  }
+  ngOnInit() {
+    localStorage.setItem('currentUser', "");
+  }
+
+  protected login(): void {
     this.memberService.validatePassword(this.username.value, this.userPassword.value);
   }
-  ngOnInit(): void {
-  }
+
 
 
 }

@@ -61,4 +61,9 @@ background-color: $myBlue;
 #EditInputs{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#slideToggle{
+  margin-bottom: 10vh;
 }

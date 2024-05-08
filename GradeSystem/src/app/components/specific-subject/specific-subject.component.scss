@@ -1,0 +1,25 @@
+#mainBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  main {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+
+    table {
+      width: 40%;
+    }
+
+    #createNewButton {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 6vh;
+    }
+  }
+}

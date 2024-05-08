@@ -1,0 +1,33 @@
+
+<div id="body">
+  <main>
+    <div id="createNewButton">
+      <h1>Alle Fächer</h1>
+      <button color="primary" mat-raised-button [routerLink]="['/subject' + '/add']">Hinzufügen</button>
+    </div>
+    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
+      <ng-container matColumnDef="name">
+        <th *matHeaderCellDef mat-header-cell>Name</th>
+        <td *matCellDef="let element" mat-cell [routerLink]="['/specific-Subject/' + element.name]"> {{ element.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="avg">
+        <th *matHeaderCellDef mat-header-cell>Durchschnittsnoste</th>
+        <td *matCellDef="let element" mat-cell > {{ element.avg }}</td>
+      </ng-container>
+      <ng-container matColumnDef="Actions">
+        <th *matHeaderCellDef mat-header-cell>Actions</th>
+        <td *matCellDef="let element"  mat-cell>
+          <button mat-icon-button [routerLink]="['/subject' + '/edit']">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="openDialog(element.avg , element.name)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+  </main>
+</div>
+

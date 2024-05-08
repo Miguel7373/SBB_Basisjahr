@@ -16,8 +16,7 @@ export class MemberService {
   constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
     console.log(this.platformId);
     if (isPlatformBrowser(this.platformId)) {
-      const t = localStorage.getItem('members');
-      if (!(t) || JSON.parse((localStorage.getItem('members')) ?? "").length === 0) {
+      if (!( localStorage.getItem('members')) || JSON.parse((localStorage.getItem('members')) ?? "").length === 0) {
         this.members.push({
           memberId: 1,
           username: "Pawn",
@@ -74,13 +73,13 @@ export class MemberService {
     }
   }
 
-  setLocalStorageData(): void {
+   setLocalStorageData(): void {
     localStorage.setItem('members', JSON.stringify(this.members));
     localStorage.setItem('admins', JSON.stringify(this.admins));
     localStorage.setItem('superiors', JSON.stringify(this.superiors));
   }
 
-  addMember(memberData: MemberModel | AdminModel | SuperiorModel | undefined, currentType: string) {
+   addMember(memberData: MemberModel | AdminModel | SuperiorModel | undefined, currentType: string) {
     if (memberData !== undefined) {
       if (currentType === 'Superior') {
         this.superiors.push(memberData as SuperiorModel)
@@ -95,7 +94,7 @@ export class MemberService {
     }
   }
 
-  getCurrentUser(): MemberModel | AdminModel | SuperiorModel | undefined {
+   getCurrentUser(): MemberModel | AdminModel | SuperiorModel | undefined {
 
       let storedUser: string = ""
       storedUser = localStorage.getItem('currentUser') ?? "";
@@ -106,15 +105,15 @@ export class MemberService {
     return undefined;
   }
 
-  getAllMembersName(): string[] {
+   getAllMembersName(): string[] {
     return this.members.map(member => member.username)
   }
   getAllOfSuperiorsMembersName(): string[] {
-    const currentUser = this.getCurrentUser();
-    const superior = this.superiors.find(superior => superior.memberId === currentUser?.memberId);
-    if (currentUser && superior) {
-      const superiorMembers = superior.members.map(member => member.username);
-      return superiorMembers;
+    const checkingUser:MemberModel| SuperiorModel| AdminModel| undefined = this.getCurrentUser();
+    const superior:SuperiorModel| undefined = this.superiors.find(superior => superior.memberId === checkingUser?.memberId);
+    if (superior) {
+      console.log(superior.members, superior.members)
+      return superior.members;
     }
     return [];
 
@@ -141,25 +140,25 @@ export class MemberService {
   }
 
   validatePassword(username: string, password: string): void {
-    const user: MemberModel | undefined = this.members.find(user => user.username === username && user.password === password);
-    if (user) {
-      localStorage.setItem('currentUser', JSON.stringify(user));
+    const loginMember: MemberModel | undefined = this.members.find(user => user.username === username && user.password === password);
+    if (loginMember) {
+      localStorage.setItem('currentUser', JSON.stringify(loginMember));
       this.router.navigate(["home"]);
       return;
     }
 
-    const admin = this.admins.find(admin => admin.username === username && admin.password === password);
-    if (admin) {
-      localStorage.setItem('currentUser', JSON.stringify(admin));
+    const loginAdmin:AdminModel| undefined = this.admins.find(admin => admin.username === username && admin.password === password);
+    if (loginAdmin) {
+      localStorage.setItem('currentUser', JSON.stringify(loginAdmin));
       this.router.navigate(["home"]);
 
       return;
 
     }
 
-    const superior = this.superiors.find(superior => superior.username === username && superior.password === password);
-    if (superior) {
-      localStorage.setItem('currentUser', JSON.stringify(superior));
+    const loginSuperior:SuperiorModel|undefined = this.superiors.find(superior => superior.username === username && superior.password === password);
+    if (loginSuperior) {
+      localStorage.setItem('currentUser', JSON.stringify(loginSuperior));
       this.router.navigate(["home"]);
       return;
     }
@@ -220,11 +219,11 @@ export class MemberService {
   }
 
   editUserParts(changingAttribute: string, currentUserName: string,members: string[], newData: string, ) {
-    const addableMember: MemberModel[] = []
+    const addableMember: string[] = []
     for (let i = 0; i < members.length; i++) {
-      addableMember.push(<MemberModel>this.getUserByUsername(members[i]))
+      addableMember.push((members[i]))
     }
-    const currentUser = this.getUserByUsername(currentUserName);
+    const currentUser: AdminModel| SuperiorModel| MemberModel| undefined = this.getUserByUsername(currentUserName);
     if (currentUser) {
       if (this.getAllSuperiorName().includes(currentUserName)) {
         if (changingAttribute === 'members') {
@@ -250,38 +249,31 @@ export class MemberService {
   }
 
   getUserByUsername(username: string): MemberModel | AdminModel | SuperiorModel | undefined {
-    const currentUser = this.getCurrentUser();
+    const currentUser: MemberModel| SuperiorModel| AdminModel| undefined = this.getCurrentUser();
     if (currentUser && currentUser.username === username) {
       return currentUser;
     }
-
-    const member = this.members.find(member => member.username === username);
+    const member:MemberModel| undefined = this.members.find(member => member.username === username);
     if (member) {
-
       return member;
     }
-
-    const admin = this.admins.find(admin => admin.username === username);
+    const admin:AdminModel| undefined = this.admins.find(admin => admin.username === username);
     if (admin) {
-
       return admin;
     }
-
-    const superior = this.superiors.find(superior => superior.username === username);
+    const superior:SuperiorModel| undefined = this.superiors.find(superior => superior.username === username);
     if (superior) {
-
       return superior;
     }
-
     return undefined;
   }
-  getSuperiorArray(){
+  getSuperiorArray():SuperiorModel[]{
     return this.superiors;
   }
-  getAdminArray(){
+  getAdminArray():AdminModel[]{
     return this.admins;
   }
-  getMemberArray(){
+  getMemberArray():MemberModel[]{
     return this.members;
   }
   setCurrentUser(): void {
@@ -290,12 +282,12 @@ export class MemberService {
     if (user) {
       localStorage.setItem('currentUser', JSON.stringify(user));
     }
-    const admin = this.admins.find(admin => admin.memberId === OldUser.memberId);
+    const admin:AdminModel| undefined = this.admins.find(admin => admin.memberId === OldUser.memberId);
     if (admin) {
       localStorage.setItem('currentUser', JSON.stringify(admin));
     }
 
-    const superior = this.superiors.find(superior => superior.memberId === OldUser.memberId);
+    const superior:SuperiorModel| undefined = this.superiors.find(superior => superior.memberId === OldUser.memberId);
     if (superior) {
       localStorage.setItem('currentUser', JSON.stringify(superior));
       return;
@@ -305,8 +297,6 @@ export class MemberService {
     localStorage.setItem('creatingTime', JSON.stringify(time))
     localStorage.setItem('creatingDate', JSON.stringify(date))
   }
-
-
 }
 
 

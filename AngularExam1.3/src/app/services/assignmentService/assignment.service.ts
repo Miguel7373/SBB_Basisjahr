@@ -5,11 +5,7 @@ import {AssignmentModel} from "../../models/assignmentModel";
   providedIn: 'root'
 })
 export class AssignmentService {
-  private assignments: AssignmentModel[] = []
-
-  setLocalStorageData(): void {
-    localStorage.setItem('assignments', JSON.stringify(this.assignments));
-  }
+  assignments: AssignmentModel[] = []
 
   constructor() {
     if (!(localStorage.getItem('assignments'))) {
@@ -23,28 +19,40 @@ export class AssignmentService {
         assignmentId: 3,
         text: "Dogs"
       })
-    }else {
+    } else {
       this.assignments = [
-        ...JSON.parse(localStorage.getItem('assignments')?? ""),
+        ...JSON.parse(localStorage.getItem('assignments') ?? ""),
       ]
     }
     this.setLocalStorageData();
   }
-  addAssignment(newAssignmentName: string): void {
-    this.assignments.push({assignmentId: this.totalCountOfAssignments(), text: newAssignmentName});
-    localStorage.setItem('assignments', JSON.stringify(this.assignments))
+
+  private setLocalStorageData(): void {
+    localStorage.setItem('assignments', JSON.stringify(this.assignments));
   }
-  totalCountOfAssignments():number{
-    const storedAssignments = localStorage.getItem('assignments');
-    if (storedAssignments){
+
+  private getAssignmentNames() {
+    return this.assignments.map(assignment => assignment.text)
+  }
+
+   addAssignment(newAssignmentName: string): void {
+    if (!this.getAssignmentNames().includes(newAssignmentName)) {
+      this.assignments.push({assignmentId: this.totalCountOfAssignments(), text: newAssignmentName});
+      localStorage.setItem('assignments', JSON.stringify(this.assignments))
+    }
+  }
+
+  private totalCountOfAssignments(): number {
+    const storedAssignments: string | null = localStorage.getItem('assignments');
+    if (storedAssignments) {
       const assignments: AssignmentModel[] = JSON.parse(storedAssignments)
       return assignments.length + 1
     }
     return 1
+
   }
-  getAllAssignmentsName(): string[] {
+
+   getAllAssignmentsName(): string[] {
     return this.assignments.map(assignment => assignment.text)
   }
-
-
 }

@@ -1,6 +1,6 @@
 <header>
   <p id="settingsTitle">Settings</p>
-  <button mat-icon-button matTooltip="Home" aria-label="Example icon-button with a heart icon" routerLink="/home">
+  <button aria-label="Example icon-button with a heart icon" mat-icon-button matTooltip="Home" routerLink="/home">
     <mat-icon>home</mat-icon>
   </button>
 </header>
@@ -9,16 +9,16 @@
     <div id="popUpEdit" class="popUp">
       <p class="popUpTitle">Edit Your Profile</p>
       <div id="EditInputs">
-        <mat-slide-toggle (click)="changeEdit()"></mat-slide-toggle>
+        <mat-slide-toggle id="slideToggle" (click)="changeEdit()"></mat-slide-toggle>
         @if (passwordOrPicture) {
           <mat-form-field class="popUpInputs">
             <mat-label>New Password</mat-label>
-            <input matInput type="password" [formControl]="newPassword">
+            <input matInput type="password" [formControl]="newPassword" required>
           </mat-form-field>
         } @else {
           <mat-form-field class="popUpInputs">
             <mat-label>New Picture</mat-label>
-            <input matInput type="text" [formControl]="newPicture">
+            <input matInput type="text" [formControl]="newPicture" required>
           </mat-form-field>
         }
       </div>
@@ -78,9 +78,11 @@
               <button mat-icon-button [routerLink]="['/edit', member]">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button mat-icon-button (click)="deleteMember(member)">
-                <mat-icon>delete</mat-icon>
-              </button>
+              @if (!this.memberService.getAllAdminsName().includes(member)) {
+                <button mat-icon-button (click)="deleteMember(member)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              }
             </div>
           }
         }

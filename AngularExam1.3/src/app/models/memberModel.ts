@@ -13,6 +13,6 @@ export interface MemberModel{
 export interface AdminModel extends MemberModel{
 }
 export interface SuperiorModel extends MemberModel{
-  members:MemberModel[];
+  members:string[];
 }
 

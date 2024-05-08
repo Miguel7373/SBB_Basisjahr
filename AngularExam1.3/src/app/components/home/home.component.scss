@@ -44,17 +44,25 @@ header {
   background-color: $myBlue;
 }
 
-#mainTitle {
+#headerBar {
+  width: 100%;
+  height: 100%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#headerDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#mainTitle {
   font-size: 5vh;
   text-align: center;
   align-self: center;
 }
 
-#logoutButton {
-  align-self: flex-end;
-  justify-self: end;
-}
 
 .profilePicture {
   width: 5vh;
@@ -93,7 +101,7 @@ table {
   overflow: hidden;
 }
 
-#booking {
+.booking {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -105,12 +113,6 @@ table {
   font-size: 1vh;
 }
 
-.headerDiv {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100px;
-}
 
 td {
   padding: 0;
@@ -131,4 +133,35 @@ td {
   height: 30px;
   min-height: 100%;
   position: relative;
+}
+#selectUsers{
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  //gap: 20rem;
+}
+#memberSelect{
+  position: sticky;
+  right: 40%;
+  left: 40%;
+  width: 20%;
+}
+#favAssignment{
+  float: left;
+  width: 15%;
+}
+#checkIn{
+  margin-right: 1vh;
+  display: flex;
+  border: dimgray solid 1px;
+  background-color: $myBlue;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+}
+.CheckInOutText{
+  margin-top: 1.1vh;
+  padding: 1vh;
 }

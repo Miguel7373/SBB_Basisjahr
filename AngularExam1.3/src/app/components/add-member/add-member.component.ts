@@ -39,53 +39,56 @@ export class AddMemberComponent implements OnInit {
   members: string[] = []
 
 
-  constructor(private route: ActivatedRoute, protected memberService: MemberService) {
+  constructor(private route: ActivatedRoute, private memberService: MemberService) {
   }
 
   ngOnInit() {
     this.creationType = this.route.snapshot.params['text'];
   }
 
-  allMembersToAssign() {
+  protected allMembersToAssign() {
     this.members = this.memberService.getAllMembersName()
   }
 
-  onSubmit() {
-    const memberId: number = this.memberService.getTotalCount() + 1;
-    if (this.creationType === 'Superior') {
-      const memberData: SuperiorModel = {
-        memberId: memberId,
-        username: this.newUsername.value,
-        surname: this.newUserSurname.value,
-        firstname: this.newUserFirstname.value,
-        password: this.newUserPassword.value,
-        department: this.newUserDepartment.value,
-        picture: this.newUserPicture.value ?? undefined,
-        members: this.member.value,
-        bookings: []
+  protected onSubmit() {
+    if (this.newUsername.value && this.newUserSurname.value && this.newUserFirstname.value && this.newUserPassword.value && this.newUserDepartment.value && this.member.value) {
+      if (!this.memberService.getAllMembersName().includes(this.newUsername.value) && !this.memberService.getAllSuperiorName().includes(this.newUsername.value) && !this.memberService.getAllAdminsName().includes(this.newUsername.value)){
+      const memberId: number = this.memberService.getTotalCount() + 1;
+      if (this.creationType === 'Superior') {
+        const memberData: SuperiorModel = {
+          memberId: memberId,
+          username: this.newUsername.value,
+          surname: this.newUserSurname.value,
+          firstname: this.newUserFirstname.value,
+          password: this.newUserPassword.value,
+          department: this.newUserDepartment.value,
+          picture: this.newUserPicture.value ?? undefined,
+          members: this.member.value,
+          bookings: []
+        }
+        this.memberService.addMember(memberData, this.creationType);
+      } else if (this.creationType === 'Admin' || this.creationType === 'Member') {
+        const memberData: MemberModel | AdminModel = {
+          memberId: memberId,
+          username: this.newUsername.value,
+          surname: this.newUserSurname.value,
+          firstname: this.newUserFirstname.value,
+          password: this.newUserPassword.value,
+          department: this.newUserDepartment.value,
+          picture: this.newUserPicture.value ?? undefined,
+          bookings: []
+        };
+        this.memberService.addMember(memberData, this.creationType);
       }
-      this.memberService.addMember(memberData, this.creationType);
-    } else if (this.creationType === 'Admin' || this.creationType === 'Member') {
-      const memberData: MemberModel | AdminModel = {
-        memberId: memberId,
-        username: this.newUsername.value,
-        surname: this.newUserSurname.value,
-        firstname: this.newUserFirstname.value,
-        password: this.newUserPassword.value,
-        department: this.newUserDepartment.value,
-        picture: this.newUserPicture.value ?? undefined,
-        bookings: []
-      };
-      this.memberService.addMember(memberData, this.creationType);
+
+      console.log('Member added successfully');
+      }
+      this.resetFormFields();
+
     }
-
-    console.log('Member added successfully');
-
-    this.resetFormFields();
-
   }
 
-  resetFormFields() {
+  private resetFormFields() {
     this.newUsername.reset();
     this.newUserSurname.reset();
     this.newUserFirstname.reset();
@@ -93,4 +96,5 @@ export class AddMemberComponent implements OnInit {
     this.newUserDepartment.reset();
     this.newUserPicture.reset();
   }
+
 }

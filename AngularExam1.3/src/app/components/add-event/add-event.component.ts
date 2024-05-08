@@ -13,7 +13,6 @@ import {TimeCodesService} from "../../services/timecodesService/time-codes.servi
 import {TimeService} from "../../services/timeService/time.service";
 import {MemberService} from "../../services/memberService/member.service";
 import {AdminModel, MemberModel, SuperiorModel} from "../../models/memberModel";
-import {Time} from "@angular/common";
 import {TimeModel} from "../../models/timeModel";
 
 @Component({
@@ -38,7 +37,7 @@ import {TimeModel} from "../../models/timeModel";
 export class AddEventComponent implements OnInit {
   startTime: string = JSON.parse(localStorage.getItem('creatingTime') ?? "");
   date: string = JSON.parse(localStorage.getItem('creatingDate') ?? "");
-  newStart: FormControl = new FormControl('');
+  newStart: FormControl = new FormControl('10:00');
   newEnd: FormControl = new FormControl('');
   assignments: string[] = this.assignmentService.getAllAssignmentsName();
   selectedAssignments: FormControl = new FormControl('');
@@ -57,55 +56,25 @@ export class AddEventComponent implements OnInit {
   editingBooking: TimeModel | undefined;
 
   constructor(private route: ActivatedRoute,
-              protected assignmentService: AssignmentService,
-              protected timeCodesService: TimeCodesService,
-              protected timeService: TimeService,
-              protected memberService: MemberService,) {
-
+              private assignmentService: AssignmentService,
+              private timeCodesService: TimeCodesService,
+              private timeService: TimeService,
+              private memberService: MemberService,) {
   }
 
   ngOnInit() {
     this.newStart.reset(this.startTime)
     this.getClickedBooking()
+    this.newStart.setValue(this.convertTo24Hour(this.startTime))
+    console.log(this.convertTo24Hour(this.startTime))
     this.endTimeEdit.setValue(this.clickedBookingTimeUntil);
     this.startTimeEdit.setValue(this.clickedBookingTimeFrom);
     this.assignmentsEdit = (this.clickedBookingAssignment);
     this.timeCodeEdit = (this.clickedBookingTimeCode);
   }
 
-
-  getClickedBooking() {
+  protected CreateNewBookingForUser() {
     if (this.date && this.currentUser) {
-      const newDateToEdit = new Date(this.date);
-      let [hours, minutes] = `${this.convertTo24Hour(this.startTime)}`.split(':').map(Number);
-      const newStartTimeToEdit = new Date();
-      newStartTimeToEdit.setHours(hours, minutes);
-      this.editingBooking = this.timeService.getToEditDate(newDateToEdit, newStartTimeToEdit, this.currentUser);
-      const formatTime = (hour: number, minute: number) => `${(hour < 10 ? '0' : '') + hour}:${(minute < 10 ? '0' : '') + minute}`;
-      const newHoursTimeFrom = formatTime(this.editingBooking?.timeFrom.getHours() || 0, this.editingBooking?.timeFrom.getMinutes() || 0);
-      const newHoursTimeUntil = formatTime(this.editingBooking?.timeUntil.getHours() || 0, this.editingBooking?.timeUntil.getMinutes() || 0);
-      this.clickedBookingTimeUntil = newHoursTimeUntil;
-      this.clickedBookingTimeFrom = newHoursTimeFrom;
-      if (this.editingBooking?.assignment) this.clickedBookingAssignment = this.editingBooking?.assignment;
-      if (this.editingBooking?.timeCode) this.clickedBookingTimeCode = this.editingBooking?.timeCode;
-    }
-
-  }
-
-  convertTo24Hour(time12h: string): string {
-    const [time, period] = time12h.split(' ');
-    let [hours, minutes] = time.split(':').map(Number);
-    if (period === 'PM' && hours < 12) {
-      hours += 12;
-    } else if (period === 'AM' && hours === 12) {
-      hours = 0;
-    }
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-  }
-
-  CreateNewBookingForUser() {
-    const user: MemberModel | AdminModel | SuperiorModel | undefined = this.memberService.getCurrentUser();
-    if (this.date && user) {
       const newDateTimeStart: Date = new Date();
       const newDateTimeEnd: Date = new Date();
       let [hoursStart, minutesStart] = this.newStart.value.split(':').map(Number);
@@ -115,12 +84,16 @@ export class AddEventComponent implements OnInit {
       newDateTimeEnd.setHours(hoursEnd);
       newDateTimeEnd.setMinutes(minutesEnd);
       const newDate: Date = new Date(this.date);
-      this.timeService.createNewBooking( user, this.selectedAssignments.value, this.selectedTimeCode.value, newDateTimeStart, newDateTimeEnd, newDate)
+      if (this.selectedAssignments.value && this.selectedTimeCode.value) {
+        this.timeService.createNewBooking(this.currentUser, this.selectedAssignments.value, this.selectedTimeCode.value, newDateTimeStart, newDateTimeEnd, newDate)
+      } else {
+        alert("Please select them all")
+      }
     }
   }
-  editBooking(){
-    const user: MemberModel | AdminModel | SuperiorModel | undefined = this.memberService.getCurrentUser();
-    if (this.date && user) {
+
+  protected editBooking() {
+    if (this.date && this.currentUser) {
       const newEditDateTimeStart: Date = new Date();
       const newEditDateTimeEnd: Date = new Date();
       let [hoursStart, minutesStart] = this.startTimeEdit.value.split(':').map(Number);
@@ -130,8 +103,41 @@ export class AddEventComponent implements OnInit {
       newEditDateTimeEnd.setHours(hoursEnd);
       newEditDateTimeEnd.setMinutes(minutesEnd);
       const newDate: Date = new Date(this.date);
-      if (this.editingBooking) this.timeService.editBooking(this.editingBooking, user, this.assignmentsEdit, this.timeCodeEdit, newEditDateTimeStart, newEditDateTimeEnd, newDate)
+      if (this.editingBooking) this.timeService.editBooking(this.editingBooking, this.currentUser, this.assignmentsEdit, this.timeCodeEdit, newEditDateTimeStart, newEditDateTimeEnd, newDate)
     }
+  }
+
+  protected deleteBooking() {
+    if (this.editingBooking && this.currentUser) this.timeService.deleteBooking(this.currentUser, this.editingBooking)
+  }
+
+  private getClickedBooking() {
+    if (this.date && this.currentUser) {
+      const newDateToEdit: Date = new Date(this.date);
+      let [hours, minutes] = `${this.convertTo24Hour(this.startTime)}`.split(':').map(Number);
+      const newStartTimeToEdit: Date = new Date();
+      newStartTimeToEdit.setHours(hours, minutes);
+      this.editingBooking = this.timeService.getToEditDate(newDateToEdit, newStartTimeToEdit, this.currentUser);
+      const formatTime = (hour: number, minute: number) => `${(hour < 10 ? '0' : '') + hour}:${(minute < 10 ? '0' : '') + minute}`;
+      const newHoursTimeFrom: string = formatTime(this.editingBooking?.timeFrom.getHours() || 0, this.editingBooking?.timeFrom.getMinutes() || 0);
+      const newHoursTimeUntil: string = formatTime(this.editingBooking?.timeUntil.getHours() || 0, this.editingBooking?.timeUntil.getMinutes() || 0);
+      this.clickedBookingTimeUntil = newHoursTimeUntil;
+      this.clickedBookingTimeFrom = newHoursTimeFrom;
+      if (this.editingBooking?.assignment) this.clickedBookingAssignment = this.editingBooking?.assignment;
+      if (this.editingBooking?.timeCode) this.clickedBookingTimeCode = this.editingBooking?.timeCode;
+    }
+
+  }
+
+  private convertTo24Hour(time12h: string): string {
+    const [time, period] = time12h.split(' ');
+    let [hours, minutes] = time.split(':').map(Number);
+    if (period === 'PM' && hours < 12) {
+      hours += 12;
+    } else if (period === 'AM' && hours === 12) {
+      hours = 0;
+    }
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
   }
 }
 

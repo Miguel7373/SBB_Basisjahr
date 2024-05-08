@@ -31,60 +31,58 @@ export class SettingsComponent implements OnInit {
   newPassword: FormControl = new FormControl('');
   newPicture: FormControl = new FormControl('')
 
-  constructor(protected memberService: MemberService, protected assignmentService: AssignmentService, protected timecodesService: TimeCodesService) {
+  constructor(protected memberService: MemberService, private assignmentService: AssignmentService, private timecodesService: TimeCodesService) {
   }
-  ngOnInit() {
+
+  ngOnInit(): void {
     this.currentUser = this.memberService.getCurrentUser();
   }
 
-  loadAllMembers() {
+  protected loadAllMembers(): void {
     this.allMembers = [...(this.memberService.getAllMembersName() || []), ...(this.memberService.getAllAdminsName() || []), ...(this.memberService.getAllSuperiorName() || [])];
     this.showMembers = !this.showMembers;
   }
 
-  createAssignment() {
-    if (this.newAssignmentName.value){
-    this.popUpAssignment = !this.popUpAssignment;
-    this.assignmentService.addAssignment(this.newAssignmentName.value);
-    }else {
-      console.log("No Name Detected")
-    }
+  protected createAssignment(): void {
+    if (this.newAssignmentName.value) {
+      this.popUpAssignment = !this.popUpAssignment;
+      this.assignmentService.addAssignment(this.newAssignmentName.value);
+    } else alert("No Name Detected");
   }
 
-  loadAssignment() {
+  protected loadAssignment(): void {
     this.popUpAssignment = !this.popUpAssignment;
   }
 
-  deleteMember(member: string) {
-    this.memberService.deleteMember(member)
+  protected deleteMember(member: string) {
+    this.memberService.deleteMember(member);
   }
 
-  createTimeCode() {
-    if (this.newTimeCodeName.value){
-    this.popUpTimeCode = !this.popUpTimeCode;
-    this.timecodesService.addTimeCode(this.newTimeCodeName.value)
-    }else {
-      console.log("No Name Detected")
-    }
+  protected createTimeCode(): void {
+    if (this.newTimeCodeName.value) {
+      this.popUpTimeCode = !this.popUpTimeCode;
+      this.timecodesService.addTimeCode(this.newTimeCodeName.value);
+    } else alert("No Name Detected");
   }
 
-  loadTimeCode() {
+  protected loadTimeCode(): void {
     this.popUpTimeCode = !this.popUpTimeCode;
   }
 
-  createEdit() {
-    this.popUpEdit = !this.popUpEdit;
-    if (this.currentUser) {
-
-      this.memberService.editMembersOwnProfile(this.currentUser, this.newPassword.value, this.newPicture.value, this.passwordOrPicture);
+  protected createEdit(): void {
+    if (this.newPassword.value || !this.passwordOrPicture) {
+      this.popUpEdit = !this.popUpEdit;
+      if (this.currentUser) {
+        this.memberService.editMembersOwnProfile(this.currentUser, this.newPassword.value, this.newPicture.value, this.passwordOrPicture);
+      }
     }
   }
 
-  loadEdit() {
+  protected loadEdit(): void {
     this.popUpEdit = !this.popUpEdit;
   }
 
-  changeEdit() {
+  protected changeEdit(): void {
     this.passwordOrPicture = !this.passwordOrPicture;
   }
 }

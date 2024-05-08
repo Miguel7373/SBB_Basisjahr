@@ -1,0 +1,36 @@
+<button mat-button routerLink="/home">
+  <mat-icon>arrow_back_ios</mat-icon>
+  Zurück
+</button>
+<div id="mainBox">
+  <main>
+    <div id="createNewButton">
+      <h1>Noten {{ specificSubject }}</h1>
+      <button [routerLink]="['/grade' + '/add']" color="primary" mat-raised-button>Hinzufügen</button>
+    </div>
+    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
+      <ng-container matColumnDef="note">
+        <th *matHeaderCellDef mat-header-cell> Note</th>
+        <td *matCellDef="let element" mat-cell> {{ element.grade_id }}</td>
+      </ng-container>
+      <ng-container matColumnDef="datum">
+        <th *matHeaderCellDef mat-header-cell> Datum</th>
+        <td *matCellDef="let element" mat-cell> {{ element.date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th *matHeaderCellDef mat-header-cell>Actions</th>
+        <td *matCellDef mat-cell>
+          <button [routerLink]="['/grade' + '/edit']" mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+  </main>
+</div>
