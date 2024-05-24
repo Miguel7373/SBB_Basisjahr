@@ -1,30 +1,41 @@
 <button mat-button routerLink="/home">
   <mat-icon>arrow_back_ios</mat-icon>
-  Zurück
+  {{ 'BACK' | translate }}
 </button>
 <div id="mainBox">
   <main>
     <div id="createNewButton">
-      <h1>Noten {{ specificSubject }}</h1>
-      <button [routerLink]="['/grade' + '/add']" color="primary" mat-raised-button>Hinzufügen</button>
+      <h1>{{ 'GRADES' | translate }} {{ specificSubject }}</h1>
+      <button [routerLink]="['/grade' + '/add']" routerLinkActive="active" target="_blank" color="primary" mat-raised-button>{{ 'ADD' | translate }}</button>
     </div>
     <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
       <ng-container matColumnDef="note">
-        <th *matHeaderCellDef mat-header-cell> Note</th>
-        <td *matCellDef="let element" mat-cell> {{ element.grade_id }}</td>
+        <th *matHeaderCellDef mat-header-cell> {{ 'GRADE' | translate }}</th>
+
+        <td *matCellDef="let element" mat-cell><span
+          [ngStyle]="{
+          'background-color': rightColor(element.grade),
+          'height': '3vh',
+          'width': '3vw',
+          'display':'flex',
+          'justify-content': 'center',
+          'align-items': 'center',
+          'border-radius': '100%'}">
+          {{ roundToSpecificNumber(element.grade) }}
+        </span></td>
       </ng-container>
       <ng-container matColumnDef="datum">
-        <th *matHeaderCellDef mat-header-cell> Datum</th>
+        <th *matHeaderCellDef mat-header-cell> {{ 'DATE' | translate }}</th>
         <td *matCellDef="let element" mat-cell> {{ element.date }}</td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
-        <th *matHeaderCellDef mat-header-cell>Actions</th>
-        <td *matCellDef mat-cell>
-          <button [routerLink]="['/grade' + '/edit']" mat-icon-button>
+        <th *matHeaderCellDef mat-header-cell>{{ 'ACTIONS' | translate }}</th>
+        <td *matCellDef="let element" mat-cell>
+          <button [routerLink]="['/grade' + '/edit']" (click)="saveGradeData(element)" mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button >
+          <button (click)="openDialog(element.grade, element.name, element.date)" mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>
         </td>

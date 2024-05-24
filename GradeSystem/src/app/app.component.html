@@ -1,4 +1,12 @@
 <header>
-  <p id="logInTitle">Notenverwaltung</p>
+  <p id="logInTitle">{{'TITLE' | translate}}</p>
+  <div id="languages">
+    <mat-icon [matMenuTriggerFor]="belowMenu" class="iconsToolBar">g_translate</mat-icon>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+      @for (currentLanguage of Environment.languages; track $index) {
+        <button mat-menu-item (click)="changeLanguage(currentLanguage)">{{ currentLanguage }}</button>
+      }
+    </mat-menu>
+  </div>
 </header>
 <router-outlet/>

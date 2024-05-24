@@ -1,2 +1,22 @@
-<p>delete-subject-or-grade works!</p>
-<p>{{data.average}}{{data.subjectName}}</p>
+@if (dataSubject.average) {
+  <div class="deleteBox">
+    <h1>{{'DELETETEXTSUBJECT' | translate }}</h1>
+    <p>{{'SUBJECTNAME' | translate}}: {{ dataSubject.subjectName }}</p>
+    <p>{{'AVERAGEGRADE' | translate}}: {{ dataSubject.average }}</p>
+    <div class="buttons">
+      <button mat-raised-button>{{'CANCEL' | translate}}</button>
+      <button mat-raised-button (click)="deleteSubject()">{{'SUBMIT' | translate}}</button>
+    </div>
+  </div>
+} @else{
+  <div class="deleteBox">
+    <h1>{{'DELETETEXTGRADE' | translate}}</h1>
+    <p>{{'SUBJECTNAME' | translate}}: {{ dateGrade.subjectName }}</p>
+    <p>{{'GRADE' | translate}}:{{ dateGrade.grade }}</p>
+    <p>{{'DATE' | translate}}: {{dateGrade.date}}</p>
+    <div class="buttons">
+      <button mat-raised-button>{{'CANCEL' | translate}}</button>
+      <button mat-raised-button>{{'SUBMIT' | translate}}</button>
+    </div>
+  </div>
+}

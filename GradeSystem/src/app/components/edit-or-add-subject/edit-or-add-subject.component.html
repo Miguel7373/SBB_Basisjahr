@@ -1,19 +1,23 @@
 <button mat-button routerLink="/home">
   <mat-icon>arrow_back_ios</mat-icon>
-  Zurück
+  {{'BACK' | translate}}
 </button>
 <main>
   <div id="addOrEditInput">
     <div id="input">
-    <p> Fachname</p>
+    <p>{{'SUBJECTNAME' | translate}}</p>
     <mat-form-field class="example-full-width">
-      <mat-label>Password</mat-label>
-      <input type="text" matInput>
+      <mat-label>{{'SUBJECTNAME' | translate}}</mat-label>
+      <input type="text" [formControl]="subjectToAddOrEdit" matInput>
     </mat-form-field>
     </div>
     <div id="buttons">
-      <button id="cancel" mat-raised-button>Abbrechen</button>
-      <button mat-raised-button color="primary">Hinzufügen</button>
+      <button id="cancel" mat-raised-button>{{'CANCEL' | translate}}</button>
+      @if(usageOfComponent){
+      <button mat-raised-button color="primary" (click)="addSubject()">{{'SUBMIT' | translate}}</button>
+      } @else {
+        <button mat-raised-button color="primary" (click)="editSubject()">{{'SUBMIT' | translate}}</button>
+      }
     </div>
   </div>
 </main>

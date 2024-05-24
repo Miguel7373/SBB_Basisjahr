@@ -11,14 +11,14 @@ import java.util.List;
 @NoArgsConstructor
 public class SchoolSubjectGradeOutDto extends SubjectDto{
 
-    private List<Double> grade;
+    private List<GradeDateDto> GradeDateList;
 
-    public SchoolSubjectGradeOutDto(String name, List<Double> grade) {
+    public SchoolSubjectGradeOutDto(String name, List<GradeDateDto> GradeDateList) {
         super(name);
-        this.grade = grade;
+        this.GradeDateList = GradeDateList;
     }
 
-    public SchoolSubjectGradeOutDto(List<Double> grade) {
-        this.grade = grade;
+    public SchoolSubjectGradeOutDto(List<GradeDateDto> GradeDateList) {
+        this.GradeDateList = GradeDateList;
     }
 }

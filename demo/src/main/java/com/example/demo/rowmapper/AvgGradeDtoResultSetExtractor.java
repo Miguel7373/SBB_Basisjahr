@@ -12,15 +12,16 @@ public class AvgGradeDtoResultSetExtractor implements ResultSetExtractor<List<Av
 
     @Override
     public List<AvgGradeDto> extractData(ResultSet resultSet) throws SQLException {
-        List<AvgGradeDto> schoolSubjectDtos = new ArrayList<>();
+        List<AvgGradeDto> avgGradeDtos = new ArrayList<>();
 
         while (resultSet.next()) {
-            double avgGrade = resultSet.getDouble("AVG(g.GRADE)");
-            String subjectName = resultSet.getString("s.SUBJECT");
+            double avgGrade = resultSet.getDouble("average_grade");
+            String subjectName = resultSet.getString("SUBJECT");
+            int subjectId = resultSet.getInt("ID_SUBJECT");
 
-            AvgGradeDto schoolSubjectDto = new AvgGradeDto(subjectName,avgGrade);
-            schoolSubjectDtos.add(schoolSubjectDto);
+            AvgGradeDto avgGradeDto = new AvgGradeDto(subjectName, avgGrade,subjectId);
+            avgGradeDtos.add(avgGradeDto);
         }
-        return schoolSubjectDtos;
+        return avgGradeDtos;
     }
 }

@@ -3,6 +3,7 @@ import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {MatButton} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @Component({
@@ -13,7 +14,8 @@ import {RouterLink} from "@angular/router";
     MatInput,
     MatLabel,
     MatButton,
-    RouterLink
+    RouterLink,
+    TranslateModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'

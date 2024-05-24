@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -14,6 +14,11 @@ import {MatIcon} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteSubjectOrGradeComponent} from "../delete-subject-or-grade/delete-subject-or-grade.component";
+import {TranslateModule} from "@ngx-translate/core";
+import {GradeService} from "../../services/gradeService/grade.service";
+import {SubjectService} from "../../services/subjectService/subject.service";
+import {DecimalPipe, NgStyle} from "@angular/common";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -32,25 +37,54 @@ import {DeleteSubjectOrGradeComponent} from "../delete-subject-or-grade/delete-s
     MatButton,
     MatIcon,
     MatIconButton,
-    RouterLink
+    RouterLink,
+    TranslateModule,
+    NgStyle,
+    DecimalPipe
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy{
   displayedColumns: string[] = ['name', 'avg','Actions'];
-  dataSource:AvgGradeModel[] = [
-    {name: 'Mathematrik', avg: 5.15},
-    {name: 'Englisch', avg: 4.67},
-    {name: 'Deutsch', avg: 4.53},
-    {name: 'Informatik', avg: 5.54},
-  ];
+  dataSource:AvgGradeModel[] = [];
   average:number = 0;
   subjectName:string = ""
-  constructor(public dialog: MatDialog) {}
-  openDialog(avg: number, name:string) {
+  subjectId: number = 0;
+  private ngUnsubscribe = new Subject<void>();
+
+  constructor(public dialog: MatDialog, protected gradeService:GradeService, protected subjectService:SubjectService) {}
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
+  ngOnInit() {
+    this.gradeService.getAVGData().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (data: AvgGradeModel[]) => {
+        this.dataSource = data;
+        console.log(this.dataSource);
+      }
+    );
+  }
+
+
+  openDialog(avg: number, name:string, id:number) {
     this.average = avg;
     this.subjectName = name;
-    this.dialog.open(DeleteSubjectOrGradeComponent, {data: {average: this.average, subjectName: this.subjectName}});
+    this.subjectId = id;
+    this.dialog.open(DeleteSubjectOrGradeComponent, {data: {average: this.average, subjectName: this.subjectName, id: this.subjectId}});
+  }
+  saveSubjectToEdit(subject: string, id: number){
+    this.subjectService.saveSubjectName(subject, id)
+  }
+  rightColor(avg:number):string{
+    if (avg >= 4.5 ){
+      return '#4B9A4C';
+    }else if (avg < 4){
+      return '#dd543a';
+    }else {
+      return '#ffb347';
+    }
   }
 }

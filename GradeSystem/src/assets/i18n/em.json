@@ -1,0 +1,21 @@
+{
+  "TITLE": "📚🔢",
+  "USERNAME": "👤🔑",
+  "PASSWORD": "🔒",
+  "LOGIN": "🔓",
+  "REGISTER": "❓📛",
+  "ALLSUBJECTS": "📝📚",
+  "ADD": "➕",
+  "SUBJECTNAME": "📚📛",
+  "AVERAGEGRADE": "📊🔢",
+  "ACTIONS": "⚙️",
+  "CANCEL": "❌",
+  "SUBMIT": "💾",
+  "DELETETEXTSUBJECT": "❓🗑️📚",
+  "DELETETEXTGRADE": "❓🗑️🔢",
+  "GRADE": "🔢",
+  "DATE": "📅",
+  "GRADES": "🔢🔢",
+  "BACK": "🔙",
+  "DATEPICKER": "📅➡️"
+}

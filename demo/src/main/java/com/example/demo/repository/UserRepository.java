@@ -1,13 +1,16 @@
 package com.example.demo.repository;
 
 import com.example.demo.Dtos.*;
-
 import com.example.demo.interfaces.UserRepositoryInterface;
-import com.example.demo.rowmapper.*;
+import com.example.demo.rowmapper.AvgGradeDtoResultSetExtractor;
+import com.example.demo.rowmapper.GradeDtoResultSetExtractor;
+import com.example.demo.rowmapper.SchoolSubjectGradeDtoResultSetExtractor;
+import com.example.demo.rowmapper.SubjectCountDtoResultSetExtractor;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +24,7 @@ public class UserRepository implements UserRepositoryInterface {
         this.jdbcTemplate = jdbcTemplate;
         this.environment = environment;
     }
+
     public void createNewGrade(SchoolSubjectGradeDto newGrade) {
         String sql = "INSERT INTO SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE (grade_id, subject_id, date) VALUES (?, ?, ?)";
         PreparedStatementSetter preparedStatementSetter = preparedStatement -> {
@@ -31,6 +35,7 @@ public class UserRepository implements UserRepositoryInterface {
 
         jdbcTemplate.update(sql, preparedStatementSetter);
     }
+
     @Override
     public void editGrade(int id, SchoolSubjectGradeDto newGrade) {
         String sql = "UPDATE SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE SET date = ?, grade_id = ?, subject_id = ? WHERE ID = ?";
@@ -42,30 +47,34 @@ public class UserRepository implements UserRepositoryInterface {
         };
         jdbcTemplate.update(sql, preparedStatementSetter);
     }
+
     @Override
     public void deleteGrade(int id) {
         String sql = "DELETE FROM SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE WHERE ID = ?";
         jdbcTemplate.update(sql, id);
     }
+
     @Override
-    public List<Double> findAll( int id) {
-        String sql = "SELECT g.GRADE " +
-                "FROM SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE " +
-                "JOIN SCHOOL_SUBJECT.GRADE g on SCHOOL_SUBJECT_GRADE.grade_id = g.ID_GRADE " +
+    public List<GradeDateDto> findAll(int id) {
+        String sql = "SELECT g.GRADE, gs.DATE " +
+                "FROM SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE gs " +
+                "JOIN SCHOOL_SUBJECT.GRADE g on gs.grade_id = g.ID_GRADE " +
                 "where subject_id = ?";
         PreparedStatementSetter preparedStatementSetter = preparedStatement -> {
             preparedStatement.setInt(1, id);
         };
-        return jdbcTemplate.query(sql, preparedStatementSetter,new GradeDtoResultSetExtractor());
+        return jdbcTemplate.query(sql, preparedStatementSetter, new GradeDtoResultSetExtractor());
     }
+
     @Override
     public List<AvgGradeDto> findAllAvg() {
-        String sql = "SELECT AVG(g.GRADE), s.SUBJECT " +
-                "FROM SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE " +
-                "JOIN SCHOOL_SUBJECT.GRADE g on SCHOOL_SUBJECT_GRADE.grade_id = g.ID_GRADE " +
-                "JOIN SCHOOL_SUBJECT.SUBJECT s on SCHOOL_SUBJECT_GRADE.subject_id = s.ID_SUBJECT " +
-                "GROUP BY subject_id";
-
+        String sql = """
+                SELECT COALESCE(AVG(g.GRADE), 0) AS average_grade, s.SUBJECT , s.ID_SUBJECT
+                FROM SCHOOL_SUBJECT.SUBJECT s
+                LEFT JOIN SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE sg ON s.ID_SUBJECT = sg.subject_id
+                LEFT JOIN SCHOOL_SUBJECT.GRADE g ON sg.grade_id = g.ID_GRADE
+                GROUP BY s.SUBJECT;
+                """;
         return jdbcTemplate.query(sql, new AvgGradeDtoResultSetExtractor());
     }
 
@@ -80,28 +89,31 @@ public class UserRepository implements UserRepositoryInterface {
             preparedStatement.setInt(1, id);
         };
 
-        return jdbcTemplate.query(sql,preparedStatementSetter, new AvgGradeDtoResultSetExtractor());
+        return jdbcTemplate.query(sql, preparedStatementSetter, new AvgGradeDtoResultSetExtractor());
     }
+
     public List<SchoolSubjectGradeOutDto> findAllID(int id) {
-        String sql = "SELECT g.GRADE, s.SUBJECT " +
-                "FROM SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE " +
-                "JOIN SCHOOL_SUBJECT.GRADE g on SCHOOL_SUBJECT_GRADE.grade_id = g.ID_GRADE " +
-                "JOIN SCHOOL_SUBJECT.SUBJECT s on SCHOOL_SUBJECT_GRADE.subject_id = s.ID_SUBJECT " +
+        String sql = "SELECT g.GRADE, s.SUBJECT, gs.DATE " +
+                "FROM SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE gs " +
+                "JOIN SCHOOL_SUBJECT.GRADE g on gs.grade_id = g.ID_GRADE " +
+                "JOIN SCHOOL_SUBJECT.SUBJECT s on gs.subject_id = s.ID_SUBJECT " +
                 "WHERE s.ID_SUBJECT = ?";
         PreparedStatementSetter preparedStatementSetter = preparedStatement -> {
             preparedStatement.setInt(1, id);
         };
 
-        return jdbcTemplate.query(sql,preparedStatementSetter, new SchoolSubjectGradeDtoResultSetExtractor());
+        return jdbcTemplate.query(sql, preparedStatementSetter, new SchoolSubjectGradeDtoResultSetExtractor());
     }
+
     public String getActiveProfiles() {
         return Arrays.toString(environment.getActiveProfiles());
     }
-    public List<SubjectCountDto> getAllSubjects(){
+
+    public List<SubjectCountDto> getAllSubjects() {
         String sql = "SELECT DISTINCT s.SUBJECT, subject_id " +
                 "FROM SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE " +
                 "JOIN SCHOOL_SUBJECT.SUBJECT s on SCHOOL_SUBJECT_GRADE.subject_id = s.ID_SUBJECT ";
-
         return jdbcTemplate.query(sql, new SubjectCountDtoResultSetExtractor());
+
     }
 }

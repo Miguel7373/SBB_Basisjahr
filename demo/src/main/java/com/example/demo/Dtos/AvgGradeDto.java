@@ -10,9 +10,11 @@ import lombok.Setter;
 public class AvgGradeDto extends SubjectDto{
 
     private double avg;
+    private int subjectId;
 
-    public AvgGradeDto(String name, double avg) {
+    public AvgGradeDto(String name, double avg, int subjectId) {
         super(name);
         this.avg = avg;
+        this.subjectId = subjectId;
     }
 }

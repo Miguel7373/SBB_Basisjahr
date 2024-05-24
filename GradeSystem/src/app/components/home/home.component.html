@@ -1,26 +1,39 @@
-
 <div id="body">
   <main>
     <div id="createNewButton">
-      <h1>Alle Fächer</h1>
-      <button color="primary" mat-raised-button [routerLink]="['/subject' + '/add']">Hinzufügen</button>
+      <h1>{{ 'ALLSUBJECTS' | translate }}</h1>
+      <button [routerLink]="['/subject' + '/add']" color="primary" mat-raised-button>{{ 'ADD' | translate }}</button>
     </div>
     <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
       <ng-container matColumnDef="name">
-        <th *matHeaderCellDef mat-header-cell>Name</th>
-        <td *matCellDef="let element" mat-cell [routerLink]="['/specific-Subject/' + element.name]"> {{ element.name }}</td>
+        <th *matHeaderCellDef mat-header-cell>{{ 'SUBJECTNAME' | translate }}</th>
+        <td *matCellDef="let element" [routerLink]="['/specific-Subject/' + element.name]"
+            mat-cell> {{ element.name }}
+        </td>
       </ng-container>
       <ng-container matColumnDef="avg">
-        <th *matHeaderCellDef mat-header-cell>Durchschnittsnoste</th>
-        <td *matCellDef="let element" mat-cell > {{ element.avg }}</td>
+        <th *matHeaderCellDef mat-header-cell>{{ 'AVERAGEGRADE' | translate }}</th>
+
+        <td *matCellDef="let element" mat-cell><span
+          [ngStyle]="{
+          'background-color': rightColor(element.avg),
+          'height': '3vh',
+          'width': '3vw',
+          'display':'flex',
+          'justify-content': 'center',
+          'align-items': 'center',
+          'border-radius': '100%'}">
+          {{ element.avg | number: '1.0-1' }}
+        </span>
+        </td>
       </ng-container>
       <ng-container matColumnDef="Actions">
-        <th *matHeaderCellDef mat-header-cell>Actions</th>
-        <td *matCellDef="let element"  mat-cell>
-          <button mat-icon-button [routerLink]="['/subject' + '/edit']">
+        <th *matHeaderCellDef mat-header-cell>{{ 'ACTIONS' | translate }}</th>
+        <td *matCellDef="let element" mat-cell>
+          <button (click)="saveSubjectToEdit(element.name, element.subjectId)" [routerLink]="['/subject' + '/edit']" mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button (click)="openDialog(element.avg , element.name)">
+          <button (click)="openDialog(element.avg , element.name, element.id)" mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>
         </td>

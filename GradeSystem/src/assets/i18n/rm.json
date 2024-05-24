@@ -1,0 +1,21 @@
+{
+  "TITLE": "Grade Management",
+  "USERNAME": "User Handle",
+  "PASSWORD": "Secret Code",
+  "LOGIN": "Get In",
+  "REGISTER": "Ain't got an account, bruv?",
+  "ALLSUBJECTS": "All Subjects",
+  "ADD": "Add One",
+  "SUBJECTNAME": "Subject Name",
+  "AVERAGEGRADE": "Average Grade",
+  "ACTIONS": "Actions",
+  "CANCEL": "Nah, Leave It",
+  "SUBMIT": "Save It",
+  "DELETETEXTSUBJECT": "You sure you wanna bin this subject, bruv?",
+  "DELETETEXTGRADE": "You sure you wanna bin this grade, mate?",
+  "GRADE": "Grade",
+  "DATE": "Date",
+  "GRADES": "Grades",
+  "BACK": "Back",
+  "DATEPICKER": "Pick a Date"
+}

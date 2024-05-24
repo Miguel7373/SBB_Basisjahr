@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @Profile("admin")
-
 @RestController
 @RequestMapping("/api/admin")
+@CrossOrigin("http://localhost:4200")
 public class SubjectAdminController {
     private final AdminService adminService;
 
@@ -22,7 +22,7 @@ public class SubjectAdminController {
         adminService.createNewSubject(newSubject);
     }
     @PutMapping("/subject/{id}")
-    public void editSubject(@PathVariable int id, SubjectDto newSubject){
+    public void editSubject(@PathVariable int id,@RequestBody SubjectDto newSubject){
         adminService.editSubject(id, newSubject);
     }
     @DeleteMapping("/subject/{id}")

@@ -1,0 +1,21 @@
+{
+  "TITLE": "成績管理",
+  "USERNAME": "ユーザー名",
+  "PASSWORD": "パスワード",
+  "LOGIN": "ログイン",
+  "REGISTER": "アカウントをお持ちでないですか？",
+  "ALLSUBJECTS": "すべての科目",
+  "ADD": "追加",
+  "SUBJECTNAME": "科目名",
+  "AVERAGEGRADE": "平均成績",
+  "ACTIONS": "アクション",
+  "CANCEL": "キャンセル",
+  "SUBMIT": "保存",
+  "DELETETEXTSUBJECT": "この科目を削除してもよろしいですか",
+  "DELETETEXTGRADE": "この成績を削除してもよろしいですか",
+  "GRADE": "成績",
+  "DATE": "日付",
+  "GRADES": "成績",
+  "BACK": "戻る",
+  "DATEPICKER": "日付を選択してください"
+}

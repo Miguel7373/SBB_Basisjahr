@@ -1,19 +1,29 @@
 <button mat-button routerLink="/home">
   <mat-icon>arrow_back_ios</mat-icon>
-  Zurück
+  {{ 'BACK' | translate }}
 </button>
 <main>
   <div id="addOrEditInput">
     <div id="input">
-      <p>Note</p>
+      <p>{{ 'GRADE' | translate }}</p>
       <mat-form-field class="example-full-width">
-        <mat-label>Note</mat-label>
-        <input type="text" matInput>
+        <mat-label>{{ 'GRADE' | translate }}</mat-label>
+        <input [formControl]="editOrAddGrade" matInput type="text">
       </mat-form-field>
+      @if (this.usageOfComponent) {
+        <mat-form-field class="example-full-width">
+          <mat-label>{{ 'DATEPICKER' | translate }}</mat-label>
+          <input [matDatepicker]="datepicker" matInput>
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle [for]="datepicker" matIconSuffix></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+          </mat-datepicker>
+        </mat-form-field>
+      }
     </div>
     <div id="buttons">
-      <button id="cancel" mat-raised-button>Abbrechen</button>
-      <button mat-raised-button color="primary">Hinzufügen</button>
+      <button id="cancel" mat-raised-button>{{ 'CANCEL' | translate }}</button>
+      <button color="primary" mat-raised-button>{{ 'SUBMIT' | translate }}</button>
     </div>
   </div>
 </main>

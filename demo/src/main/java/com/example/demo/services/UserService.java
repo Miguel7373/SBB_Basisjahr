@@ -5,6 +5,7 @@ import com.example.demo.Dtos.*;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.interfaces.UserServiceInterface;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +37,11 @@ public class UserService implements UserServiceInterface {
         List<SubjectCountDto> timoiscoocking = userRepository.getAllSubjects();
 
         timoiscoocking.forEach(s -> {
-            List<Double> allGrades = userRepository.findAll(s.getSubject_id());
+            List<GradeDateDto> allGrades = userRepository.findAll(s.getSubject_id());
             SchoolSubjectGradeOutDto newDto = new SchoolSubjectGradeOutDto(s.getName(), allGrades);
             combinedList.add(newDto);
+//            newDto.getGrade().stream().forEach(System.out::println);
         });
-
         return combinedList;
     }
     @Override

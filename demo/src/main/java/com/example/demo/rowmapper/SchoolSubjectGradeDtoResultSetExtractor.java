@@ -1,5 +1,6 @@
 package com.example.demo.rowmapper;
 
+import com.example.demo.Dtos.GradeDateDto;
 import com.example.demo.Dtos.SchoolSubjectGradeDto;
 import com.example.demo.Dtos.SchoolSubjectGradeOutDto;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -16,9 +17,12 @@ public class SchoolSubjectGradeDtoResultSetExtractor implements ResultSetExtract
 
         while (resultSet.next()) {
             String subjectId = resultSet.getString("s.SUBJECT");
-            List<Double> grades = new ArrayList<>();
+            List<GradeDateDto> grades = new ArrayList<>();
             do {
-                grades.add(resultSet.getDouble("g.GRADE"));
+                Double grade = resultSet.getDouble("g.GRADE");
+                String date = resultSet.getString("gs.DATE");
+                GradeDateDto gradeDateDto = new GradeDateDto(date, grade);
+                grades.add(gradeDateDto);
             }while (resultSet.next());
 
             SchoolSubjectGradeOutDto schoolSubjectGradeOutDto = new SchoolSubjectGradeOutDto(subjectId,grades);
