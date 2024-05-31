@@ -33,7 +33,7 @@
           <button (click)="saveSubjectToEdit(element.name, element.subjectId)" [routerLink]="['/subject' + '/edit']" mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
-          <button (click)="openDialog(element.avg , element.name, element.id)" mat-icon-button>
+          <button (click)="openDialog(element.avg , element.name, element.subjectId)" mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>
         </td>

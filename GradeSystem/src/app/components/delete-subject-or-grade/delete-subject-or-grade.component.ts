@@ -28,8 +28,9 @@ function HttpLoaderFactory(http: HttpClient) {
 })
 export class DeleteSubjectOrGradeComponent implements OnInit, OnDestroy{
   private ngUnsubscribe = new Subject<void>();
+  subjectOrGrade:boolean = false
 
-  constructor(public dialogRef: MatDialogRef<DeleteSubjectOrGradeComponent>, @Inject(MAT_DIALOG_DATA) public dataSubject: HomeComponent, @Inject(MAT_DIALOG_DATA) public dateGrade: SpecificSubjectComponent, private subjectService:SubjectService) {
+  constructor(public dialogRef: MatDialogRef<DeleteSubjectOrGradeComponent>, @Inject(MAT_DIALOG_DATA) public dataSubject: HomeComponent, @Inject(MAT_DIALOG_DATA) public dataGrade: SpecificSubjectComponent, private subjectService:SubjectService) {
 
   }
   ngOnDestroy() {
@@ -37,10 +38,10 @@ export class DeleteSubjectOrGradeComponent implements OnInit, OnDestroy{
     this.ngUnsubscribe.complete();
   }
   ngOnInit() {
+    console.log(this.dataSubject.subjectId, this.dataGrade)
   }
 
   deleteSubject(){
-    console.log(this.dataSubject.subjectId)
     this.subjectService.deleteSubject(this.dataSubject.subjectId).pipe(takeUntil(this.ngUnsubscribe)).subscribe((res)=> {});
   }
 }

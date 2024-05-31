@@ -54,6 +54,7 @@ export class SpecificSubjectComponent implements OnInit {
   grade: number = 0;
   subjectName: string = ""
   date: string = ""
+  bool:boolean = false
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog, protected gradeService: GradeService) {
   }
@@ -70,9 +71,10 @@ export class SpecificSubjectComponent implements OnInit {
     this.date = date;
     this.dialog.open(DeleteSubjectOrGradeComponent, {
       data: {
-        grade: this.grade,
+        grade: this.roundToSpecificNumber(this.grade),
         subjectName: this.subjectName,
         date: this.date,
+        bool: this.bool
       }
     });
   }

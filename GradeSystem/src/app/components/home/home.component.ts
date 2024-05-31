@@ -5,7 +5,10 @@ import {
   MatColumnDef,
   MatHeaderCell,
   MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
   MatTable
 } from "@angular/material/table";
 import {AvgGradeModel} from "../../models/AvgGradeModel";
@@ -45,15 +48,18 @@ import {Subject, takeUntil} from "rxjs";
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit, OnDestroy{
-  displayedColumns: string[] = ['name', 'avg','Actions'];
-  dataSource:AvgGradeModel[] = [];
-  average:number = 0;
-  subjectName:string = ""
+export class HomeComponent implements OnInit, OnDestroy {
+  displayedColumns: string[] = ['name', 'avg', 'Actions'];
+  dataSource: AvgGradeModel[] = [];
+  average: number = 0;
+  subjectName: string = ""
   subjectId: number = 0;
+  bool: boolean = true
   private ngUnsubscribe = new Subject<void>();
 
-  constructor(public dialog: MatDialog, protected gradeService:GradeService, protected subjectService:SubjectService) {}
+  constructor(public dialog: MatDialog, protected gradeService: GradeService, protected subjectService: SubjectService) {
+  }
+
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
@@ -63,27 +69,38 @@ export class HomeComponent implements OnInit, OnDestroy{
     this.gradeService.getAVGData().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       (data: AvgGradeModel[]) => {
         this.dataSource = data;
-        console.log(this.dataSource);
       }
     );
   }
 
 
-  openDialog(avg: number, name:string, id:number) {
+
+  openDialog(avg: number, name: string, id: number) {
     this.average = avg;
     this.subjectName = name;
     this.subjectId = id;
-    this.dialog.open(DeleteSubjectOrGradeComponent, {data: {average: this.average, subjectName: this.subjectName, id: this.subjectId}});
+    console.log(this.subjectId)
+    this.dialog.open(DeleteSubjectOrGradeComponent, {
+      data: {
+        average: this.average,
+        subjectName: this.subjectName,
+        subjectId: this.subjectId,
+        bool: this.bool
+      }
+    });
+
   }
-  saveSubjectToEdit(subject: string, id: number){
+
+  saveSubjectToEdit(subject: string, id: number) {
     this.subjectService.saveSubjectName(subject, id)
   }
-  rightColor(avg:number):string{
-    if (avg >= 4.5 ){
+
+  rightColor(avg: number): string {
+    if (avg >= 4.5) {
       return '#4B9A4C';
-    }else if (avg < 4){
+    } else if (avg < 4) {
       return '#dd543a';
-    }else {
+    } else {
       return '#ffb347';
     }
   }
