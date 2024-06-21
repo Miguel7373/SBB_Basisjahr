@@ -22,8 +22,8 @@ public class UserService implements UserServiceInterface {
         userRepository.createNewGrade(newGrade);
     }
     @Override
-    public void editGrade(int id, SchoolSubjectGradeDto newGrade) {
-        userRepository.editGrade(id, newGrade);
+    public void editGrade(int id, GradeDto gradeDto) {
+        userRepository.editGrade(id, gradeDto);
 
     }
     @Override
@@ -32,21 +32,22 @@ public class UserService implements UserServiceInterface {
 
     }
     @Override
-    public List<SubjectDto> findAll() {
-        List<SubjectDto> combinedList = new ArrayList<>();
-        List<SubjectCountDto> timoiscoocking = userRepository.getAllSubjects();
+    public List<SubjectCountDto> findAll(int user_id) {
 
-        timoiscoocking.forEach(s -> {
-            List<GradeDateDto> allGrades = userRepository.findAll(s.getSubject_id());
-            SchoolSubjectGradeOutDto newDto = new SchoolSubjectGradeOutDto(s.getName(), allGrades);
+        List<SubjectCountDto> combinedList = new ArrayList<>();
+        List<SubjectCountDto> allSubjects = userRepository.getAllSubjects();
+
+        allSubjects.forEach(s -> {
+            List<GradeDateDto> allGrades = userRepository.findAll(s.getSubject_id(),user_id);
+            newOutDto newDto = new newOutDto(s.getName(), s.getSubject_id(), allGrades);
             combinedList.add(newDto);
 //            newDto.getGrade().stream().forEach(System.out::println);
         });
         return combinedList;
     }
     @Override
-    public List<AvgGradeDto> findAllAvg() {
-        return  userRepository.findAllAvg();
+    public List<AvgGradeDto> findAllAvg(int user_id) {
+        return  userRepository.findAllAvg(user_id);
     }
     @Override
     public List<SubjectDto> findById(int id) {

@@ -1,7 +1,8 @@
 {
   "TITLE": "Grades Nexus",
-  "USERNAME": "Name of Valor",
+  "E-MAIL": "Scroll of Messages",
   "PASSWORD": "Key of Entry",
+  "FULLNAME": "Name of Valor",
   "LOGIN": "Gate Unlocked",
   "REGISTER": "New Challenger Approaches?",
   "ALLSUBJECTS": "Realm of Knowledge",
@@ -17,5 +18,7 @@
   "DATE": "Date of Destiny",
   "GRADES": "Marks of Endeavor",
   "BACK": "Return to Origins",
-  "DATEPICKER": "Select Your Day of Fate"
+  "DATEPICKER": "Select Your Day of Fate",
+  "TOLOGIN": "Already a Hero?",
+  "TOREGISTER": "Cretate a new Character?"
 }

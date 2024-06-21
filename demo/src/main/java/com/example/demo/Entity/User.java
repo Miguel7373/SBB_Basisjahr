@@ -39,9 +39,17 @@ public class User implements UserDetails {
     @Column(name = "updated_at")
     private Date updatedAt;
 
+    @Column(nullable = false)
+    private boolean admin;
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
+    }
+
+    public boolean isAdmin() {
+        return admin;
     }
 
     public String getPassword() {
@@ -67,6 +75,7 @@ public class User implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
+
 
     @Override
     public boolean isEnabled() {

@@ -19,9 +19,10 @@ public class SchoolSubjectGradeDtoResultSetExtractor implements ResultSetExtract
             String subjectId = resultSet.getString("s.SUBJECT");
             List<GradeDateDto> grades = new ArrayList<>();
             do {
+                int gradeId = resultSet.getInt("gs.ID");
                 Double grade = resultSet.getDouble("g.GRADE");
                 String date = resultSet.getString("gs.DATE");
-                GradeDateDto gradeDateDto = new GradeDateDto(date, grade);
+                GradeDateDto gradeDateDto = new GradeDateDto( gradeId ,date, grade);
                 grades.add(gradeDateDto);
             }while (resultSet.next());
 

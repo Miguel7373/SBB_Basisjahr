@@ -14,4 +14,7 @@ public class SubjectDto{
     public SubjectDto(String name) {
         this.name = name;
     }
+
+    public static class newOutDto {
+    }
 }

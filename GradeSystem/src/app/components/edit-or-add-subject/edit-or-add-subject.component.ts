@@ -3,7 +3,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatButton} from "@angular/material/button";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {TranslateModule} from "@ngx-translate/core";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {SubjectService} from "../../services/subjectService/subject.service";
@@ -31,7 +31,7 @@ export class EditOrAddSubjectComponent implements OnInit, OnDestroy{
   private ngUnsubscribe = new Subject<void>();
   editSubjectId: number = 0
 
-  constructor(private route: ActivatedRoute, protected subjectService: SubjectService) {
+  constructor(private route: ActivatedRoute, protected subjectService: SubjectService, private router: Router) {
   }
 
   ngOnInit() {
@@ -47,11 +47,16 @@ export class EditOrAddSubjectComponent implements OnInit, OnDestroy{
   }
 
   editSubject() {
-    this.subjectService.editSubject(this.subjectToAddOrEdit.value, this.editSubjectId).pipe(takeUntil(this.ngUnsubscribe)).subscribe((res) => {})
+    this.subjectService.editSubject(this.subjectToAddOrEdit.value, this.editSubjectId).pipe(takeUntil(this.ngUnsubscribe)).subscribe((res) => {
+      this.router.navigate(['/home']);
+    });
   }
 
   addSubject() {
-    this.subjectService.createSubject(this.subjectToAddOrEdit.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe((res) => {})
+    console.log(this.subjectToAddOrEdit.value);
+    this.subjectService.createSubject(this.subjectToAddOrEdit.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe((res) => {
+      this.router.navigate(['/home']);
+    })
   }
 
 

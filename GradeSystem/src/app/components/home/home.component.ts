@@ -12,7 +12,7 @@ import {
   MatTable
 } from "@angular/material/table";
 import {AvgGradeModel} from "../../models/AvgGradeModel";
-import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatButton, MatFabButton, MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {RouterLink} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
@@ -22,6 +22,7 @@ import {GradeService} from "../../services/gradeService/grade.service";
 import {SubjectService} from "../../services/subjectService/subject.service";
 import {DecimalPipe, NgStyle} from "@angular/common";
 import {Subject, takeUntil} from "rxjs";
+import {UserService} from "../../services/UserService/user-service.service";
 
 @Component({
   selector: 'app-home',
@@ -43,7 +44,8 @@ import {Subject, takeUntil} from "rxjs";
     RouterLink,
     TranslateModule,
     NgStyle,
-    DecimalPipe
+    DecimalPipe,
+    MatFabButton
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -51,13 +53,14 @@ import {Subject, takeUntil} from "rxjs";
 export class HomeComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'avg', 'Actions'];
   dataSource: AvgGradeModel[] = [];
+  userData: any;
   average: number = 0;
   subjectName: string = ""
   subjectId: number = 0;
   bool: boolean = true
   private ngUnsubscribe = new Subject<void>();
 
-  constructor(public dialog: MatDialog, protected gradeService: GradeService, protected subjectService: SubjectService) {
+  constructor(public dialog: MatDialog, protected gradeService: GradeService, protected subjectService: SubjectService, private userService:UserService) {
   }
 
   ngOnDestroy() {
@@ -66,9 +69,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.gradeService.getAVGData().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-      (data: AvgGradeModel[]) => {
-        this.dataSource = data;
+    this.userService.getCurrentUser().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (user: any) => {
+        this.userData = user;
+        this.gradeService.getAVGData(this.userData.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+          (data: AvgGradeModel[]) => {
+            this.dataSource = data;
+          }
+        );
       }
     );
   }
@@ -79,7 +87,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.average = avg;
     this.subjectName = name;
     this.subjectId = id;
-    console.log(this.subjectId)
     this.dialog.open(DeleteSubjectOrGradeComponent, {
       data: {
         average: this.average,

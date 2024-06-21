@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatIcon} from "@angular/material/icon";
 import {ActivatedRoute, RouterLink, RouterLinkActive} from "@angular/router";
@@ -20,6 +20,10 @@ import {DeleteSubjectOrGradeComponent} from "../delete-subject-or-grade/delete-s
 import {TranslateModule} from "@ngx-translate/core";
 import {GradeService} from "../../services/gradeService/grade.service";
 import {DecimalPipe, NgStyle} from "@angular/common";
+import {Subject, takeUntil} from "rxjs";
+import {AvgGradeModel} from "../../models/AvgGradeModel";
+import {UserService} from "../../services/UserService/user-service.service";
+import {GradeModel} from "../../models/GradeModel";
 
 @Component({
   selector: 'app-specific-subject',
@@ -47,22 +51,44 @@ import {DecimalPipe, NgStyle} from "@angular/common";
   templateUrl: './specific-subject.component.html',
   styleUrl: './specific-subject.component.scss'
 })
-export class SpecificSubjectComponent implements OnInit {
+export class SpecificSubjectComponent implements OnInit, OnDestroy{
   displayedColumns: string[] = ['note', 'datum', 'actions'];
   dataSource: GradeSubjectOutModel[] = [];
+  dataSource2: GradeModel[] = [];
   specificSubject: string = "";
   grade: number = 0;
   subjectName: string = ""
   date: string = ""
   bool:boolean = false
+  private ngUnsubscribe = new Subject<void>();
+  userData: any;
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog, protected gradeService: GradeService) {
+
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, protected gradeService: GradeService, private userService: UserService) {
+  }
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   ngOnInit(): void {
-    this.dataSource = this.gradeService.getSubjectSpecificData();
     this.specificSubject = this.route.snapshot.params['subject'];
-    this.dataSource = this.dataSource.filter(data => data.name === this.specificSubject);
+    this.userService.getCurrentUser().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+      (user: any) => {
+        this.userData = user;
+        this.gradeService.getSubjectSpecificData(this.userData.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
+          (data: GradeSubjectOutModel[]) => {
+            this.dataSource = data;
+            this.dataSource = this.dataSource.filter(data => data.name === this.specificSubject);
+            this.dataSource.forEach(d => this.dataSource2 = d.gradeDateList);
+            this.dataSource.forEach(x => this.gradeService.saveSubjectId(x.subject_id))
+            console.log();
+          }
+        );
+      }
+    );
+
+
   }
 
   openDialog(grade: number, name: string, date: string) {
@@ -71,7 +97,7 @@ export class SpecificSubjectComponent implements OnInit {
     this.date = date;
     this.dialog.open(DeleteSubjectOrGradeComponent, {
       data: {
-        grade: this.roundToSpecificNumber(this.grade),
+        grade: this.gradeService.roundToSpecificNumber(this.grade),
         subjectName: this.subjectName,
         date: this.date,
         bool: this.bool
@@ -79,8 +105,8 @@ export class SpecificSubjectComponent implements OnInit {
     });
   }
 
-  saveGradeData(grade: GradeSubjectOutModel) {
-    this.gradeService.saveGradeData(grade);
+  saveGradeData(gradeId: number ) {
+    this.gradeService.saveGradeId(gradeId);
   }
 
   rightColor(grade: number): string {
@@ -93,8 +119,5 @@ export class SpecificSubjectComponent implements OnInit {
     }
   }
 
-  roundToSpecificNumber(avg: number): number {
-    const inv = 1.0 / 0.25;
-    return Math.round(avg * inv) / inv;
-  }
+
 }

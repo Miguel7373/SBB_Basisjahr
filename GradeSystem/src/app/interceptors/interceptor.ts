@@ -6,7 +6,8 @@ export const AuthInterceptor: HttpInterceptorFn = (
   next: HttpHandlerFn
 ): Observable<HttpEvent<any>> => {
 
-  if (req.method === 'GET' || req.method === 'PUT' || req.method === 'DELETE' ) {
+  if (req.method === 'GET' || req.method === 'PUT' || req.method === 'DELETE') {
+    // console.log(localStorage.getItem("token"));
     const authRequest = req.clone({
       setHeaders: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -14,6 +15,5 @@ export const AuthInterceptor: HttpInterceptorFn = (
     });
     return next(authRequest);
   }
-  console.log("hallo")
   return next(req);
 };

@@ -1,8 +1,6 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Dtos.AvgGradeDto;
-import com.example.demo.Dtos.SchoolSubjectGradeDto;
-import com.example.demo.Dtos.SubjectDto;
+import com.example.demo.Dtos.*;
 import com.example.demo.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +16,14 @@ public class SchoolSubjectGradeController {
     }
 
     @PostMapping("/school_subject_grade/grade")
-    public void createNewGrade(@RequestBody SchoolSubjectGradeDto newSubject) {
-        userService.createNewGrade(newSubject);
+    public void createNewGrade(@RequestBody SchoolSubjectGradeDto newGrade) {
+        System.out.println(newGrade.getGrade_id() +" "+ newGrade.getSubject_id() +" "+ newGrade.getDate() +" "+ newGrade.getUser_id());
+        userService.createNewGrade(newGrade);
     }
 
     @PutMapping("/school_subject_grade/grade/{id}")
-    public void editGrade(@PathVariable int id, SchoolSubjectGradeDto newGrade) {
-        userService.editGrade(id, newGrade);
+    public void editGrade(@PathVariable int id, @RequestBody GradeDto gradeDto) {
+        userService.editGrade(id, gradeDto);
     }
 
     @DeleteMapping("/school_subject_grade/grade/{id}")
@@ -32,14 +31,14 @@ public class SchoolSubjectGradeController {
         userService.deleteGrade(id);
     }
 
-    @GetMapping("/school_subject_grade")
-    public List<SubjectDto> findAll() {
-        return userService.findAll();
+    @GetMapping("/school_subject_grade/{id}")
+    public List<SubjectCountDto> findAll(@PathVariable String id) {
+        return userService.findAll(Integer.parseInt(id));
     }
 
-    @GetMapping("/school_subject_grade/average")
-    public List<AvgGradeDto> findAllAvg() {
-        return userService.findAllAvg();
+    @GetMapping("/school_subject_grade/averages/{id}")
+    public List<AvgGradeDto> findAllAvg(@PathVariable int id) {
+        return userService.findAllAvg(id);
     }
 
     @GetMapping("/school_subject_grade/average/{id}")

@@ -1,21 +1,41 @@
-
 <div id="body">
-<main>
-  <div id="loginBox">
-    <div id="boxInput">
-    <mat-form-field class="example-full-width">
-      <mat-label>{{ 'USERNAME' | translate }}</mat-label>
-      <input type="text" matInput [formControl]="email">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
-      <input type="password" matInput [formControl]="password">
-    </mat-form-field>
+  <main>
+    <div id="loginBox">
+      @if (loginOrRegister) {
+        <div class="boxInput">
+          <mat-form-field class="example-full-width">
+            <mat-label>{{ 'E-MAIL' | translate }}</mat-label>
+            <input type="text" matInput [formControl]="email">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
+            <input type="password" matInput [formControl]="password">
+          </mat-form-field>
+        </div>
+        <div class="boxButton">
+          <button id="loginButton" (click)="login()" mat-raised-button>{{ 'LOGIN' | translate }}</button>
+          <button mat-button (click)="goToRegister()">{{ 'TOREGISTER' | translate }}</button>
+        </div>
+      } @else {
+        <div class="boxInput">
+          <mat-form-field class="example-full-width">
+            <mat-label>{{ 'E-MAIL' | translate }}</mat-label>
+            <input type="text" matInput [formControl]="email">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
+            <input type="password" matInput [formControl]="password">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>{{ 'FULLNAME' | translate }}</mat-label>
+            <input type="text" matInput [formControl]="fullName">
+          </mat-form-field>
+          <div class="boxButton">
+            <button (click)="register()" mat-raised-button>{{ 'REGISTER' | translate }}</button>
+            <button mat-button (click)="goToRegister()">{{ 'TOLOGIN' | translate }}</button>
+          </div>
+        </div>
+      }
     </div>
-    <div id="boxButton">
-    <button id="loginButton" (click)="login()" mat-raised-button>{{'LOGIN' | translate}}</button>
-    <button mat-button>{{'REGISTER' | translate}}</button>
-    </div>
-  </div>
-</main>
+  </main>
 </div>

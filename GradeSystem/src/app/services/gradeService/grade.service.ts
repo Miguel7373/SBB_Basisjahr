@@ -2,31 +2,64 @@ import {Injectable} from '@angular/core';
 import {AvgGradeModel} from "../../models/AvgGradeModel";
 import {GradeSubjectOutModel} from "../../models/GradeSubjectOutModel";
 import {HttpClient} from "@angular/common/http";
+import {GradeSubjectModel} from "../../models/GradeSubjectModel";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GradeService {
-  private gradeToEdit:GradeSubjectOutModel = {id: 0, name: "", grade: 0, date: ""};
+  currentSubject_id: number = 0;
+  currentGradeId: number = 0;
+
   constructor(private http: HttpClient) {
   }
 
-  getAVGData() {
-    return this.http.get<AvgGradeModel[]>('http://localhost:8080/api/student/school_subject_grade/average');
+  getAVGData(user_id: number) {
+    return this.http.get<AvgGradeModel[]>(`http://localhost:8080/api/student/school_subject_grade/averages/${user_id}`);
   }
 
-  getSubjectSpecificData(): GradeSubjectOutModel[] {
-    return [
-      {id: 1, name: "Mathematrik", grade: 5.21, date: "01/03/2024"},
-      {id: 2, name: "Englisch", grade: 4.17, date: "01/03/2024"},
-      {id: 4, name: "Englisch", grade: 4.43, date: "01/03/2024"},
-      {id: 6, name: "Deutsch", grade: 5.65, date: "01/03/2024"},
-    ]
+  getSubjectSpecificData(user_id: number) {
+
+    return this.http.get<GradeSubjectOutModel[]>(`http://localhost:8080/api/student/school_subject_grade/${user_id}`)
   }
-  saveGradeData(grade:GradeSubjectOutModel){
-    this.gradeToEdit = grade;
+
+  // saveGradeData(grade:GradeSubjectOutModel){
+  //   this.gradeToEdit = grade;
+  // }
+  addGrade(subject: number, grade: number, date: string, user_id: number) {
+    return this.http.post<GradeSubjectModel>(`http://localhost:8080/api/student/school_subject_grade/grade`, {
+      grade_id: grade, subject_id: subject, date: date, user_id: user_id
+    });
   }
-  getGradeData(){
-    return this.gradeToEdit
+
+  editGrade(gradeId: number, grade: number) {
+    return this.http.put(`http://localhost:8080/api/student/school_subject_grade/grade/${gradeId}`, {
+      grade_Id: grade
+    });
+  }
+
+  deleteGrade(gradeId: number) {
+    return this.http.delete(`http://localhost:8080/api/student/school_subject_grade/grade/${gradeId}`)
+  }
+
+  roundToSpecificNumber(avg: number): number {
+    const inv = 1.0 / 0.25;
+    return Math.round(avg * inv) / inv;
+  }
+
+  saveSubjectId(subject_id: number) {
+    this.currentSubject_id = subject_id;
+  }
+
+  getSubjectId(): number {
+    return this.currentSubject_id;
+  }
+
+  saveGradeId(gradId: number) {
+    this.currentGradeId = gradId;
+  }
+
+  getGradeId() {
+    return this.currentGradeId;
   }
 }

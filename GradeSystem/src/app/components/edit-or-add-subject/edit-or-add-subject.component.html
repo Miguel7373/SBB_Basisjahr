@@ -12,11 +12,11 @@
     </mat-form-field>
     </div>
     <div id="buttons">
-      <button id="cancel" mat-raised-button>{{'CANCEL' | translate}}</button>
+      <button id="cancel" mat-raised-button [routerLink]="['/home']">{{'CANCEL' | translate}}</button>
       @if(usageOfComponent){
       <button mat-raised-button color="primary" (click)="addSubject()">{{'SUBMIT' | translate}}</button>
       } @else {
-        <button mat-raised-button color="primary" (click)="editSubject()">{{'SUBMIT' | translate}}</button>
+        <button mat-raised-button color="primary"  (click)="editSubject()">{{'SUBMIT' | translate}}</button>
       }
     </div>
   </div>

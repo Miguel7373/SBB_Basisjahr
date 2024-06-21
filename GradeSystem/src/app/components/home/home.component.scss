@@ -2,12 +2,13 @@
 #body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  height: 90%;
+  justify-content: space-between;
 
   main {
     width: 90%;
     display: flex;
+    align-self: center;
     justify-content: center;
     align-content: center;
     flex-direction: column;
@@ -22,6 +23,11 @@
       align-items: center;
       height: 6vh;
     }
+
+
+  }
+  #logOutButton{
+    margin-left: 2vh;
 
   }
 }

@@ -12,5 +12,5 @@ export const routes: Routes = [
   {path: "home", component: HomeComponent},
   {path: "subject/:usage", component: EditOrAddSubjectComponent, canActivate: [loginGuard]},
   {path: "specific-Subject/:subject", component: SpecificSubjectComponent, canActivate: [loginGuard]},
-  {path: "grade/:usage", component: EditOrAddGradeComponent, canActivate: [loginGuard]}
+  {path: "grade/:subject/:usage", component: EditOrAddGradeComponent, canActivate: [loginGuard]}
 ];

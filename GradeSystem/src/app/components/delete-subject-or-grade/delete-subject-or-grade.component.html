@@ -4,7 +4,7 @@
     <p>{{'SUBJECTNAME' | translate}}: {{ dataSubject.subjectName }}</p>
     <p>{{'AVERAGEGRADE' | translate}}: {{ dataSubject.average }}</p>
     <div class="buttons">
-      <button mat-raised-button>{{'CANCEL' | translate}}</button>
+      <button mat-raised-button [routerLink]="['/home']" >{{'CANCEL' | translate}}</button>
       <button mat-raised-button (click)="deleteSubject()">{{'SUBMIT' | translate}}</button>
     </div>
   </div>
@@ -15,8 +15,8 @@
     <p>{{'GRADE' | translate}}:{{ dataGrade.grade }}</p>
     <p>{{'DATE' | translate}}: {{dataGrade.date}}</p>
     <div class="buttons">
-      <button mat-raised-button>{{'CANCEL' | translate}}</button>
-      <button mat-raised-button>{{'SUBMIT' | translate}}</button>
+      <button mat-raised-button [routerLink]="['/specific-Subject/']" >{{'CANCEL' | translate}}</button>
+      <button mat-raised-button (click)="deleteGrade()">{{'SUBMIT' | translate}}</button>
     </div>
   </div>
 }

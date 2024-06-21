@@ -46,7 +46,6 @@ public class AdminRepository implements AdminRepositoryInterface {
     }
     @Override
     public void deleteSubject(int subjectId) {
-        System.out.println(subjectId);
         String sql = "DELETE FROM SCHOOL_SUBJECT.SUBJECT WHERE ID_SUBJECT = ?;";
         PreparedStatementSetter preparedStatementSetter = preparedStatement -> {
             preparedStatement.setInt(1, subjectId);

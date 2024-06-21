@@ -6,9 +6,9 @@
   <main>
     <div id="createNewButton">
       <h1>{{ 'GRADES' | translate }} {{ specificSubject }}</h1>
-      <button [routerLink]="['/grade' + '/add']" routerLinkActive="active" target="_blank" color="primary" mat-raised-button>{{ 'ADD' | translate }}</button>
+      <button [routerLink]="['/grade/' + specificSubject +'/add']" routerLinkActive="active" target="_blank" color="primary" mat-raised-button>{{ 'ADD' | translate }}</button>
     </div>
-    <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
+    <table [dataSource]="dataSource2" class="mat-elevation-z8" mat-table>
       <ng-container matColumnDef="note">
         <th *matHeaderCellDef mat-header-cell> {{ 'GRADE' | translate }}</th>
 
@@ -21,7 +21,7 @@
           'justify-content': 'center',
           'align-items': 'center',
           'border-radius': '100%'}">
-          {{ roundToSpecificNumber(element.grade) }}
+          {{ gradeService.roundToSpecificNumber(element.grade) }}
         </span></td>
       </ng-container>
       <ng-container matColumnDef="datum">
@@ -32,10 +32,10 @@
       <ng-container matColumnDef="actions">
         <th *matHeaderCellDef mat-header-cell>{{ 'ACTIONS' | translate }}</th>
         <td *matCellDef="let element" mat-cell>
-          <button [routerLink]="['/grade' + '/edit']" (click)="saveGradeData(element)" mat-icon-button>
+          <button [routerLink]="['/grade/' +specificSubject+ '/edit']" (click)="saveGradeData(element.id)" mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
-          <button (click)="openDialog(element.grade, element.name, element.date)" mat-icon-button>
+          <button (click)="openDialog(element.grade, element.name, element.date); saveGradeData(element.id)" mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>
         </td>

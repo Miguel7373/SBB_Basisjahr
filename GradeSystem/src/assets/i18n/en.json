@@ -1,9 +1,10 @@
 {
   "TITLE": "Grade Management",
-  "USERNAME": "Username",
+  "E-MAIL": "E-Mail",
   "PASSWORD": "Password",
+  "FULLNAME": "Full Name",
   "LOGIN": "Login",
-  "REGISTER": "Don't have an account?",
+  "REGISTER": "Register",
   "ALLSUBJECTS": "All Subjects",
   "ADD": "Add",
   "SUBJECTNAME": "Subject Name",
@@ -11,11 +12,13 @@
   "ACTIONS": "Actions",
   "CANCEL": "Cancel",
   "SUBMIT": "Submit",
-  "DELETETEXTSUBJECT": "Are you sure you want to delete the subject",
-  "DELETETEXTGRADE": "Are you sure you want to delete the grade",
+  "DELETETEXTSUBJECT": "Are you sure you want to delete the subject?",
+  "DELETETEXTGRADE": "Are you sure you want to delete the grade?",
   "GRADE": "Grade",
   "DATE": "Date",
   "GRADES": "Grades",
   "BACK": "Back",
-  "DATEPICKER": "Select a date"
+  "DATEPICKER": "Select a date",
+  "TOLOGIN": "Already have an account?",
+  "TOREGISTER": "Don't have an account?"
 }

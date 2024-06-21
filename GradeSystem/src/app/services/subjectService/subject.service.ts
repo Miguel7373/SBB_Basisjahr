@@ -12,6 +12,7 @@ export class SubjectService {
   constructor(private http: HttpClient) {
   }
   createSubject(subjectName:string){
+    console.log(subjectName)
     return this.http.post<SubjectModel>('http://localhost:8080/api/admin/subject', {
       name: subjectName
     });

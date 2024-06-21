@@ -23,24 +23,34 @@
           'justify-content': 'center',
           'align-items': 'center',
           'border-radius': '100%'}">
-          {{ element.avg | number: '1.0-1' }}
+          {{ gradeService.roundToSpecificNumber(element.avg) }}
         </span>
         </td>
       </ng-container>
+
       <ng-container matColumnDef="Actions">
         <th *matHeaderCellDef mat-header-cell>{{ 'ACTIONS' | translate }}</th>
         <td *matCellDef="let element" mat-cell>
-          <button (click)="saveSubjectToEdit(element.name, element.subjectId)" [routerLink]="['/subject' + '/edit']" mat-icon-button>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button (click)="openDialog(element.avg , element.name, element.subjectId)" mat-icon-button>
-            <mat-icon>delete</mat-icon>
-          </button>
+          @if (userData.admin) {
+            <button (click)="saveSubjectToEdit(element.name, element.subjectId)" [routerLink]="['/subject' + '/edit']"
+                    mat-icon-button>
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="openDialog(element.avg , element.name, element.subjectId)" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          }
         </td>
       </ng-container>
+
       <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
       <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
     </table>
   </main>
+
+  <button color="primary" id="logOutButton" mat-fab routerLink="/login">
+    <mat-icon>logout</mat-icon>
+  </button>
+
 </div>
 

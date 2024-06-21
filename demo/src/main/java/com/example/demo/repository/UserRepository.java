@@ -26,24 +26,24 @@ public class UserRepository implements UserRepositoryInterface {
     }
 
     public void createNewGrade(SchoolSubjectGradeDto newGrade) {
-        String sql = "INSERT INTO SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE (grade_id, subject_id, date) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE (grade_id, subject_id, date, user_id) VALUES (?, ?, ?, ?)";
         PreparedStatementSetter preparedStatementSetter = preparedStatement -> {
             preparedStatement.setInt(1, newGrade.getGrade_id());
             preparedStatement.setInt(2, newGrade.getSubject_id());
             preparedStatement.setString(3, newGrade.getDate());
+            preparedStatement.setInt(4, newGrade.getUser_id());
         };
 
         jdbcTemplate.update(sql, preparedStatementSetter);
     }
 
+
     @Override
-    public void editGrade(int id, SchoolSubjectGradeDto newGrade) {
-        String sql = "UPDATE SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE SET date = ?, grade_id = ?, subject_id = ? WHERE ID = ?";
+    public void editGrade(int id, GradeDto gradeDto) {
+        String sql = "UPDATE SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE SET grade_id = ? WHERE ID = ?";
         PreparedStatementSetter preparedStatementSetter = preparedStatement -> {
-            preparedStatement.setString(1, newGrade.getDate());
-            preparedStatement.setInt(2, newGrade.getGrade_id());
-            preparedStatement.setInt(3, newGrade.getSubject_id());
-            preparedStatement.setInt(4, id);
+            preparedStatement.setInt(1, gradeDto.getGrade_Id());
+            preparedStatement.setInt(2, id);
         };
         jdbcTemplate.update(sql, preparedStatementSetter);
     }
@@ -55,27 +55,33 @@ public class UserRepository implements UserRepositoryInterface {
     }
 
     @Override
-    public List<GradeDateDto> findAll(int id) {
-        String sql = "SELECT g.GRADE, gs.DATE " +
+    public List<GradeDateDto> findAll(int id, int user_id) {
+        String sql = "SELECT gs.ID, g.GRADE, gs.DATE " +
                 "FROM SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE gs " +
                 "JOIN SCHOOL_SUBJECT.GRADE g on gs.grade_id = g.ID_GRADE " +
-                "where subject_id = ?";
+                "where subject_id = ? AND user_id = ?";
         PreparedStatementSetter preparedStatementSetter = preparedStatement -> {
             preparedStatement.setInt(1, id);
+            preparedStatement.setInt(2, user_id);
         };
         return jdbcTemplate.query(sql, preparedStatementSetter, new GradeDtoResultSetExtractor());
     }
 
     @Override
-    public List<AvgGradeDto> findAllAvg() {
+    public List<AvgGradeDto> findAllAvg(int user_id) {
         String sql = """
                 SELECT COALESCE(AVG(g.GRADE), 0) AS average_grade, s.SUBJECT , s.ID_SUBJECT
                 FROM SCHOOL_SUBJECT.SUBJECT s
                 LEFT JOIN SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE sg ON s.ID_SUBJECT = sg.subject_id
-                LEFT JOIN SCHOOL_SUBJECT.GRADE g ON sg.grade_id = g.ID_GRADE
+                LEFT JOIN SCHOOL_SUBJECT.GRADE g ON sg.grade_id = g.ID_GRADE AND sg.user_id = ?
+                
                 GROUP BY s.SUBJECT;
                 """;
-        return jdbcTemplate.query(sql, new AvgGradeDtoResultSetExtractor());
+
+        PreparedStatementSetter preparedStatementSetter = preparedStatement -> {
+            preparedStatement.setInt(1, user_id);
+        };
+        return jdbcTemplate.query(sql,preparedStatementSetter, new AvgGradeDtoResultSetExtractor());
     }
 
 
@@ -93,7 +99,7 @@ public class UserRepository implements UserRepositoryInterface {
     }
 
     public List<SchoolSubjectGradeOutDto> findAllID(int id) {
-        String sql = "SELECT g.GRADE, s.SUBJECT, gs.DATE " +
+        String sql = "SELECT gs.ID, g.GRADE, s.SUBJECT, gs.subject_id, gs.DATE " +
                 "FROM SCHOOL_SUBJECT.SCHOOL_SUBJECT_GRADE gs " +
                 "JOIN SCHOOL_SUBJECT.GRADE g on gs.grade_id = g.ID_GRADE " +
                 "JOIN SCHOOL_SUBJECT.SUBJECT s on gs.subject_id = s.ID_SUBJECT " +

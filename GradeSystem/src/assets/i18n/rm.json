@@ -1,15 +1,16 @@
 {
-  "TITLE": "Grade Management",
-  "USERNAME": "User Handle",
+  "TITLE": "Grade Ting",
+  "E-MAIL": "Email",
   "PASSWORD": "Secret Code",
+  "FULLNAME": "Name, Fam",
   "LOGIN": "Get In",
-  "REGISTER": "Ain't got an account, bruv?",
-  "ALLSUBJECTS": "All Subjects",
+  "REGISTER": "Sign Up",
+  "ALLSUBJECTS": "All Dem Subjects",
   "ADD": "Add One",
-  "SUBJECTNAME": "Subject Name",
+  "SUBJECTNAME": "Subject's Name, Innit",
   "AVERAGEGRADE": "Average Grade",
-  "ACTIONS": "Actions",
-  "CANCEL": "Nah, Leave It",
+  "ACTIONS": "Moves",
+  "CANCEL": "Nah, Cancel",
   "SUBMIT": "Save It",
   "DELETETEXTSUBJECT": "You sure you wanna bin this subject, bruv?",
   "DELETETEXTGRADE": "You sure you wanna bin this grade, mate?",
@@ -17,5 +18,7 @@
   "DATE": "Date",
   "GRADES": "Grades",
   "BACK": "Back",
-  "DATEPICKER": "Pick a Date"
+  "DATEPICKER": "Pick a Date",
+  "TOLOGIN": "Got a Login?",
+  "TOREGISTER": "Ain't got an account, bruv?"
 }

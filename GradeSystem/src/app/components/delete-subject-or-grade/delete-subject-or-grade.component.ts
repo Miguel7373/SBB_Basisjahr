@@ -15,6 +15,9 @@ import {HttpClient} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {SubjectService} from "../../services/subjectService/subject.service";
 import {Subject, takeUntil} from "rxjs";
+import {Router, RouterLink} from "@angular/router";
+import {GradeService} from "../../services/gradeService/grade.service";
+import {routes} from "../../app.routes";
 function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http)
 }
@@ -22,15 +25,14 @@ function HttpLoaderFactory(http: HttpClient) {
 @Component({
   selector: 'app-delete-subject-or-grade',
   standalone: true,
-  imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule, TranslateModule],
+  imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule, TranslateModule, RouterLink],
   templateUrl: './delete-subject-or-grade.component.html',
   styleUrl: './delete-subject-or-grade.component.scss'
 })
 export class DeleteSubjectOrGradeComponent implements OnInit, OnDestroy{
   private ngUnsubscribe = new Subject<void>();
-  subjectOrGrade:boolean = false
 
-  constructor(public dialogRef: MatDialogRef<DeleteSubjectOrGradeComponent>, @Inject(MAT_DIALOG_DATA) public dataSubject: HomeComponent, @Inject(MAT_DIALOG_DATA) public dataGrade: SpecificSubjectComponent, private subjectService:SubjectService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public dataSubject: HomeComponent, @Inject(MAT_DIALOG_DATA) public dataGrade: SpecificSubjectComponent, private subjectService:SubjectService, private gradeService: GradeService, private  router:Router) {
 
   }
   ngOnDestroy() {
@@ -42,6 +44,13 @@ export class DeleteSubjectOrGradeComponent implements OnInit, OnDestroy{
   }
 
   deleteSubject(){
-    this.subjectService.deleteSubject(this.dataSubject.subjectId).pipe(takeUntil(this.ngUnsubscribe)).subscribe((res)=> {});
+    this.subjectService.deleteSubject(this.dataSubject.subjectId).pipe(takeUntil(this.ngUnsubscribe)).subscribe((res)=> {
+      // this.router.navigate(['/home'])
+    });
+  }
+  deleteGrade(){
+    this.gradeService.deleteGrade(this.gradeService.getGradeId()).pipe(takeUntil(this.ngUnsubscribe)).subscribe((res) => {
+      // this.router.navigate(['/home'])
+    });
   }
 }

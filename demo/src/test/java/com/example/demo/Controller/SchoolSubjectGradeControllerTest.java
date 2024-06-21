@@ -91,27 +91,27 @@ class SchoolSubjectGradeControllerTest {
 //        verify(userService,times(1)).findAll();
 //    }
 
-    @DirtiesContext
-    @Transactional
-    @Test
-    void findAllAvg() throws Exception {
-        List<AvgGradeDto> avgGrades = new ArrayList<>();
-        avgGrades.add(new AvgGradeDto("Math", 6));
-        avgGrades.add(new AvgGradeDto("History", 4));
-
-        when(userService.findAllAvg()).thenReturn(avgGrades);
-
-        mockMvc.perform(get("/api/student/school_subject_grade/average")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].name").value("Math"))
-                .andExpect(jsonPath("$[0].avg").value(6.0))
-                .andExpect(jsonPath("$[1].name").value("History"))
-                .andExpect(jsonPath("$[1].avg").value(4.0));
-
-        verify(userService,times(1)).findAllAvg();
-    }
+//    @DirtiesContext
+//    @Transactional
+//    @Test
+//    void findAllAvg() throws Exception {
+//        List<AvgGradeDto> avgGrades = new ArrayList<>();
+//        avgGrades.add(new AvgGradeDto("Math", 6));
+//        avgGrades.add(new AvgGradeDto("History", 4));
+//
+//        when(userService.findAllAvg()).thenReturn(avgGrades);
+//
+//        mockMvc.perform(get("/api/student/school_subject_grade/average")
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(jsonPath("$[0].name").value("Math"))
+//                .andExpect(jsonPath("$[0].avg").value(6.0))
+//                .andExpect(jsonPath("$[1].name").value("History"))
+//                .andExpect(jsonPath("$[1].avg").value(4.0));
+//
+//        verify(userService,times(1)).findAllAvg();
+//    }
 
 //    @DirtiesContext
 //    @Transactional

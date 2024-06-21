@@ -9,13 +9,15 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class SchoolSubjectGradeDto{
-    private int subject_id;
     private int grade_id;
+    private int subject_id;
     private String date;
+    private int user_id;
 
-    public SchoolSubjectGradeDto(int subjectId, int gradeId, String date) {
-        subject_id = subjectId;
-        grade_id = gradeId;
+    public SchoolSubjectGradeDto(int grade_id, int subject_id, String date, int userId) {
+        this.grade_id = grade_id;
+        this.subject_id = subject_id;
         this.date = date;
+        this.user_id = userId;
     }
 }

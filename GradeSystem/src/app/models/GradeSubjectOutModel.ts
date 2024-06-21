@@ -1,6 +1,7 @@
+import {GradeModel} from "./GradeModel";
+
 export interface GradeSubjectOutModel{
-  id: number
   name: string
-  grade: number
-  date: string
+  subject_id: number
+  gradeDateList:GradeModel[]
 }
