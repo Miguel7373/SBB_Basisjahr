@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton} from "@angular/material/button";
@@ -18,59 +18,45 @@ import {TimeModel} from "../../models/timeModel";
 @Component({
   selector: 'app-add-event',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    MatIcon,
-    MatIconButton,
-    MatTooltip,
-    RouterLink,
-    MatFormField,
-    MatInput,
-    MatLabel,
-    MatButton,
-    MatOption,
-    MatSelect
-  ],
+  imports: [ReactiveFormsModule, MatIcon, MatIconButton, MatTooltip, RouterLink, MatFormField, MatInput, MatLabel, MatButton, MatOption, MatSelect],
   templateUrl: './add-event.component.html',
   styleUrl: './add-event.component.scss'
 })
 export class AddEventComponent implements OnInit {
   startTime: string = JSON.parse(localStorage.getItem('creatingTime') ?? "");
   date: string = JSON.parse(localStorage.getItem('creatingDate') ?? "");
-  newStart: FormControl = new FormControl('10:00');
-  newEnd: FormControl = new FormControl('');
   assignments: string[] = this.assignmentService.getAllAssignmentsName();
-  selectedAssignments: FormControl = new FormControl('');
   timeCodes: string[] = this.timeCodesService.getAllTimeCodesDescriptions();
-  selectedTimeCode: FormControl = new FormControl('');
   usage: string = this.route.snapshot.params['usage'];
   clickedBookingTimeFrom: string = "";
   clickedBookingTimeUntil: string = "";
   clickedBookingAssignment: string = "";
   clickedBookingTimeCode: string = "";
-  startTimeEdit: FormControl = new FormControl('');
-  endTimeEdit: FormControl = new FormControl('');
   assignmentsEdit: string = "";
   timeCodeEdit: string = "";
   currentUser: MemberModel | SuperiorModel | AdminModel | undefined = this.memberService.getCurrentUser()
   editingBooking: TimeModel | undefined;
 
-  constructor(private route: ActivatedRoute,
-              private assignmentService: AssignmentService,
-              private timeCodesService: TimeCodesService,
-              private timeService: TimeService,
-              private memberService: MemberService,) {
+  newStart: FormControl = new FormControl('10:00');
+  newEnd: FormControl = new FormControl('');
+  selectedAssignments: FormControl = new FormControl('');
+  selectedTimeCode: FormControl = new FormControl('');
+  startTimeEdit: FormControl = new FormControl('');
+  endTimeEdit: FormControl = new FormControl('');
+
+
+  constructor(private route: ActivatedRoute, private assignmentService: AssignmentService, private timeCodesService: TimeCodesService, private timeService: TimeService, private memberService: MemberService, private router: Router) {
   }
 
   ngOnInit() {
     this.newStart.reset(this.startTime)
     this.getClickedBooking()
     this.newStart.setValue(this.convertTo24Hour(this.startTime))
-    console.log(this.convertTo24Hour(this.startTime))
     this.endTimeEdit.setValue(this.clickedBookingTimeUntil);
     this.startTimeEdit.setValue(this.clickedBookingTimeFrom);
     this.assignmentsEdit = (this.clickedBookingAssignment);
     this.timeCodeEdit = (this.clickedBookingTimeCode);
+
   }
 
   protected CreateNewBookingForUser() {
@@ -79,13 +65,14 @@ export class AddEventComponent implements OnInit {
       const newDateTimeEnd: Date = new Date();
       let [hoursStart, minutesStart] = this.newStart.value.split(':').map(Number);
       let [hoursEnd, minutesEnd] = this.newEnd.value.split(':').map(Number);
-      newDateTimeStart.setHours(hoursStart);
-      newDateTimeStart.setMinutes(minutesStart);
-      newDateTimeEnd.setHours(hoursEnd);
-      newDateTimeEnd.setMinutes(minutesEnd);
+      newDateTimeStart.setHours(hoursStart, minutesStart);
+      newDateTimeEnd.setHours(hoursEnd, minutesEnd);
       const newDate: Date = new Date(this.date);
-      if (this.selectedAssignments.value && this.selectedTimeCode.value) {
+      if (this.selectedTimeCode.value) {
         this.timeService.createNewBooking(this.currentUser, this.selectedAssignments.value, this.selectedTimeCode.value, newDateTimeStart, newDateTimeEnd, newDate)
+        this.router.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
       } else {
         alert("Please select them all")
       }
@@ -98,12 +85,13 @@ export class AddEventComponent implements OnInit {
       const newEditDateTimeEnd: Date = new Date();
       let [hoursStart, minutesStart] = this.startTimeEdit.value.split(':').map(Number);
       let [hoursEnd, minutesEnd] = this.endTimeEdit.value.split(':').map(Number);
-      newEditDateTimeStart.setHours(hoursStart);
-      newEditDateTimeStart.setMinutes(minutesStart);
-      newEditDateTimeEnd.setHours(hoursEnd);
-      newEditDateTimeEnd.setMinutes(minutesEnd);
+      newEditDateTimeStart.setHours(hoursStart, minutesStart);
+      newEditDateTimeEnd.setHours(hoursEnd, minutesEnd);
       const newDate: Date = new Date(this.date);
       if (this.editingBooking) this.timeService.editBooking(this.editingBooking, this.currentUser, this.assignmentsEdit, this.timeCodeEdit, newEditDateTimeStart, newEditDateTimeEnd, newDate)
+      this.router.navigate(['/home']).then(() => {
+        window.location.reload();
+      });
     }
   }
 

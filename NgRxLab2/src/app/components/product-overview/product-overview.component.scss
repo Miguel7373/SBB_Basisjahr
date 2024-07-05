@@ -1,0 +1,31 @@
+main{
+  margin-top: 10vh;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  p {
+    color: var(--primaryColor);
+    margin-left: 80vw;
+    margin-bottom: 7vh;
+    z-index: 100000;
+    font-size: 5em;
+    transform: rotate(40deg);
+    transform-origin: 0 100%;
+    white-space: nowrap;
+  }
+
+  #shop{
+    width: 80%;
+    height: 100%;
+    overflow: scroll;
+
+    th{
+      z-index: 1000;
+      position: sticky;
+      top: 0;
+    }
+  }
+}

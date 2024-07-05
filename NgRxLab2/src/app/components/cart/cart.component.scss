@@ -1,0 +1,17 @@
+main{
+  margin-top: 10vh;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  #shop{
+    th{
+      z-index: 1000;
+      position: sticky;
+      top: 0;
+    }
+    width: 80%;
+    height: 100%;
+    overflow: scroll;
+  }
+}

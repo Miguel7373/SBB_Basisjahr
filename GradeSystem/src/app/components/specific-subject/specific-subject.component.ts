@@ -21,7 +21,6 @@ import {TranslateModule} from "@ngx-translate/core";
 import {GradeService} from "../../services/gradeService/grade.service";
 import {DecimalPipe, NgStyle} from "@angular/common";
 import {Subject, takeUntil} from "rxjs";
-import {AvgGradeModel} from "../../models/AvgGradeModel";
 import {UserService} from "../../services/UserService/user-service.service";
 import {GradeModel} from "../../models/GradeModel";
 
@@ -60,13 +59,13 @@ export class SpecificSubjectComponent implements OnInit, OnDestroy{
   subjectName: string = ""
   date: string = ""
   bool:boolean = false
-  private ngUnsubscribe = new Subject<void>();
+  private ngUnsubscribe:Subject<void> = new Subject<void>();
   userData: any;
 
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog, protected gradeService: GradeService, private userService: UserService) {
   }
-  ngOnDestroy() {
+  ngOnDestroy():void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
@@ -82,7 +81,6 @@ export class SpecificSubjectComponent implements OnInit, OnDestroy{
             this.dataSource = this.dataSource.filter(data => data.name === this.specificSubject);
             this.dataSource.forEach(d => this.dataSource2 = d.gradeDateList);
             this.dataSource.forEach(x => this.gradeService.saveSubjectId(x.subject_id))
-            console.log();
           }
         );
       }
@@ -91,7 +89,7 @@ export class SpecificSubjectComponent implements OnInit, OnDestroy{
 
   }
 
-  openDialog(grade: number, name: string, date: string) {
+  openDialog(grade: number, name: string, date: string):void {
     this.grade = grade;
     this.subjectName = name;
     this.date = date;
@@ -105,8 +103,9 @@ export class SpecificSubjectComponent implements OnInit, OnDestroy{
     });
   }
 
-  saveGradeData(gradeId: number ) {
+  saveGradeData(gradeId: number , grade:number):void {
     this.gradeService.saveGradeId(gradeId);
+    this.gradeService.saveGrade(grade)
   }
 
   rightColor(grade: number): string {

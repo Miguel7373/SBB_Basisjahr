@@ -5,7 +5,7 @@ import {TimecodesModel} from "../../models/timecodesModel";
   providedIn: 'root'
 })
 export class TimeCodesService {
-  private timecodes: TimecodesModel[] = []
+  timecodes: TimecodesModel[] = []
 
   constructor() {
     if (!(localStorage.getItem('timecodes')) || JSON.parse((localStorage.getItem('timecodes')) ?? "").length === 0) {

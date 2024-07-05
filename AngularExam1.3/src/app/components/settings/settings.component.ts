@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {MatTooltip} from "@angular/material/tooltip";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {MemberService} from "../../services/memberService/member.service";
 import {AdminModel, MemberModel, SuperiorModel} from "../../models/memberModel";
 import {MatFormField, MatInput, MatLabel} from "@angular/material/input";
@@ -28,14 +28,32 @@ export class SettingsComponent implements OnInit {
   passwordOrPicture: boolean = true;
   newAssignmentName: FormControl = new FormControl('');
   newTimeCodeName: FormControl = new FormControl('');
+
+
+
   newPassword: FormControl = new FormControl('');
   newPicture: FormControl = new FormControl('')
 
-  constructor(protected memberService: MemberService, private assignmentService: AssignmentService, private timecodesService: TimeCodesService) {
+  constructor(protected memberService: MemberService, private assignmentService: AssignmentService, private timecodesService: TimeCodesService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.currentUser = this.memberService.getCurrentUser();
+    this.newPassword.setValue(this.memberService.getCurrentUser()?.password);
+    this.newPicture.setValue(this.memberService.getCurrentUser()?.picture);
+  }
+
+  checkForType(member: string): string {
+
+    if (this.memberService.getAllAdminsName().includes(member)) {
+      return 'Admin'
+    } else if (this.memberService.getAllMembersName().includes(member)) {
+      return 'Member'
+    } else if (this.memberService.getAllSuperiorName().includes(member)){
+      return 'Superior'
+    }else {
+      return "Deleted User";
+    }
   }
 
   protected loadAllMembers(): void {
@@ -56,6 +74,7 @@ export class SettingsComponent implements OnInit {
 
   protected deleteMember(member: string) {
     this.memberService.deleteMember(member);
+    window.location.reload();
   }
 
   protected createTimeCode(): void {
@@ -74,6 +93,9 @@ export class SettingsComponent implements OnInit {
       this.popUpEdit = !this.popUpEdit;
       if (this.currentUser) {
         this.memberService.editMembersOwnProfile(this.currentUser, this.newPassword.value, this.newPicture.value, this.passwordOrPicture);
+        this.router.navigate(['/home']).then(() => {
+          return window.location.reload();
+        });
       }
     }
   }

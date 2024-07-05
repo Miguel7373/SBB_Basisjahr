@@ -15,7 +15,7 @@
     <p>{{'GRADE' | translate}}:{{ dataGrade.grade }}</p>
     <p>{{'DATE' | translate}}: {{dataGrade.date}}</p>
     <div class="buttons">
-      <button mat-raised-button [routerLink]="['/specific-Subject/']" >{{'CANCEL' | translate}}</button>
+      <button mat-raised-button [routerLink]="['/home']" >{{'CANCEL' | translate}}</button>
       <button mat-raised-button (click)="deleteGrade()">{{'SUBMIT' | translate}}</button>
     </div>
   </div>

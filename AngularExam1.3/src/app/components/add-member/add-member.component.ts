@@ -13,17 +13,7 @@ import {AdminModel, MemberModel, SuperiorModel} from "../../models/memberModel";
 @Component({
   selector: 'app-add-member',
   standalone: true,
-  imports: [
-    MatFormField,
-    MatInput,
-    MatLabel,
-    ReactiveFormsModule,
-    MatButton,
-    RouterLink,
-    MatCheckbox,
-    MatOption,
-    MatSelect
-  ],
+  imports: [MatFormField, MatInput, MatLabel, ReactiveFormsModule, MatButton, RouterLink, MatCheckbox, MatOption, MatSelect],
   templateUrl: './add-member.component.html',
   styleUrl: './add-member.component.scss'
 })
@@ -51,41 +41,27 @@ export class AddMemberComponent implements OnInit {
   }
 
   protected onSubmit() {
-    if (this.newUsername.value && this.newUserSurname.value && this.newUserFirstname.value && this.newUserPassword.value && this.newUserDepartment.value && this.member.value) {
-      if (!this.memberService.getAllMembersName().includes(this.newUsername.value) && !this.memberService.getAllSuperiorName().includes(this.newUsername.value) && !this.memberService.getAllAdminsName().includes(this.newUsername.value)){
-      const memberId: number = this.memberService.getTotalCount() + 1;
-      if (this.creationType === 'Superior') {
-        const memberData: SuperiorModel = {
-          memberId: memberId,
-          username: this.newUsername.value,
-          surname: this.newUserSurname.value,
-          firstname: this.newUserFirstname.value,
-          password: this.newUserPassword.value,
-          department: this.newUserDepartment.value,
-          picture: this.newUserPicture.value ?? undefined,
-          members: this.member.value,
-          bookings: []
-        }
-        this.memberService.addMember(memberData, this.creationType);
-      } else if (this.creationType === 'Admin' || this.creationType === 'Member') {
-        const memberData: MemberModel | AdminModel = {
-          memberId: memberId,
-          username: this.newUsername.value,
-          surname: this.newUserSurname.value,
-          firstname: this.newUserFirstname.value,
-          password: this.newUserPassword.value,
-          department: this.newUserDepartment.value,
-          picture: this.newUserPicture.value ?? undefined,
-          bookings: []
-        };
-        this.memberService.addMember(memberData, this.creationType);
-      }
+    if (this.newUsername.value && this.newUserSurname.value && this.newUserFirstname.value && this.newUserPassword.value && this.newUserDepartment.value) {
+      if (!this.memberService.getAllMembersName().includes(this.newUsername.value) && !this.memberService.getAllSuperiorName().includes(this.newUsername.value) && !this.memberService.getAllAdminsName().includes(this.newUsername.value)) {
+        const memberId: number = this.memberService.getTotalCount() + 1;
+          const memberData: MemberModel | AdminModel | SuperiorModel = {
+            memberId: memberId,
+            username: this.newUsername.value,
+            surname: this.newUserSurname.value,
+            firstname: this.newUserFirstname.value,
+            password: this.newUserPassword.value,
+            department: this.newUserDepartment.value,
+            picture: this.newUserPicture.value ?? undefined,
+            ...(this.member.value && { members: this.member.value }),
+            bookings: []
 
-      console.log('Member added successfully');
+          };
+          this.memberService.addMember(memberData, this.creationType);
+        alert('Member added successfully');
       }
       this.resetFormFields();
 
-    }
+    }else alert('Please fill them all')
   }
 
   private resetFormFields() {

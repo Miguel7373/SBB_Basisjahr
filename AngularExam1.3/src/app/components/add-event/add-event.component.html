@@ -19,7 +19,7 @@
       </mat-form-field>
       <mat-form-field class="input">
         <mat-label>Assignments</mat-label>
-        <mat-select [formControl]="selectedAssignments" required>
+        <mat-select [formControl]="selectedAssignments">
           @for (assignment of this.assignments; track assignment) {
             <mat-option [value]="assignment">{{ this.assignment }}</mat-option>
           }
@@ -35,7 +35,7 @@
       </mat-form-field>
       <footer>
         <button mat-raised-button routerLink="/home">Cancel</button>
-        <button mat-raised-button (click)="CreateNewBookingForUser()" routerLink="/home">
+        <button mat-raised-button (click)="CreateNewBookingForUser()">
           Submit
         </button>
       </footer>
@@ -60,10 +60,9 @@
         <mat-label>EndTime</mat-label>
         <input matInput type="time" [formControl]="endTimeEdit" required>
       </mat-form-field>
-
       <mat-form-field class="input">
         <mat-label>Assignments</mat-label>
-        <mat-select [(value)]="assignmentsEdit" required>
+        <mat-select [(value)]="assignmentsEdit">
           @for (assignment of assignments; track assignment) {
             <mat-option [value]="assignment">{{ assignment }}</mat-option>
           }
@@ -77,14 +76,11 @@
           }
         </mat-select>
       </mat-form-field>
-
       <footer>
-        <button (click)="deleteBooking()" mat-icon-button matTooltip="Delete"
-                routerLink="/home">
+        <button (click)="deleteBooking()" mat-icon-button matTooltip="Delete" routerLink="/home">
           <mat-icon>delete</mat-icon>
         </button>
-        <button (click)="editBooking()" mat-icon-button matTooltip="Edit"
-                routerLink="/home">
+        <button (click)="editBooking()" mat-icon-button matTooltip="Edit" >
           <mat-icon>edit</mat-icon>
         </button>
       </footer>

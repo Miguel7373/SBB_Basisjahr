@@ -21,16 +21,16 @@ function HttpLoaderFactory(http: HttpClient) {
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'GradeSystem';
+  title:string = 'GradeSystem';
 
   constructor(private translateService: TranslateService) {}
 
-  ngOnInit() {
+  ngOnInit():void {
     this.translateService.addLangs(Environment.languages);
     this.changeLanguage('de')
   }
 
-  changeLanguage(lang: string) {
+  changeLanguage(lang: string):void {
     this.translateService.use(lang);
   }
 

@@ -2,20 +2,33 @@
   <header>
     <p id="creationTitle">Edit {{ this.userName }}</p>
   </header>
-  <div id="CreateMemberData">
-    <mat-form-field>
-      <mat-label>Select an option</mat-label>
-      <mat-select [(value)]="selected" (click)="loadAllMembers()">
-        <mat-option>None</mat-option>
-        @for (attributes of allAttributes; track $index) {
-          <div>
-            <mat-option value="{{this.attributes}}">{{ attributes }}</mat-option>
-          </div>
-        }
-      </mat-select>
-    </mat-form-field>
-    @if (this.selected != undefined) {
-      @if (this.selected === "members") {
+  <form [formGroup]="newData">
+    <div id="CreateMemberData">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input formControlName="newUsername" matInput required type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Surname</mat-label>
+        <input formControlName="newSurname" matInput required type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Firstname</mat-label>
+        <input formControlName="newFirstname" matInput required type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input formControlName="newPassword" matInput required type="password">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Department</mat-label>
+        <input formControlName="newDepartment" matInput required type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Picture</mat-label>
+        <input formControlName="newPicture" matInput type="text">
+      </mat-form-field>
+      @if (this.memberService.getAllSuperiorName().includes(userName)) {
         <mat-form-field>
           <mat-label>Members</mat-label>
           <mat-select (click)="allMembersToAssign()" [formControl]="member" multiple>
@@ -24,22 +37,11 @@
             }
           </mat-select>
         </mat-form-field>
-
-      } @else if (this.selected === 'password') {
-        <mat-form-field>
-          <mat-label>{{this.selected}}</mat-label>
-          <input matInput type="password" [formControl]="newData" required>
-        </mat-form-field>
-      } @else {
-        <mat-form-field>
-          <mat-label>{{this.selected}}</mat-label>
-          <input matInput type="text" [formControl]="newData" required>
-        </mat-form-field>
       }
-    }
-    <div id="submitButtons">
-      <button mat-raised-button (click)="onSubmit()" routerLink="/settings">Submit</button>
-      <button mat-raised-button routerLink="/settings">Cancel</button>
+      <div id="submitButtons">
+        <button (click)="onSubmit()" mat-raised-button routerLink="/settings">Submit</button>
+        <button mat-raised-button routerLink="/settings">Cancel</button>
+      </div>
     </div>
-  </div>
+  </form>
 </main>

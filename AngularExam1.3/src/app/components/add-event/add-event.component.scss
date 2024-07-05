@@ -1,10 +1,9 @@
-$myBlue: #92A8D1;
 header {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: $myBlue;
+  background-color: var(--primaryColor);
   height: 10vh;
 
   .eventTitle {
@@ -29,7 +28,7 @@ main {
     flex-direction: column;
     align-content: space-between;
     justify-content: center;
-    background-color: $myBlue;
+    background-color: var(--primaryColor);
     width: 40vh;
     height: 60vh;
     border-radius: 20px;

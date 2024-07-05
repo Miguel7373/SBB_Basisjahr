@@ -10,21 +10,27 @@ export class AssignmentService {
   constructor() {
     if (!(localStorage.getItem('assignments'))) {
       this.assignments.push({
-        assignmentId: 1,
-        text: "It Team"
+        assignmentId: 1, text: "It Team"
       }, {
-        assignmentId: 2,
-        text: "OutDorWork"
+        assignmentId: 2, text: "OutDorWork"
       }, {
-        assignmentId: 3,
-        text: "Dogs"
+        assignmentId: 3, text: "Dogs"
       })
     } else {
-      this.assignments = [
-        ...JSON.parse(localStorage.getItem('assignments') ?? ""),
-      ]
+      this.assignments = [...JSON.parse(localStorage.getItem('assignments') ?? ""),]
     }
     this.setLocalStorageData();
+  }
+
+  addAssignment(newAssignmentName: string): void {
+    if (!this.getAssignmentNames().includes(newAssignmentName)) {
+      this.assignments.push({assignmentId: this.totalCountOfAssignments(), text: newAssignmentName});
+      localStorage.setItem('assignments', JSON.stringify(this.assignments))
+    }
+  }
+
+  getAllAssignmentsName(): string[] {
+    return this.assignments.map(assignment => assignment.text)
   }
 
   private setLocalStorageData(): void {
@@ -35,13 +41,6 @@ export class AssignmentService {
     return this.assignments.map(assignment => assignment.text)
   }
 
-   addAssignment(newAssignmentName: string): void {
-    if (!this.getAssignmentNames().includes(newAssignmentName)) {
-      this.assignments.push({assignmentId: this.totalCountOfAssignments(), text: newAssignmentName});
-      localStorage.setItem('assignments', JSON.stringify(this.assignments))
-    }
-  }
-
   private totalCountOfAssignments(): number {
     const storedAssignments: string | null = localStorage.getItem('assignments');
     if (storedAssignments) {
@@ -50,9 +49,5 @@ export class AssignmentService {
     }
     return 1
 
-  }
-
-   getAllAssignmentsName(): string[] {
-    return this.assignments.map(assignment => assignment.text)
   }
 }

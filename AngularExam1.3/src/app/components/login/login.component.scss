@@ -1,13 +1,14 @@
-$myBlue: #92A8D1;
-html{
+html {
   overflow: hidden;
 }
-p{
+
+p {
   padding: 0;
   margin: 0;
 }
-main{
-  background-color:#F0EFEB;
+
+main {
+  background-color: #F0EFEB;
   height: 90vh;
   width: 100%;
   display: flex;
@@ -16,16 +17,18 @@ main{
   flex-direction: column;
   overflow: hidden;
 }
-header{
+
+header {
   display: flex;
-  background-color:$myBlue;
+  background-color: var(--primaryColor);
   height: 10vh;
   width: 100%;
   align-items: center;
   justify-content: center;
 
 }
-#loginBox{
+
+#loginBox {
   align-items: center;
   border-radius: 3vh;
   display: flex;
@@ -34,24 +37,28 @@ header{
   min-width: 25vw;
   max-width: 50vw;
   max-height: 100vh;
-  background-color: $myBlue;
+  background-color: var(--primaryColor);
 
 }
-#title{
+
+#title {
   font-size: 6vh;
   color: white;
 }
-.LoginInput{
+
+.LoginInput {
   padding: 4vh 1vh 0.02vh 1vh !important;
   height: 7vh !important;
   width: 20vw !important;
 }
-#loginBoxTitle{
+
+#loginBoxTitle {
   padding-top: 4vh;
   font-size: 4vh;
   color: white;
 }
-#Button{
+
+#Button {
   font-size: 2vh;
   width: 8vw;
   height: 4vh;

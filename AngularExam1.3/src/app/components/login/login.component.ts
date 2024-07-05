@@ -13,18 +13,20 @@ import {MatButton, MatIconButton} from "@angular/material/button";
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
   username: FormControl = new FormControl('');
   userPassword: FormControl = new FormControl('');
 
-  constructor(private memberService: MemberService) {
+  constructor(protected memberService: MemberService) {
   }
+
   ngOnInit() {
     localStorage.setItem('currentUser', "");
+
   }
 
   protected login(): void {
-    this.memberService.validatePassword(this.username.value, this.userPassword.value);
+    this.memberService.login(this.username.value, this.userPassword.value);
   }
 
 

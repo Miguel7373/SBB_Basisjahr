@@ -9,7 +9,7 @@ import {loginGuard} from "./guards/login.guard";
 export const routes: Routes = [
   {path: "", redirectTo: "login", pathMatch: "full"},
   {path: "login", component: LoginComponent},
-  {path: "home", component: HomeComponent},
+  {path: "home", component: HomeComponent, canActivate: [loginGuard]},
   {path: "subject/:usage", component: EditOrAddSubjectComponent, canActivate: [loginGuard]},
   {path: "specific-Subject/:subject", component: SpecificSubjectComponent, canActivate: [loginGuard]},
   {path: "grade/:subject/:usage", component: EditOrAddGradeComponent, canActivate: [loginGuard]}

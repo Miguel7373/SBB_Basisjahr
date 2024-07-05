@@ -3,7 +3,7 @@ import {MatButton} from "@angular/material/button";
 import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatIcon} from "@angular/material/icon";
 import {MatInput, MatInputModule} from "@angular/material/input";
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {MatDatepicker, MatDatepickerModule} from "@angular/material/datepicker";
 import {provideNativeDateAdapter} from "@angular/material/core";
 import {TranslateModule} from "@ngx-translate/core";
@@ -41,38 +41,42 @@ export class EditOrAddGradeComponent implements OnInit, OnDestroy{
   usageOfComponent:boolean = true;
   editOrAddGrade:FormControl = new FormControl('');
   dateOfNewGrade:FormControl = new FormControl('');
-  private ngUnsubscribe = new Subject<void>();
-  user: any;
+  private ngUnsubscribe:Subject<void> = new Subject<void>();
+  user:any;
 
 
-  constructor(protected gradeService:GradeService, private route:ActivatedRoute, private userService:UserService) {
+  constructor(protected gradeService:GradeService, private route:ActivatedRoute, private userService:UserService,private  router:Router) {
   }
 
-  ngOnDestroy() {
+  ngOnDestroy():void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
-  ngOnInit() {
+  ngOnInit():void {
     this.usageOfComponent = this.route.snapshot.params['usage'] === "add";
     this.subjectToAddGrade = this.gradeService.getSubjectId();
-    console.log(this.subjectToAddGrade);
     if (!this.usageOfComponent){
-      // this.editOrAddGrade.setValue(this.gradeService.getGradeData().grade)
+      this.editOrAddGrade.setValue(this.gradeService.getGrade())
     }
   }
-  addGrade(){
+  addGrade():void{
     if (this.editOrAddGrade.valid && this.dateOfNewGrade.valid && this.editOrAddGrade.value >= 1 && this.editOrAddGrade.value <= 6) {
       const gradeInId:number = this.convertToGradeId(this.editOrAddGrade.value);
       this.userService.getCurrentUser().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{
       this.user = data
-      this.gradeService.addGrade(this.subjectToAddGrade, gradeInId, this.dateOfNewGrade.value.toDateString(), this.user.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe((res) => {})
+      this.gradeService.addGrade(this.subjectToAddGrade, gradeInId, this.dateOfNewGrade.value.toDateString(), this.user.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe((res) => {
+         this.router.navigate(['/home'])
+
+      });
       })
     }else alert("Nur Nothen von 1 bis 6 erlaubt")
   }
-  editGrade(){
+  editGrade():void{
     if (this.editOrAddGrade.valid && this.editOrAddGrade.value >= 1 && this.editOrAddGrade.value <= 6){
       const gradeInId:number = this.convertToGradeId(this.editOrAddGrade.value);
-        this.gradeService.editGrade(this.gradeService.getGradeId(), gradeInId).pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{});
+        this.gradeService.editGrade(this.gradeService.getGradeId(), gradeInId).pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{
+          this.router.navigate(['/home'])
+        });
     }
   }
   convertToGradeId(grade:number){

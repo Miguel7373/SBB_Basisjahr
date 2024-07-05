@@ -2,12 +2,14 @@
   <main>
     <div id="createNewButton">
       <h1>{{ 'ALLSUBJECTS' | translate }}</h1>
+      @if (userData.admin) {
       <button [routerLink]="['/subject' + '/add']" color="primary" mat-raised-button>{{ 'ADD' | translate }}</button>
+      }
     </div>
     <table [dataSource]="dataSource" class="mat-elevation-z8" mat-table>
       <ng-container matColumnDef="name">
         <th *matHeaderCellDef mat-header-cell>{{ 'SUBJECTNAME' | translate }}</th>
-        <td *matCellDef="let element" [routerLink]="['/specific-Subject/' + element.name]"
+        <td *matCellDef="let element" [routerLink]="['/specific-Subject/' + element.name] " (click)="gradeService.saveSubjectId(element.subjectId)"
             mat-cell> {{ element.name }}
         </td>
       </ng-container>
@@ -23,7 +25,7 @@
           'justify-content': 'center',
           'align-items': 'center',
           'border-radius': '100%'}">
-          {{ gradeService.roundToSpecificNumber(element.avg) }}
+          {{ this.showAvg(element.avg) }}
         </span>
         </td>
       </ng-container>

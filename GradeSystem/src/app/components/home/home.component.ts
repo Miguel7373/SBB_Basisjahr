@@ -58,32 +58,36 @@ export class HomeComponent implements OnInit, OnDestroy {
   subjectName: string = ""
   subjectId: number = 0;
   bool: boolean = true
-  private ngUnsubscribe = new Subject<void>();
+  private ngUnsubscribe:Subject<void> = new Subject<void>();
 
-  constructor(public dialog: MatDialog, protected gradeService: GradeService, protected subjectService: SubjectService, private userService:UserService) {
+  constructor(private dialog: MatDialog, protected gradeService: GradeService, protected subjectService: SubjectService, private userService:UserService) {
   }
 
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
 
-  ngOnInit() {
+
+  ngOnInit():void {
     this.userService.getCurrentUser().pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-      (user: any) => {
+      (user: any):void => {
         this.userData = user;
         this.gradeService.getAVGData(this.userData.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe(
-          (data: AvgGradeModel[]) => {
+          (data: AvgGradeModel[]):void => {
             this.dataSource = data;
+            this.saveNameOfSubjects();
           }
         );
       }
     );
+
+  }
+
+  ngOnDestroy():void {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
 
 
-  openDialog(avg: number, name: string, id: number) {
+  openDialog(avg: number, name: string, id: number):void {
     this.average = avg;
     this.subjectName = name;
     this.subjectId = id;
@@ -98,17 +102,28 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   }
 
-  saveSubjectToEdit(subject: string, id: number) {
+  saveSubjectToEdit(subject: string, id: number):void {
     this.subjectService.saveSubjectName(subject, id)
   }
 
   rightColor(avg: number): string {
-    if (avg >= 4.5) {
+    if (avg >= 4.5 && avg <= 6) {
       return '#4B9A4C';
-    } else if (avg < 4) {
+    } else if (avg < 4 && avg >= 1) {
       return '#dd543a';
-    } else {
+    } else if (avg >= 4 &&  avg < 4.5){
       return '#ffb347';
+    }else {
+      return "";
     }
+  }
+  showAvg(avg: number):string{
+    const newAvg:number  = this.gradeService.roundToSpecificNumber(avg);
+    if (newAvg > 0){
+      return newAvg.toString()
+    }else return  "-"
+  }
+  saveNameOfSubjects(){
+    this.subjectService.saveNameOfSubjects(this.dataSource)
   }
 }

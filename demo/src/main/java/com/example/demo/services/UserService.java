@@ -41,7 +41,6 @@ public class UserService implements UserServiceInterface {
             List<GradeDateDto> allGrades = userRepository.findAll(s.getSubject_id(),user_id);
             newOutDto newDto = new newOutDto(s.getName(), s.getSubject_id(), allGrades);
             combinedList.add(newDto);
-//            newDto.getGrade().stream().forEach(System.out::println);
         });
         return combinedList;
     }

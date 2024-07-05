@@ -30,20 +30,20 @@ export class LoginComponent implements OnInit, OnDestroy {
   password: FormControl = new FormControl('');
   fullName: FormControl = new FormControl('')
   loginOrRegister: boolean = true;
-  private ngUnsubscribe = new Subject<void>();
+  private ngUnsubscribe:Subject<void> = new Subject<void>();
 
   constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) {
   }
 
-  ngOnDestroy() {
+  ngOnDestroy():void {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
 
-  ngOnInit() {
+  ngOnInit():void {
   }
 
-  login() {
+  login():void {
     if (this.email.valid && this.password.valid) {
       this.userService.login(this.email.value, this.password.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data) => {
         localStorage.setItem('token', data.token)
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  register() {
+  register():void {
     if (this.password.valid && this.email.valid && this.fullName.valid) {
       this.userService.signup(this.email.value, this.password.value, this.fullName.value).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data:UserModel) => {
         this.router.navigate(['/login'])
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  goToRegister() {
+  goToRegister():void {
     this.loginOrRegister = !this.loginOrRegister;
   }
 }

@@ -17,7 +17,6 @@ public class SchoolSubjectGradeController {
 
     @PostMapping("/school_subject_grade/grade")
     public void createNewGrade(@RequestBody SchoolSubjectGradeDto newGrade) {
-        System.out.println(newGrade.getGrade_id() +" "+ newGrade.getSubject_id() +" "+ newGrade.getDate() +" "+ newGrade.getUser_id());
         userService.createNewGrade(newGrade);
     }
 

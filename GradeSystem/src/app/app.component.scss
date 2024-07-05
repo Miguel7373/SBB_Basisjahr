@@ -1,6 +1,8 @@
 header{
   display: flex;
   justify-content: space-between;
+  background-color: var(--primaryColor);
+  color: white;
   #languages{
     padding-right: 2vw;
   }

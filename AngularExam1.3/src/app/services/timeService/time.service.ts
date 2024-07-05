@@ -11,8 +11,8 @@ export class TimeService {
   }
 
   createNewBooking(currentUser: MemberModel | AdminModel | SuperiorModel, assignmentName: string, timeCodeName: string, startTime: Date, endTime: Date, date: Date): void {
-    const decimalStartTime = startTime.getHours() + (startTime.getMinutes() / 60);
-    const decimalEndTime = endTime.getHours() + (endTime.getMinutes() / 60);
+    const decimalStartTime: number = startTime.getHours() + (startTime.getMinutes() / 60);
+    const decimalEndTime: number = endTime.getHours() + (endTime.getMinutes() / 60);
     if (decimalEndTime - decimalStartTime >= 0.25) {
       if (startTime < endTime && startTime && endTime) {
         let newBookings: TimeModel[] = currentUser.bookings;
@@ -22,35 +22,31 @@ export class TimeService {
         const newBooking: TimeModel = {
           timeFrom: startTime, timeUntil: endTime, date: date, assignment: assignmentName, timeCode: timeCodeName
         }
-        console.log(newBooking)
         if (this.validateNoOverlappingBookings(newBooking, currentUser.bookings) || currentUser.bookings.length === 0) {
           newBookings.push(newBooking);
           if (this.memberService.getAllMembersName().includes(currentUser.username)) {
-            members = this.memberService.getMemberArray().map(member => member.memberId === currentUser.memberId ? {
-              ...member, bookings: newBookings
-            } : member);
-            localStorage.setItem('members', JSON.stringify(members));
+            localStorage.setItem('members', JSON.stringify(this.createBooking(members, newBookings , this.memberService.getMemberArray(), currentUser)));
           } else if (this.memberService.getAllAdminsName().includes(currentUser.username)) {
-            admins = this.memberService.getAdminArray().map(admin => admin.memberId === currentUser.memberId ? {
-              ...admin, bookings: newBookings
-            } : admin);
-            localStorage.setItem('admins', JSON.stringify(admins));
+            localStorage.setItem('admins', JSON.stringify(this.createBooking(admins, newBookings , this.memberService.getAdminArray(), currentUser)));
           } else if (this.memberService.getAllSuperiorName().includes(currentUser.username)) {
-            superiors = this.memberService.getSuperiorArray().map(superior => superior.memberId === currentUser.memberId ? {
-              ...superior, bookings: newBookings
-            } : superior);
-            localStorage.setItem('superiors', JSON.stringify(superiors));
+            localStorage.setItem('superiors', JSON.stringify(this.createBooking(superiors, newBookings , this.memberService.getSuperiorArray(), currentUser)));
           }
         } else {
-          alert("Du huso gib nid z glichä i eywa");
+          alert("You can't work at the same Time");
         }
       } else {
-        alert("eywa was minus zit gschaffent bisch du dum ja");
+        alert("You cant work minus hours");
       }
-    }else {
+    } else {
       alert("The Booking has to be longer than 15 minutes")
     }
     this.memberService.setCurrentUser();
+  }
+  createBooking(users:MemberModel[] | AdminModel[] | SuperiorModel[], newBookings: TimeModel[], userArray: MemberModel[] | AdminModel[] | SuperiorModel[], currentUser:MemberModel | AdminModel | SuperiorModel): MemberModel[] | AdminModel[] | SuperiorModel[] {
+    users = userArray.map(user => user.memberId === currentUser.memberId ? {
+      ...user, bookings: newBookings
+    } : user);
+    return users
   }
 
   editBooking(editingBooking: TimeModel, currentUser: MemberModel | AdminModel | SuperiorModel, newAssignmentName: string, newTimeCodeName: string, newStartTime: Date, newEndTime: Date, newDate: Date): void {
@@ -101,9 +97,7 @@ export class TimeService {
           timeUntil: newEndTime,
           date: newDate
         };
-        console.log(currentMember.bookings.filter(booking => booking !== JSON.parse(JSON.stringify(editingBooking))), currentMember.bookings, JSON.parse(JSON.stringify(editingBooking)))
         const newCurrentMember = currentMember.bookings.filter(booking => booking.date !== JSON.parse(JSON.stringify(editingBooking)).date && (booking.timeFrom !== JSON.parse(JSON.stringify(editingBooking)).timeFrom || booking.timeUntil !== JSON.parse(JSON.stringify(editingBooking)).timeUntil))
-        console.log(newCurrentMember)
         if (this.validateNoOverlappingBookings(newBooking, newCurrentMember)) {
           currentMember.bookings[bookingIndex].assignment = newAssignmentName;
           currentMember.bookings[bookingIndex].timeCode = newTimeCodeName;
@@ -111,7 +105,7 @@ export class TimeService {
           currentMember.bookings[bookingIndex].timeUntil = newEndTime;
           currentMember.bookings[bookingIndex].date = newDate;
         } else {
-          alert("Error: Overlapping bookings detected. Changes not applied. HS");
+          alert("Error: Overlapping bookings detected. Changes not applied.");
         }
       }
     }
@@ -127,9 +121,9 @@ export class TimeService {
     if (bookings.length !== 0) {
       for (const booking of bookings) {
         const newDate: Date = new Date(booking.date)
-        const nevio: string = newDate.toLocaleDateString("de-DE")
-        const raffi: string = newBooking.date.toLocaleDateString("de-DE")
-        if (raffi === nevio) {
+        const newRightDate: string = newDate.toLocaleDateString("de-DE")
+        const newBookingDate: string = newBooking.date.toLocaleDateString("de-DE")
+        if (newBookingDate === newRightDate) {
           const bookingTimeFrom: Date = new Date(booking.timeFrom)
           const bookingTimeUntil: Date = new Date(booking.timeUntil)
           if (!(bookingTimeUntil <= newBooking.timeFrom || newBooking.timeUntil <= bookingTimeFrom)) {
@@ -143,13 +137,24 @@ export class TimeService {
     }
   }
 
-  enoughLunchBrake(bookings: TimeModel[]): boolean {
-    let enoughLunchBrakeInADay: boolean = false;
+  enoughLunchBrake(bookings: TimeModel[], date: Date): boolean {
     let totalWorkedTimeInMinutes: number = 0;
     let totalWorkedTimeInHours: number = 0;
-    const currentDate: Date = new Date()
-    if (bookings.length !== 0) {
-      for (let booking of bookings) {
+    const currentDate: Date = date;
+    let newDateBookings: TimeModel[] = this.newBookingsInRightDateFormatArray(bookings);
+    newDateBookings = newDateBookings.filter(booking => new Date(booking.date).getDay() === currentDate.getDay());
+    if (newDateBookings.length >= 2) {
+      newDateBookings = newDateBookings.sort((a, b) => {
+        const timeA:number = new Date(a.timeFrom).getHours() + (new Date(a.timeFrom).getMinutes() / 60);
+        const timeB:number = new Date(b.timeFrom).getHours() + (new Date(b.timeFrom).getMinutes() / 60);
+        return timeA - timeB;
+      });
+      let highestBreakTime:number = 0;
+      for (let i = 0; i < newDateBookings.length - 1; i++) {
+        const breakTime: number = ((newDateBookings[i + 1].timeFrom).getHours() + (new Date(newDateBookings[i + 1].timeFrom).getMinutes() / 60) - ((newDateBookings[i].timeUntil).getHours() + (new Date(newDateBookings[i].timeUntil).getMinutes() / 60)));
+        if (breakTime > highestBreakTime) highestBreakTime = breakTime;
+      }
+      for (let booking of newDateBookings) {
         const newBookingDateTimeFrom: Date = new Date(booking.timeFrom);
         const newBookingDateTimeUntil: Date = new Date(booking.timeUntil);
         if (booking.timeCode === 'Work') {
@@ -161,18 +166,11 @@ export class TimeService {
           }
         }
       }
-      const newDateBookings: TimeModel[] = this.newBookingsInRightDateFormatArray(bookings)
-      const bookingLength: number = newDateBookings.length - 1;
-      const totalTimeInWorkplace: number = (newDateBookings[bookingLength].timeUntil.getHours() + (newDateBookings[bookingLength].timeUntil.getMinutes() / 60)) - (newDateBookings[0].timeFrom.getHours() + (newDateBookings[0].timeFrom.getMinutes() / 60));
-      totalWorkedTimeInHours += (totalWorkedTimeInMinutes / 60);
-      const totalBrakeTime: number = totalTimeInWorkplace - totalWorkedTimeInHours;
-      if (totalWorkedTimeInHours >= 9 && totalBrakeTime >= 1) enoughLunchBrakeInADay = true
-      if (totalWorkedTimeInHours < 9 && totalBrakeTime >= 0.5) enoughLunchBrakeInADay = true
+      if ((totalWorkedTimeInHours + (totalWorkedTimeInMinutes / 60)) >= 9 && highestBreakTime >= 1) return true
+      return (totalWorkedTimeInHours + (totalWorkedTimeInMinutes / 60)) < 9 && highestBreakTime >= 0.5;
 
-    } else {
-      return true
     }
-    return enoughLunchBrakeInADay;
+    return true;
   }
 
   newBookingsInRightDateFormatArray(bookings: TimeModel[]): TimeModel[] {
@@ -205,4 +203,3 @@ export class TimeService {
     return undefined
   }
 }
-

@@ -1,0 +1,28 @@
+<button [routerLink]="['/']" mat-raised-button>Back to Shop</button>
+<main>
+  <div id="shop">
+    <table [dataSource]="this.productService.getProducts()" class="mat-elevation-z8" mat-table>
+      <ng-container matColumnDef="name">
+        <th *matHeaderCellDef mat-header-cell> Name</th>
+        <td *matCellDef="let element" mat-cell> {{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th *matHeaderCellDef mat-header-cell> Price</th>
+        <td *matCellDef="let element" mat-cell> {{ element.price | currency:'CHF ' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th *matHeaderCellDef mat-header-cell>Action</th>
+        <td *matCellDef="let element" mat-cell>
+          <button mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+  </div>
+</main>

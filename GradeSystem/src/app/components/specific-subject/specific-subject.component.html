@@ -32,10 +32,10 @@
       <ng-container matColumnDef="actions">
         <th *matHeaderCellDef mat-header-cell>{{ 'ACTIONS' | translate }}</th>
         <td *matCellDef="let element" mat-cell>
-          <button [routerLink]="['/grade/' +specificSubject+ '/edit']" (click)="saveGradeData(element.id)" mat-icon-button>
+          <button [routerLink]="['/grade/' +specificSubject+ '/edit']" (click)="saveGradeData(element.id, element.grade)" mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
-          <button (click)="openDialog(element.grade, element.name, element.date); saveGradeData(element.id)" mat-icon-button>
+          <button (click)="openDialog(element.grade, element.name, element.date); saveGradeData(element.id, element.grade)" mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>
         </td>

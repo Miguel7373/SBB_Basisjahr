@@ -1,6 +1,12 @@
-import { CanActivateFn } from '@angular/router';
+import {CanActivateFn, Router} from '@angular/router';
+import {inject} from "@angular/core";
+import {UserService} from "../services/UserService/user-service.service";
 
-export const loginGuard: CanActivateFn = (route, state) => {
-  return true;
+export const loginGuard: CanActivateFn = ():boolean => {
+  if (!inject(UserService).loginBool){
+    inject(Router).navigate(['/']);
+    return false
+  }
+  return true
 };
 

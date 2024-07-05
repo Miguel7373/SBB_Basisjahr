@@ -12,14 +12,15 @@
     height: 92%;
 
     #loginBox {
+      margin-top: 100px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-direction: column;
       height: 60vh;
       width: 50vh;
-      border-radius: 15%;
-      background-color:  #00838F;
+      border-radius: 20px;
+      background-color:  var(--primaryColor);
 
       .boxInput {
         display: flex;

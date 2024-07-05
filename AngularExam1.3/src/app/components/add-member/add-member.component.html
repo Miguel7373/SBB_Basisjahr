@@ -1,37 +1,38 @@
 <main>
+  <div id="CreateMemberData">
   <header>
     <p id="creationTitle">Create New {{ this.creationType }}</p>
   </header>
-  <div id="CreateMemberData">
+
 
     <mat-form-field class="LoginInput">
       <mat-label>username</mat-label>
-      <input matInput type="text" [formControl]="newUsername" required>
+      <input [formControl]="newUsername" matInput required type="text">
     </mat-form-field>
 
     <mat-form-field class="LoginInput">
       <mat-label>Surname</mat-label>
-      <input matInput type="text" [formControl]="newUserSurname" required>
+      <input [formControl]="newUserSurname" matInput required type="text">
     </mat-form-field>
 
     <mat-form-field class="LoginInput">
       <mat-label>Firstname</mat-label>
-      <input matInput type="text" [formControl]="newUserFirstname" required>
+      <input [formControl]="newUserFirstname" matInput required type="text">
     </mat-form-field>
 
     <mat-form-field class="LoginInput">
       <mat-label>Password</mat-label>
-      <input matInput type="password" [formControl]="newUserPassword" required>
+      <input [formControl]="newUserPassword" matInput required type="password">
     </mat-form-field>
 
     <mat-form-field class="LoginInput">
       <mat-label>Department</mat-label>
-      <input matInput type="text" [formControl]="newUserDepartment" required>
+      <input [formControl]="newUserDepartment" matInput required type="text">
     </mat-form-field>
 
     <mat-form-field class="LoginInput">
       <mat-label>Profile Picture</mat-label>
-      <input matInput type="text" [formControl]="newUserPicture">
+      <input [formControl]="newUserPicture" matInput type="text">
     </mat-form-field>
 
     @if (creationType === 'Superior') {
@@ -45,9 +46,8 @@
       </mat-form-field>
     }
     <div id="submitButtons">
-      <button mat-raised-button (click)="onSubmit()" routerLink="/settings">Submit</button>
       <button mat-raised-button routerLink="/settings">Cancel</button>
+      <button (click)="onSubmit()" mat-raised-button routerLink="/settings">Submit</button>
     </div>
   </div>
-
 </main>

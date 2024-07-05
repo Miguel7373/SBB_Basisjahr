@@ -1,7 +1,7 @@
 <header>
   <p id="settingsTitle">Settings</p>
   <button aria-label="Example icon-button with a heart icon" mat-icon-button matTooltip="Home" routerLink="/home">
-    <mat-icon>home</mat-icon>
+    <mat-icon class="icon-display">home</mat-icon>
   </button>
 </header>
 <main>
@@ -56,11 +56,16 @@
   }
   <div id="settingsBox">
     @if (currentUser) {
+
       @if (!showMembers) {
+
         <button class="SettingButtons" mat-raised-button (click)="loadEdit()">Edit your Profile</button>
       }
+
       @if (memberService.getAllAdminIds().includes(currentUser.memberId)) {
+
         @if (!showMembers) {
+
           <button class="SettingButtons" mat-raised-button (click)="loadAssignment()">Create Assignment</button>
           <button class="SettingButtons" mat-raised-button (click)="loadTimeCode()">Create TimeCode</button>
           <button class="SettingButtons" mat-raised-button [routerLink]="['/memberAdd', 'Member']">Add Member</button>
@@ -68,17 +73,17 @@
           <button class="SettingButtons" mat-raised-button [routerLink]="['/memberAdd', 'Superior']">Add Superior
           </button>
         }
-        <button class="SettingButtons" mat-raised-button (click)="loadAllMembers()">show all current members
-        </button>
+        <button class="SettingButtons" mat-raised-button (click)="loadAllMembers()">View all current members</button>
+
         @if (showMembers) {
-          <h2>All Members:</h2>
+          <h2 id="MembersTitle">All Members:</h2>
           @for (member of allMembers; track $index) {
             <div>
-              {{ member }}
+              {{ member }} : {{ checkForType(member) }}
               <button mat-icon-button [routerLink]="['/edit', member]">
                 <mat-icon>edit</mat-icon>
               </button>
-              @if (!this.memberService.getAllAdminsName().includes(member)) {
+              @if (!(this.memberService.getCurrentUser()?.username === member)) {
                 <button mat-icon-button (click)="deleteMember(member)">
                   <mat-icon>delete</mat-icon>
                 </button>
@@ -88,6 +93,5 @@
         }
       }
     }
-
   </div>
 </main>
