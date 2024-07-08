@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
-import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {MemberService} from "../../services/memberService/member.service";
@@ -19,15 +19,16 @@ import {AdminModel, MemberModel, SuperiorModel} from "../../models/memberModel";
 })
 export class AddMemberComponent implements OnInit {
   creationType: string = 'Member';
-  newUsername: FormControl = new FormControl('');
-  newUserSurname: FormControl = new FormControl('');
-  newUserFirstname: FormControl = new FormControl('');
-  newUserPassword: FormControl = new FormControl('');
-  newUserDepartment: FormControl = new FormControl('');
-  newUserPicture: FormControl = new FormControl('');
-  member: FormControl = new FormControl('')
   members: string[] = []
-
+  newData: FormGroup = new FormGroup({
+    newUsername: new FormControl(''),
+    newUserSurname: new FormControl(''),
+    newUserFirstname: new FormControl(''),
+    newUserPassword: new FormControl(''),
+    newUserDepartment: new FormControl(''),
+    newUserPicture: new FormControl(''),
+    member: new FormControl('')
+  });
 
   constructor(private route: ActivatedRoute, private memberService: MemberService) {
   }
@@ -41,18 +42,18 @@ export class AddMemberComponent implements OnInit {
   }
 
   protected onSubmit() {
-    if (this.newUsername.value && this.newUserSurname.value && this.newUserFirstname.value && this.newUserPassword.value && this.newUserDepartment.value) {
-      if (!this.memberService.getAllMembersName().includes(this.newUsername.value) && !this.memberService.getAllSuperiorName().includes(this.newUsername.value) && !this.memberService.getAllAdminsName().includes(this.newUsername.value)) {
+    if (this.newData.value.newUsername && this.newData.value.newUserSurname && this.newData.value.newUserFirstname && this.newData.value.newUserPassword && this.newData.value.newUserDepartment) {
+      if (!this.memberService.getAllMembersName().includes(this.newData.value.newUsername) && !this.memberService.getAllSuperiorName().includes(this.newData.value.newUsername) && !this.memberService.getAllAdminsName().includes(this.newData.value.newUsername)) {
         const memberId: number = this.memberService.getTotalCount() + 1;
           const memberData: MemberModel | AdminModel | SuperiorModel = {
             memberId: memberId,
-            username: this.newUsername.value,
-            surname: this.newUserSurname.value,
-            firstname: this.newUserFirstname.value,
-            password: this.newUserPassword.value,
-            department: this.newUserDepartment.value,
-            picture: this.newUserPicture.value ?? undefined,
-            ...(this.member.value && { members: this.member.value }),
+            username: this.newData.value.newUsername,
+            surname: this.newData.value.newUserSurname,
+            firstname: this.newData.value.newUserFirstname,
+            password: this.newData.value.newUserPassword,
+            department: this.newData.value.newUserDepartment,
+            picture: this.newData.value.newUserPicture ?? undefined,
+            ...(this.newData.value.member && { members: this.newData.value.member }),
             bookings: []
 
           };
@@ -65,12 +66,12 @@ export class AddMemberComponent implements OnInit {
   }
 
   private resetFormFields() {
-    this.newUsername.reset();
-    this.newUserSurname.reset();
-    this.newUserFirstname.reset();
-    this.newUserPassword.reset();
-    this.newUserDepartment.reset();
-    this.newUserPicture.reset();
+    this.newData.value.newUsername.reset();
+    this.newData.value.newUserSurname.reset();
+    this.newData.value.newUserFirstname.reset();
+    this.newData.value.newUserPassword.reset();
+    this.newData.value.newUserDepartment.reset();
+    this.newData.value.newUserPicture.reset();
   }
 
 }

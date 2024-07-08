@@ -1,53 +1,53 @@
 <main>
-  <div id="CreateMemberData">
-  <header>
-    <p id="creationTitle">Create New {{ this.creationType }}</p>
-  </header>
+  <div id="CreateMemberData" [formGroup]="newData">
+    <header>
+      <p id="creationTitle">Create New {{ this.creationType }}</p>
+    </header>
 
-
-    <mat-form-field class="LoginInput">
-      <mat-label>username</mat-label>
-      <input [formControl]="newUsername" matInput required type="text">
-    </mat-form-field>
-
-    <mat-form-field class="LoginInput">
-      <mat-label>Surname</mat-label>
-      <input [formControl]="newUserSurname" matInput required type="text">
-    </mat-form-field>
-
-    <mat-form-field class="LoginInput">
-      <mat-label>Firstname</mat-label>
-      <input [formControl]="newUserFirstname" matInput required type="text">
-    </mat-form-field>
-
-    <mat-form-field class="LoginInput">
-      <mat-label>Password</mat-label>
-      <input [formControl]="newUserPassword" matInput required type="password">
-    </mat-form-field>
-
-    <mat-form-field class="LoginInput">
-      <mat-label>Department</mat-label>
-      <input [formControl]="newUserDepartment" matInput required type="text">
-    </mat-form-field>
-
-    <mat-form-field class="LoginInput">
-      <mat-label>Profile Picture</mat-label>
-      <input [formControl]="newUserPicture" matInput type="text">
-    </mat-form-field>
-
-    @if (creationType === 'Superior') {
-      <mat-form-field>
-        <mat-label>Members</mat-label>
-        <mat-select (click)="allMembersToAssign()" [formControl]="member" multiple>
-          @for (member of this.members; track member) {
-            <mat-option [value]="member">{{ this.member }}</mat-option>
-          }
-        </mat-select>
+      <mat-form-field class="LoginInput">
+        <mat-label>username</mat-label>
+        <input formControlName="newUsername" matInput required type="text">
       </mat-form-field>
-    }
-    <div id="submitButtons">
-      <button mat-raised-button routerLink="/settings">Cancel</button>
-      <button (click)="onSubmit()" mat-raised-button routerLink="/settings">Submit</button>
-    </div>
+
+      <mat-form-field class="LoginInput">
+        <mat-label>Surname</mat-label>
+        <input formControlName="newUserSurname" matInput required type="text">
+      </mat-form-field>
+
+      <mat-form-field class="LoginInput">
+        <mat-label>Firstname</mat-label>
+        <input formControlName="newUserFirstname" matInput required type="text">
+      </mat-form-field>
+
+      <mat-form-field class="LoginInput">
+        <mat-label>Password</mat-label>
+        <input formControlName="newUserPassword" matInput required type="password">
+      </mat-form-field>
+
+      <mat-form-field class="LoginInput">
+        <mat-label>Department</mat-label>
+        <input formControlName="newUserDepartment" matInput required type="text">
+      </mat-form-field>
+
+      <mat-form-field class="LoginInput">
+        <mat-label>Profile Picture</mat-label>
+        <input formControlName="newUserPicture" matInput type="text">
+      </mat-form-field>
+
+      @if (creationType === 'Superior') {
+        <mat-form-field>
+          <mat-label>Members</mat-label>
+          <mat-select (click)="allMembersToAssign()" formControlName="member" multiple>
+            @for (member of this.members; track member) {
+              <mat-option [value]="member">{{ this.member }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      }
+      <div id="submitButtons">
+        <button mat-raised-button routerLink="/settings">Cancel</button>
+        <button (click)="onSubmit()" mat-raised-button routerLink="/settings">Submit</button>
+      </div>
   </div>
+
 </main>

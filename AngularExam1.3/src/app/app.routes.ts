@@ -14,6 +14,5 @@ export const routes: Routes = [
   {path: "settings", component: SettingsComponent, canActivate: [loginGuard]},
   {path: "edit/:user", component: EditMemberComponent, canActivate: [loginGuard]},
   {path: "event/:usage", component: AddEventComponent, canActivate: [loginGuard]}
-
 // :time/:date/
 ];

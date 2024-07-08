@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     localStorage.setItem('currentUser', "");
-
   }
 
   protected login(): void {

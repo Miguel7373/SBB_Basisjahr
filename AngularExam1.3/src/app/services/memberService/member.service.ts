@@ -82,26 +82,21 @@ export class MemberService {
   addMember(memberData: MemberModel | AdminModel | SuperiorModel | undefined, currentType: string) {
     if (memberData !== undefined) {
       if (currentType === 'Superior') {
-        this.superiors.push(memberData as SuperiorModel)
-        localStorage.setItem('superiors', JSON.stringify(this.superiors))
+        localStorage.setItem('superiors', JSON.stringify(this.superiors.push(memberData as SuperiorModel)))
       } else if (currentType === 'Admin') {
-        this.admins.push(memberData as AdminModel)
-        localStorage.setItem('admins', JSON.stringify(this.admins))
+        localStorage.setItem('admins', JSON.stringify(this.admins.push(memberData as AdminModel)))
       } else if (currentType === 'Member') {
-        this.members.push(memberData as MemberModel)
-        localStorage.setItem('members', JSON.stringify(this.members))
+        localStorage.setItem('members', JSON.stringify(this.members.push(memberData as MemberModel)))
       }
     }
   }
 
   getCurrentUser(): MemberModel | AdminModel | SuperiorModel | undefined {
-
     let storedUser: string = ""
     storedUser = localStorage.getItem('currentUser') ?? "";
     if (storedUser) {
       return JSON.parse(storedUser);
     }
-
     return undefined;
   }
 
@@ -116,7 +111,6 @@ export class MemberService {
       return superior.members;
     }
     return [];
-
   }
 
   getAllSuperiorName(): string[] {
@@ -145,30 +139,22 @@ export class MemberService {
   }
 
   login(username: string, password: string): void {
-    let loginUser: MemberModel | AdminModel | SuperiorModel | undefined;
-
-    loginUser = this.validatePassword(username, password, this.members);
-    if (loginUser) {
-      localStorage.setItem('currentUser', JSON.stringify(loginUser));
-      this.router.navigate(["home"]);
-      return;
-    }
-
-    loginUser = this.validatePassword(username, password, this.admins);
-    if (loginUser) {
-      localStorage.setItem('currentUser', JSON.stringify(loginUser));
-      this.router.navigate(["home"]);
-      return;
-    }
-
-    loginUser = this.validatePassword(username, password, this.superiors);
-    if (loginUser) {
-      localStorage.setItem('currentUser', JSON.stringify(loginUser));
-      this.router.navigate(["home"]);
-      return;
-    }
+    if (this.tryLogin(username, password, this.members)) return;
+    if (this.tryLogin(username, password, this.admins)) return;
+    if (this.tryLogin(username, password, this.superiors)) return;
     this.loginTryCount += 1;
   }
+
+  private tryLogin(username: string, password: string, userList: any[]): boolean {
+    const loginUser:MemberModel | AdminModel | SuperiorModel| undefined = this.validatePassword(username, password, userList);
+    if (loginUser) {
+      localStorage.setItem('currentUser', JSON.stringify(loginUser));
+      this.router.navigate(["home"]);
+      return true;
+    }
+    return false;
+  }
+
 
 
   getLoginTryCount(): number {
@@ -191,7 +177,8 @@ export class MemberService {
       localStorage.setItem('members', JSON.stringify(this.deleteUser(this.members, memberName)));
     }
   }
-  deleteUser(users: MemberModel[] | AdminModel[] | SuperiorModel[], memberName:string): MemberModel[] | AdminModel[] | SuperiorModel[]{
+
+  deleteUser(users: MemberModel[] | AdminModel[] | SuperiorModel[], memberName: string): MemberModel[] | AdminModel[] | SuperiorModel[] {
     return users.filter(user => user.username !== memberName);
   }
 
@@ -200,22 +187,20 @@ export class MemberService {
     const updateValue: string = passwordOrPicture ? newPassword : newPicture;
     if (this.getCurrentUser()?.password !== updateValue) {
       if (this.getAllMembersName().includes(currentUser.username)) {
-        this.members = this.editOwnUser(this.members,currentUser.memberId, updateField, updateValue);
-        localStorage.setItem('members', JSON.stringify(this.members));
+        localStorage.setItem('members', JSON.stringify(this.editOwnUser(this.members, currentUser.memberId, updateField, updateValue)));
       } else if (this.getAllAdminsName().includes(currentUser.username)) {
-        this.admins = this.editOwnUser(this.admins, currentUser.memberId, updateField, updateValue);
-        localStorage.setItem('admins', JSON.stringify(this.admins));
+        localStorage.setItem('admins', JSON.stringify(this.editOwnUser(this.admins, currentUser.memberId, updateField, updateValue)));
       } else if (this.getAllSuperiorName().includes(currentUser.username)) {
         localStorage.setItem('superiors', JSON.stringify(this.editOwnUser(this.superiors, currentUser.memberId, updateField, updateValue)));
-        alert(this.editOwnUser(this.superiors, currentUser.memberId, updateField, updateValue)[0].picture);
       }
-    } else alert("That`s Already your password")
+    } else alert("Invalid Password")
+    this.setCurrentUser();
   }
-  editOwnUser(users: MemberModel[] | AdminModel[] | SuperiorModel[],userId:number, updateField:string, updateValue:string): MemberModel[] | AdminModel[] | SuperiorModel[]{
+
+  editOwnUser(users: MemberModel[] | AdminModel[] | SuperiorModel[], userId: number, updateField: string, updateValue: string): MemberModel[] | AdminModel[] | SuperiorModel[] {
     users = users.map(member => member.memberId === userId ? {
       ...member, [updateField]: updateValue
     } : member);
-    alert(users[0].picture)
     return users;
   }
 
@@ -267,7 +252,6 @@ export class MemberService {
     }
   }
 
-
   getUserByUsername(username: string): MemberModel | AdminModel | SuperiorModel | undefined {
     const currentUser: MemberModel | SuperiorModel | AdminModel | undefined = this.getCurrentUser();
     if (currentUser && currentUser.username === username) return currentUser;
@@ -294,21 +278,11 @@ export class MemberService {
 
   setCurrentUser(): void {
     const OldUser = JSON.parse(localStorage.getItem('currentUser') ?? "");
-    const user: MemberModel | undefined = this.members.find(user => user.memberId === OldUser.memberId);
-    if (user) {
-      localStorage.setItem('currentUser', JSON.stringify(user));
-    }
-    const admin: AdminModel | undefined = this.admins.find(admin => admin.memberId === OldUser.memberId);
-    if (admin) {
-      localStorage.setItem('currentUser', JSON.stringify(admin));
-    }
-    const superior: SuperiorModel | undefined = this.superiors.find(superior => superior.memberId === OldUser.memberId);
-    if (superior) {
-      localStorage.setItem('currentUser', JSON.stringify(superior));
-      return;
-    }
+    this.members = JSON.parse(localStorage.getItem('members') ?? "");
+    this.superiors = JSON.parse(localStorage.getItem('superiors') ?? "");
+    this.admins = JSON.parse(localStorage.getItem('admins') ?? "");
+    localStorage.setItem('currentUser', JSON.stringify(this.members.find(user => user.memberId === OldUser.memberId) ?? this.admins.find(admin => admin.memberId === OldUser.memberId) ?? this.superiors.find(superior => superior.memberId === OldUser.memberId)));
   }
-
 
 
   setCreatingDate(time: string, date: string) {

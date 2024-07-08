@@ -56,16 +56,11 @@
   }
   <div id="settingsBox">
     @if (currentUser) {
-
       @if (!showMembers) {
-
         <button class="SettingButtons" mat-raised-button (click)="loadEdit()">Edit your Profile</button>
       }
-
       @if (memberService.getAllAdminIds().includes(currentUser.memberId)) {
-
         @if (!showMembers) {
-
           <button class="SettingButtons" mat-raised-button (click)="loadAssignment()">Create Assignment</button>
           <button class="SettingButtons" mat-raised-button (click)="loadTimeCode()">Create TimeCode</button>
           <button class="SettingButtons" mat-raised-button [routerLink]="['/memberAdd', 'Member']">Add Member</button>

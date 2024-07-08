@@ -38,7 +38,7 @@ export class TimeService {
         alert("You cant work minus hours");
       }
     } else {
-      alert("The Booking has to be longer than 15 minutes")
+      alert("Invalid Booking")
     }
     this.memberService.setCurrentUser();
   }
@@ -57,6 +57,7 @@ export class TimeService {
     } else if (this.memberService.getAllSuperiorIds().includes(currentUser.memberId)) {
       localStorage.setItem('superiors', JSON.stringify(this.editUserSpecific(this.memberService.getSuperiorArray(), editingBooking, currentUser, newAssignmentName, newTimeCodeName, newStartTime, newEndTime, newDate)));
     }
+    this.memberService.setCurrentUser();
   }
 
   deleteBooking(currentUser: MemberModel | AdminModel | SuperiorModel, editingBooking: TimeModel): void {
@@ -97,16 +98,19 @@ export class TimeService {
           timeUntil: newEndTime,
           date: newDate
         };
-        const newCurrentMember = currentMember.bookings.filter(booking => booking.date !== JSON.parse(JSON.stringify(editingBooking)).date && (booking.timeFrom !== JSON.parse(JSON.stringify(editingBooking)).timeFrom || booking.timeUntil !== JSON.parse(JSON.stringify(editingBooking)).timeUntil))
-        if (this.validateNoOverlappingBookings(newBooking, newCurrentMember)) {
-          currentMember.bookings[bookingIndex].assignment = newAssignmentName;
-          currentMember.bookings[bookingIndex].timeCode = newTimeCodeName;
-          currentMember.bookings[bookingIndex].timeFrom = newStartTime;
-          currentMember.bookings[bookingIndex].timeUntil = newEndTime;
-          currentMember.bookings[bookingIndex].date = newDate;
-        } else {
-          alert("Error: Overlapping bookings detected. Changes not applied.");
-        }
+        const newCurrentMember:TimeModel[] = currentMember.bookings.filter(booking => booking.date !== JSON.parse(JSON.stringify(editingBooking)).date && (booking.timeFrom !== JSON.parse(JSON.stringify(editingBooking)).timeFrom || booking.timeUntil !== JSON.parse(JSON.stringify(editingBooking)).timeUntil))
+        if (newBooking.timeFrom < newBooking.timeUntil && newBooking.timeFrom && newBooking.timeUntil) {
+          if (this.validateNoOverlappingBookings(newBooking, newCurrentMember)) {
+
+            currentMember.bookings[bookingIndex].assignment = newAssignmentName;
+            currentMember.bookings[bookingIndex].timeCode = newTimeCodeName;
+            currentMember.bookings[bookingIndex].timeFrom = newStartTime;
+            currentMember.bookings[bookingIndex].timeUntil = newEndTime;
+            currentMember.bookings[bookingIndex].date = newDate;
+          } else {
+            alert("Error: Overlapping bookings detected. Changes not applied.");
+          }
+        } else alert("You cant Work minus houers")
       }
     }
     return UserArray;
@@ -200,6 +204,6 @@ export class TimeService {
         }
       }
     }
-    return undefined
+    return undefined;
   }
 }

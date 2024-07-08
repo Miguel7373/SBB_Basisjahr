@@ -23,10 +23,8 @@
         }
       </mat-select>
     </mat-form-field>
-
     @if (currentUser) {
       @if (memberService.getAllSuperiorIds().includes(currentUser.memberId)) {
-
         <mat-form-field id="memberSelect">
           <mat-label>Members</mat-label>
           <mat-select [formControl]="selectedMembers" multiple>
@@ -35,7 +33,6 @@
             }
           </mat-select>
         </mat-form-field>
-
       }
     }
     <div id="checkIn">

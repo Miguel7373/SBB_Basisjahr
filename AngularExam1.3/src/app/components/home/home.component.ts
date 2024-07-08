@@ -23,11 +23,11 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  exactDate: Date | undefined;
-  currentWeekStart: Date | undefined;
-  currentWeekEnd: Date | undefined;
-  weekDays: string[] | undefined;
-  timeSlots: string[] | undefined;
+  exactDate?: Date ;
+  currentWeekStart?: Date;
+  currentWeekEnd?: Date;
+  weekDays?: string[];
+  timeSlots?: string[];
   currentUser: MemberModel | SuperiorModel | AdminModel | undefined;
   currentWeekStartString?: string = "";
   currentWeekEndString?: string = "";
@@ -266,6 +266,4 @@ export class HomeComponent implements OnInit {
     if (period === 'PM' && hours < 12) hours += 12; else if (period === 'AM' && hours === 12) hours = 0;
     return `${hours.toString().padStart(2, '0')}`;
   }
-
 }
-

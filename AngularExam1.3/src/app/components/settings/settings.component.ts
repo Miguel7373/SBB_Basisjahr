@@ -20,15 +20,14 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
 })
 export class SettingsComponent implements OnInit {
   popUpAssignment: boolean = false;
-  currentUser: MemberModel | SuperiorModel | AdminModel | undefined;
-  allMembers: string[] | undefined;
+  currentUser?: MemberModel | SuperiorModel | AdminModel;
+  allMembers?: string[];
   showMembers: boolean = false;
   popUpTimeCode: boolean = false;
   popUpEdit: boolean = false;
   passwordOrPicture: boolean = true;
   newAssignmentName: FormControl = new FormControl('');
   newTimeCodeName: FormControl = new FormControl('');
-
 
 
   newPassword: FormControl = new FormControl('');
@@ -49,9 +48,9 @@ export class SettingsComponent implements OnInit {
       return 'Admin'
     } else if (this.memberService.getAllMembersName().includes(member)) {
       return 'Member'
-    } else if (this.memberService.getAllSuperiorName().includes(member)){
+    } else if (this.memberService.getAllSuperiorName().includes(member)) {
       return 'Superior'
-    }else {
+    } else {
       return "Deleted User";
     }
   }
@@ -93,9 +92,11 @@ export class SettingsComponent implements OnInit {
       this.popUpEdit = !this.popUpEdit;
       if (this.currentUser) {
         this.memberService.editMembersOwnProfile(this.currentUser, this.newPassword.value, this.newPicture.value, this.passwordOrPicture);
-        this.router.navigate(['/home']).then(() => {
-          return window.location.reload();
-        });
+        if (!this.passwordOrPicture) {
+          this.router.navigate(['/home']).then(() => {
+            return window.location.reload();
+          });
+        }
       }
     }
   }

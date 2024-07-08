@@ -34,8 +34,8 @@ export class AddEventComponent implements OnInit {
   clickedBookingTimeCode: string = "";
   assignmentsEdit: string = "";
   timeCodeEdit: string = "";
-  currentUser: MemberModel | SuperiorModel | AdminModel | undefined = this.memberService.getCurrentUser()
-  editingBooking: TimeModel | undefined;
+  currentUser?: MemberModel | SuperiorModel | AdminModel = this.memberService.getCurrentUser()
+  editingBooking?: TimeModel;
 
   newStart: FormControl = new FormControl('10:00');
   newEnd: FormControl = new FormControl('');
@@ -56,7 +56,6 @@ export class AddEventComponent implements OnInit {
     this.startTimeEdit.setValue(this.clickedBookingTimeFrom);
     this.assignmentsEdit = (this.clickedBookingAssignment);
     this.timeCodeEdit = (this.clickedBookingTimeCode);
-
   }
 
   protected CreateNewBookingForUser() {
@@ -88,10 +87,12 @@ export class AddEventComponent implements OnInit {
       newEditDateTimeStart.setHours(hoursStart, minutesStart);
       newEditDateTimeEnd.setHours(hoursEnd, minutesEnd);
       const newDate: Date = new Date(this.date);
-      if (this.editingBooking) this.timeService.editBooking(this.editingBooking, this.currentUser, this.assignmentsEdit, this.timeCodeEdit, newEditDateTimeStart, newEditDateTimeEnd, newDate)
-      this.router.navigate(['/home']).then(() => {
-        window.location.reload();
-      });
+      if (this.editingBooking) {
+        this.timeService.editBooking(this.editingBooking, this.currentUser, this.assignmentsEdit, this.timeCodeEdit, newEditDateTimeStart, newEditDateTimeEnd, newDate)
+        this.router.navigate(['/home']).then(() => {
+          window.location.reload();
+        });
+      }
     }
   }
 

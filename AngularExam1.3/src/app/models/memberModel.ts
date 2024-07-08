@@ -7,7 +7,7 @@ export interface MemberModel{
   firstname:string;
   password:string;
   department: string;
-  picture: string | undefined;
+  picture?: string;
   bookings: TimeModel[];
 }
 export interface AdminModel extends MemberModel{
