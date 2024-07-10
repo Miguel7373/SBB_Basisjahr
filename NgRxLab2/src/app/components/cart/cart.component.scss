@@ -2,6 +2,7 @@ main{
   margin-top: 10vh;
   height: 70%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   #shop{
@@ -14,4 +15,12 @@ main{
     height: 100%;
     overflow: scroll;
   }
+  button{
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+button{
+  margin-top: 3vh;
+  margin-left: 3vh;
 }

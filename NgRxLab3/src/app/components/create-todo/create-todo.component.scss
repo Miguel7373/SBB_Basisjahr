@@ -1,0 +1,27 @@
+body {
+  background-color: var(--primaryColor);
+  overflow: hidden;
+
+  main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    #create {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button{
+        margin-bottom: 1.5vh;
+      }
+
+      .example-full-width {
+        width: 50vh;
+      }
+    }
+  }
+}
+
+

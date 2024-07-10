@@ -1,0 +1,14 @@
+<main>
+  <button [routerLink]="['/add']" mat-mini-fab>
+    <mat-icon>add</mat-icon>
+  </button>
+  <div id="todoBox">
+    @for (todo of todos$ | async; track $index) {
+      <div id="todo">
+        <span>{{ todo.name }}:  {{todo.completed}}</span>
+        <button mat-raised-button (click)="onComplete(todo.id)">Complete</button>
+        <button mat-raised-button (click)="onRemove(todo.id)">Remove</button>
+      </div>
+    }
+  </div>
+</main>

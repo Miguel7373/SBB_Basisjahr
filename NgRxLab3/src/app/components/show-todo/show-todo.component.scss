@@ -1,0 +1,46 @@
+main{
+  width: 100%;
+  height: 100%;
+  background-color: var(--primaryColor);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  button{
+    margin-bottom: 2vh;
+  }
+
+  #todoBox{
+    width: 70vw;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkcyan;
+    border-radius: 5px ;
+    flex-direction: column;
+
+    #todo{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5vh;
+      width: 65vw;
+      border-radius: 12px;
+      height: 8vh;
+      background-color: var(--primaryColor);
+
+      span{
+        font-size: 2vh;
+      }
+
+      button{
+        margin-top: 2vh;
+        margin-left: 2vh;
+      }
+
+    }
+  }
+}

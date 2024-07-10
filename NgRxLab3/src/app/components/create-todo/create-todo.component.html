@@ -1,0 +1,16 @@
+<body>
+<button mat-button [routerLink]="['/']">
+  <mat-icon>arrow_left</mat-icon>
+  Zurück
+</button>
+
+<main>
+  <div id="create">
+<mat-form-field class="example-full-width">
+  <mat-label>Your TODO</mat-label>
+  <input matInput placeholder="TODO" [formControl]="todoName">
+</mat-form-field>
+  <button mat-raised-button (click)="submit()" >Create</button>
+  </div>
+</main>
+</body>

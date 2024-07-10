@@ -1,11 +1,12 @@
 import {ApplicationConfig, isDevMode, provideZoneChangeDetection} from '@angular/core';
 import { provideRouter } from '@angular/router';
-import {provideStoreDevtools} from '@ngrx/store-devtools';
 
 import { routes } from './app.routes';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {provideStore} from "@ngrx/store";
 import {reducers} from "./reducers";
+import {provideStoreDevtools} from '@ngrx/store-devtools';
+import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
